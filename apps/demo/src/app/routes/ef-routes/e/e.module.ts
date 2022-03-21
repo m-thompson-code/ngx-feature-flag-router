@@ -1,21 +1,21 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { FeatureFlagRouterModule, FeatureFlagRoutes } from "ngx-feature-flag-router";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
-import { EComponent } from "./e.component";
-import { DemoRoute, FeatureFlag, getFeatureFlagValue } from "demo-storage";
+import { EComponent } from './e.component';
+import { DemoRoute, FeatureFlag, getFeatureFlagValue } from 'demo-storage';
 
 const routes: FeatureFlagRoutes = [
     {
-        path: "",
+        path: '',
         component: EComponent,
     },
 
     {
-        path: "feature",
+        path: 'feature',
         featureFlag: () => getFeatureFlagValue(DemoRoute.E) === FeatureFlag.ON,
-        loadChildren: () => import("../../not-found/not-found.module").then((m) => m.NotFoundModule),
-        alternativeLoadChildren: () => import("./e-feature/e-feature.module").then((m) => m.EFeatureModule),
+        loadChildren: () => import('../../not-found/not-found.module').then((m) => m.NotFoundModule),
+        alternativeLoadChildren: () => import('./e-feature/e-feature.module').then((m) => m.EFeatureModule),
     },
 ];
 

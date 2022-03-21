@@ -1,17 +1,17 @@
-import { Component } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
-import { Observable } from "rxjs";
-import { map } from "rxjs/operators";
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Component({
-    selector: "demo-j",
-    templateUrl: "./j.component.html",
-    styleUrls: ["./j.component.scss"],
+    selector: 'demo-j',
+    templateUrl: './j.component.html',
+    styleUrls: ['./j.component.scss'],
 })
 export class JComponent {
     readonly id$: Observable<string>;
 
     constructor(private readonly route: ActivatedRoute) {
-        this.id$ = this.route.params.pipe(map((params) => params["id"]));
+        this.id$ = this.route.params.pipe(map((params) => params['id']));
     }
 }

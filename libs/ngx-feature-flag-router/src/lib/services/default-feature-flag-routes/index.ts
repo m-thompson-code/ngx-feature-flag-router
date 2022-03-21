@@ -1,1 +1,1 @@
-export * from "./default-feature-flag-routes.service";
+export * from './default-feature-flag-routes.service';

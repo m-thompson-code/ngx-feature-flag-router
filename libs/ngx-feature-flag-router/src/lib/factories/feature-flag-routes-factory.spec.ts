@@ -1,13 +1,13 @@
-import { NgModule, Type } from "@angular/core";
-import { TestBed } from "@angular/core/testing";
-import { Route, Routes } from "@angular/router";
-import { Observable, forkJoin, of, defer } from "rxjs";
-import { catchError, map, mergeMap } from "rxjs/operators";
-import { FeatureFlagRouterModule } from "../feature-flag-router.module";
-import { FeatureFlagRoutesFactoryService } from "../services/feature-flag-routes-factory";
-import { DefaultFeatureFlagRoutesService } from "../services/default-feature-flag-routes";
-import { featureFlagRoutesFactory } from "./feature-flag-routes-factory";
-import { FeatureFlagRoutes, FeatureFlagRoutesService } from "../models";
+import { NgModule, Type } from '@angular/core';
+import { TestBed } from '@angular/core/testing';
+import { Route, Routes } from '@angular/router';
+import { Observable, forkJoin, of, defer } from 'rxjs';
+import { catchError, map, mergeMap } from 'rxjs/operators';
+import { FeatureFlagRouterModule } from '../feature-flag-router.module';
+import { FeatureFlagRoutesFactoryService } from '../services/feature-flag-routes-factory';
+import { DefaultFeatureFlagRoutesService } from '../services/default-feature-flag-routes';
+import { featureFlagRoutesFactory } from './feature-flag-routes-factory';
+import { FeatureFlagRoutes, FeatureFlagRoutesService } from '../models';
 
 @NgModule()
 class MooModule {}
@@ -21,18 +21,18 @@ class TestFeatureFlagRoutesService implements FeatureFlagRoutesService {
     getFeatureRoutes(): FeatureFlagRoutes {
         return [
             {
-                path: "milk",
-                loadChildren: () => of("first milk" as unknown as Type<unknown>),
-                alternativeLoadChildren: () => of("second milk" as unknown as Type<unknown>),
+                path: 'milk',
+                loadChildren: () => of('first milk' as unknown as Type<unknown>),
+                alternativeLoadChildren: () => of('second milk' as unknown as Type<unknown>),
                 featureFlag: TEST_FEATURE_FLAG_ROUTES_SERVICE_FEATURE_FLAG_FUNCTION,
             },
-            { path: "bull" },
+            { path: 'bull' },
         ];
     }
 }
 
-describe("featureFlagRoutesFactory()", () => {
-    describe("Using DefaultFeatureFlagRoutesService", () => {
+describe('featureFlagRoutesFactory()', () => {
+    describe('Using DefaultFeatureFlagRoutesService', () => {
         let service!: FeatureFlagRoutesFactoryService;
         let defaultFeatureFlagRoutesService!: DefaultFeatureFlagRoutesService;
 
@@ -47,23 +47,23 @@ describe("featureFlagRoutesFactory()", () => {
             defaultFeatureFlagRoutesService = TestBed.inject(DefaultFeatureFlagRoutesService);
         });
 
-        it("should use DefaultFeatureFlagRoutesService if no other service is provided for FeatureFlagRoutesService", () => {
-            const spy = jest.spyOn(defaultFeatureFlagRoutesService, "getFeatureRoutes");
+        it('should use DefaultFeatureFlagRoutesService if no other service is provided for FeatureFlagRoutesService', () => {
+            const spy = jest.spyOn(defaultFeatureFlagRoutesService, 'getFeatureRoutes');
 
             featureFlagRoutesFactory([])(service);
 
             expect(spy).toBeCalledTimes(1);
         });
 
-        it("should recreate the same functionality as RouterModule.child()", () => {
-            const result = featureFlagRoutesFactory([{ path: "moo" }, { path: "cow" }]);
+        it('should recreate the same functionality as RouterModule.child()', () => {
+            const result = featureFlagRoutesFactory([{ path: 'moo' }, { path: 'cow' }]);
             expect(result(service)).toStrictEqual([
-                { path: "moo", children: undefined },
-                { path: "cow", children: undefined },
+                { path: 'moo', children: undefined },
+                { path: 'cow', children: undefined },
             ]);
         });
 
-        describe("using alternativeLoadChild and featureFlag", () => {
+        describe('using alternativeLoadChild and featureFlag', () => {
             let featureFlagValue = false;
             let shouldError = false;
 
@@ -89,7 +89,7 @@ describe("featureFlagRoutesFactory()", () => {
             const featureFlag = () =>
                 defer(() => {
                     if (shouldError) {
-                        throw "Expected error from test";
+                        throw 'Expected error from test';
                     }
 
                     return of(featureFlagValue);
@@ -104,12 +104,12 @@ describe("featureFlagRoutesFactory()", () => {
 
                 routes = featureFlagRoutesFactory([
                     {
-                        path: "moo",
+                        path: 'moo',
                         loadChildren,
                         alternativeLoadChildren,
                         featureFlag,
                     },
-                    { path: "cow" },
+                    { path: 'cow' },
                 ])(service);
 
                 firstRoute = routes[0] as Route & {
@@ -144,10 +144,10 @@ describe("featureFlagRoutesFactory()", () => {
                 jest.resetAllMocks();
             });
 
-            it("should be able to generate two routes per route with alternativeLoadChild", () => {
+            it('should be able to generate two routes per route with alternativeLoadChild', () => {
                 expect(routes).toStrictEqual([
                     {
-                        path: "moo",
+                        path: 'moo',
                         loadChildren: expect.any(Function),
                         alternativeLoadChildren: expect.any(Function),
                         featureFlag,
@@ -155,18 +155,18 @@ describe("featureFlagRoutesFactory()", () => {
                         children: undefined,
                     },
                     {
-                        path: "moo",
+                        path: 'moo',
                         loadChildren: expect.any(Function),
                         alternativeLoadChildren: expect.any(Function),
                         featureFlag,
                         matcher: expect.any(Function),
                         children: undefined,
                     },
-                    { path: "cow", children: undefined },
+                    { path: 'cow', children: undefined },
                 ]);
             });
 
-            it("first loadChildren should load (original) loadChildren if featureFlag is off", (done) => {
+            it('first loadChildren should load (original) loadChildren if featureFlag is off', (done) => {
                 expect.assertions(3);
 
                 featureFlagValue = false;
@@ -180,7 +180,7 @@ describe("featureFlagRoutesFactory()", () => {
                 });
             });
 
-            it("first loadChildren should load alternativeLoadChildren if featureFlag is on", (done) => {
+            it('first loadChildren should load alternativeLoadChildren if featureFlag is on', (done) => {
                 expect.assertions(3);
 
                 featureFlagValue = true;
@@ -194,8 +194,8 @@ describe("featureFlagRoutesFactory()", () => {
                 });
             });
 
-            it("first and second loadChildren should load (original) loadChildren if error", (done) => {
-                const spy = jest.spyOn(console, "error").mockImplementation(() => {
+            it('first and second loadChildren should load (original) loadChildren if error', (done) => {
+                const spy = jest.spyOn(console, 'error').mockImplementation(() => {
                     /* pass */
                 });
 
@@ -205,8 +205,8 @@ describe("featureFlagRoutesFactory()", () => {
                 shouldError = true;
 
                 testResults.subscribe(([flag, { firstModule, secondModule }]) => {
-                    expect(spy).nthCalledWith(1, "Expected error from test");
-                    expect(spy).nthCalledWith(2, "`alternativeLoadChildren` is unreliable. All routes will use `loadChildren` instead");
+                    expect(spy).nthCalledWith(1, 'Expected error from test');
+                    expect(spy).nthCalledWith(2, '`alternativeLoadChildren` is unreliable. All routes will use `loadChildren` instead');
                     expect(spy).toBeCalledTimes(2);
 
                     expect(flag).toBe(null); // Specific to this test, flag is expected to be `null` if there's an error
@@ -217,10 +217,10 @@ describe("featureFlagRoutesFactory()", () => {
                 });
             });
 
-            it("If both routes are preloaded (like when using PreloadAllModule), feature flag loading behavior should continue to work", (done) => {
+            it('If both routes are preloaded (like when using PreloadAllModule), feature flag loading behavior should continue to work', (done) => {
                 expect.assertions(4);
 
-                const spy = jest.spyOn(console, "error").mockImplementation(() => {
+                const spy = jest.spyOn(console, 'error').mockImplementation(() => {
                     /* pass */
                 });
 
@@ -245,7 +245,7 @@ describe("featureFlagRoutesFactory()", () => {
         });
     });
 
-    describe("Using custom injected FeatureFlagRoutesService", () => {
+    describe('Using custom injected FeatureFlagRoutesService', () => {
         let service!: FeatureFlagRoutesFactoryService;
         let injectedFeatureFlagRoutesService!: FeatureFlagRoutesService;
         let defaultFeatureFlagRoutesService!: DefaultFeatureFlagRoutesService;
@@ -266,9 +266,9 @@ describe("featureFlagRoutesFactory()", () => {
             defaultFeatureFlagRoutesService = TestBed.inject(DefaultFeatureFlagRoutesService);
         });
 
-        it("should not DefaultFeatureFlagRoutesService if another service is provided for FeatureFlagRoutesService", () => {
-            const spy = jest.spyOn(defaultFeatureFlagRoutesService, "getFeatureRoutes");
-            const spy2 = jest.spyOn(injectedFeatureFlagRoutesService, "getFeatureRoutes");
+        it('should not DefaultFeatureFlagRoutesService if another service is provided for FeatureFlagRoutesService', () => {
+            const spy = jest.spyOn(defaultFeatureFlagRoutesService, 'getFeatureRoutes');
+            const spy2 = jest.spyOn(injectedFeatureFlagRoutesService, 'getFeatureRoutes');
 
             featureFlagRoutesFactory([])(service);
 
@@ -276,7 +276,7 @@ describe("featureFlagRoutesFactory()", () => {
             expect(spy2).toBeCalledTimes(1);
         });
 
-        it("should unshift addtional routes from injected FeatureFlagRoutesService", () => {
+        it('should unshift addtional routes from injected FeatureFlagRoutesService', () => {
             const featureFlag = () => true;
 
             const loadChildren = () => of(MooModule);
@@ -284,17 +284,17 @@ describe("featureFlagRoutesFactory()", () => {
 
             const routes = featureFlagRoutesFactory([
                 {
-                    path: "moo",
+                    path: 'moo',
                     loadChildren,
                     alternativeLoadChildren,
                     featureFlag,
                 },
-                { path: "cow" },
+                { path: 'cow' },
             ])(service);
 
             expect(routes).toStrictEqual([
                 {
-                    path: "milk",
+                    path: 'milk',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag: TEST_FEATURE_FLAG_ROUTES_SERVICE_FEATURE_FLAG_FUNCTION,
@@ -302,16 +302,16 @@ describe("featureFlagRoutesFactory()", () => {
                     children: undefined,
                 },
                 {
-                    path: "milk",
+                    path: 'milk',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag: TEST_FEATURE_FLAG_ROUTES_SERVICE_FEATURE_FLAG_FUNCTION,
                     matcher: expect.any(Function),
                     children: undefined,
                 },
-                { path: "bull", children: undefined },
+                { path: 'bull', children: undefined },
                 {
-                    path: "moo",
+                    path: 'moo',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag,
@@ -319,14 +319,14 @@ describe("featureFlagRoutesFactory()", () => {
                     children: undefined,
                 },
                 {
-                    path: "moo",
+                    path: 'moo',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag,
                     matcher: expect.any(Function),
                     children: undefined,
                 },
-                { path: "cow", children: undefined },
+                { path: 'cow', children: undefined },
             ]);
         });
     });

@@ -1,4 +1,4 @@
-import { Route, UrlMatchResult, UrlSegment, UrlSegmentGroup } from "@angular/router";
+import { Route, UrlMatchResult, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
 /**
  * `defaultUrlMatcher` from
@@ -16,10 +16,10 @@ export function defaultUrlMatcher(segments: UrlSegment[], segmentGroup: UrlSegme
     // default behavior is to assume that routes always have property `path` as string
     // to allow for UrlMatcher always run on navigate, path is set to `undefined` instead of empty string
     // Angular normally avoids using the UrlMatcher if path is empty string
-    const parts = getRoutePath(route).split("/");
+    const parts = getRoutePath(route).split('/');
 
     // Extra exit early condition for handling if url is empty
-    if (segments.length === 0 && parts.length === 1 && parts[0] === "") {
+    if (segments.length === 0 && parts.length === 1 && parts[0] === '') {
         return { consumed: segments.slice(0, parts.length), posParams: {} };
     }
 
@@ -28,7 +28,7 @@ export function defaultUrlMatcher(segments: UrlSegment[], segmentGroup: UrlSegme
         return null;
     }
 
-    if (route.pathMatch === "full" && (segmentGroup.hasChildren() || parts.length < segments.length)) {
+    if (route.pathMatch === 'full' && (segmentGroup.hasChildren() || parts.length < segments.length)) {
         // The config is longer than the actual URL but we are looking for a full match, return null
         return null;
     }
@@ -39,7 +39,7 @@ export function defaultUrlMatcher(segments: UrlSegment[], segmentGroup: UrlSegme
     for (let index = 0; index < parts.length; index++) {
         const part = parts[index];
         const segment = segments[index];
-        const isParameter = part.startsWith(":");
+        const isParameter = part.startsWith(':');
         if (isParameter) {
             posParams[part.substring(1)] = segment;
         } else if (part !== segment.path) {
@@ -59,7 +59,7 @@ export function defaultUrlMatcher(segments: UrlSegment[], segmentGroup: UrlSegme
  */
 export const getRoutePath = (route: Route): string => {
     if (!route.path) {
-        return "";
+        return '';
     }
 
     return route.path;

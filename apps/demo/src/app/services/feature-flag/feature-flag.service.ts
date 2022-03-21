@@ -1,10 +1,10 @@
-import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
-import { merge, Observable, Subject } from "rxjs";
-import { delay, map, shareReplay, tap } from "rxjs/operators";
-import { getFeatureFlagValue, setFeatureFlagValue, FeatureFlag, DemoRoute } from "demo-storage";
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { merge, Observable, Subject } from 'rxjs';
+import { delay, map, shareReplay, tap } from 'rxjs/operators';
+import { getFeatureFlagValue, setFeatureFlagValue, FeatureFlag, DemoRoute } from 'demo-storage';
 
-@Injectable({ providedIn: "root" })
+@Injectable({ providedIn: 'root' })
 export class FeatureFlagService {
     private overrides: Partial<Record<DemoRoute, Subject<FeatureFlag>>> = {};
     private configApiResponses: Partial<Record<DemoRoute, Observable<FeatureFlag>>> = {};

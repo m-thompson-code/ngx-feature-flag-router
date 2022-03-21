@@ -1,14 +1,14 @@
-import { Component, OnDestroy } from "@angular/core";
-import { FormBuilder, FormGroup } from "@angular/forms";
-import { Router } from "@angular/router";
-import { FeatureFlag, DemoRoute } from "demo-storage";
-import { Subject } from "rxjs";
-import { FeatureFlagService } from "./services/feature-flag/feature-flag.service";
+import { Component, OnDestroy } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
+import { Router } from '@angular/router';
+import { FeatureFlag, DemoRoute } from 'demo-storage';
+import { Subject } from 'rxjs';
+import { FeatureFlagService } from './services/feature-flag/feature-flag.service';
 
 @Component({
-    selector: "demo-root",
-    templateUrl: "./app.component.html",
-    styleUrls: ["./app.component.scss"],
+    selector: 'demo-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnDestroy {
     readonly form: FormGroup;

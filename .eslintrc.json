@@ -27,7 +27,7 @@
             "rules": {
                 "@typescript-eslint/no-non-null-assertion": "off",
                 "quotes": "off",
-                "@typescript-eslint/quotes": ["error", "double", { "avoidEscape": true }],
+                "@typescript-eslint/quotes": ["error", "single", { "avoidEscape": true }],
                 "@typescript-eslint/no-unused-vars": "error",
                 "max-len": ["error", { "code": 140, "tabWidth": 4, "ignoreStrings": true }]
             }

@@ -1,14 +1,14 @@
-import { Injectable } from "@angular/core";
-import hljs from "highlight.js";
+import { Injectable } from '@angular/core';
+import hljs from 'highlight.js';
 
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class HighlightService {
     highlight(element?: HTMLElement): void {
         const source = element || document;
 
-        source.querySelectorAll("pre code, .inline-highlight").forEach((el) => {
+        source.querySelectorAll('pre code, .inline-highlight').forEach((el) => {
             // then highlight each
             hljs.highlightElement(el as HTMLElement);
         });
@@ -26,19 +26,19 @@ export class HighlightService {
         const textNodes = this.getTextNodes(element);
 
         textNodes.forEach((node) => {
-            const nodeValue = node.nodeValue || "";
+            const nodeValue = node.nodeValue || '';
 
-            if (nodeValue !== "@NgModule") {
+            if (nodeValue !== '@NgModule') {
                 return;
             }
 
-            const replacementSpan = document.createElement("SPAN");
-            replacementSpan.className = "hljs";
-            replacementSpan.innerText = "@";
+            const replacementSpan = document.createElement('SPAN');
+            replacementSpan.className = 'hljs';
+            replacementSpan.innerText = '@';
 
-            const replacementSpan2 = document.createElement("SPAN");
-            replacementSpan2.className = "hljs-title class_";
-            replacementSpan2.innerText = "NgModule";
+            const replacementSpan2 = document.createElement('SPAN');
+            replacementSpan2.className = 'hljs-title class_';
+            replacementSpan2.innerText = 'NgModule';
 
             node.replaceWith(replacementSpan, replacementSpan2);
         });
@@ -48,17 +48,17 @@ export class HighlightService {
         const textNodes = this.getTextNodes(element);
 
         textNodes.forEach((node) => {
-            const nodeValue = node.nodeValue || "";
+            const nodeValue = node.nodeValue || '';
 
-            if (!nodeValue.includes("(routes)")) {
+            if (!nodeValue.includes('(routes)')) {
                 return;
             }
 
-            const split = nodeValue.split("routes");
+            const split = nodeValue.split('routes');
 
-            const replacementSpan = document.createElement("SPAN");
-            replacementSpan.className = "hljs-attr";
-            replacementSpan.innerText = "routes";
+            const replacementSpan = document.createElement('SPAN');
+            replacementSpan.className = 'hljs-attr';
+            replacementSpan.innerText = 'routes';
 
             node.replaceWith(split[0], replacementSpan, split[1]);
         });
@@ -68,17 +68,17 @@ export class HighlightService {
         const textNodes = this.getTextNodes(element);
 
         textNodes.forEach((node) => {
-            const nodeValue = node.nodeValue || "";
+            const nodeValue = node.nodeValue || '';
 
-            if (!nodeValue.includes("m.")) {
+            if (!nodeValue.includes('m.')) {
                 return;
             }
 
-            const split = nodeValue.split("m");
+            const split = nodeValue.split('m');
 
-            const replacementSpan = document.createElement("SPAN");
-            replacementSpan.className = "hljs-attr";
-            replacementSpan.innerText = "m";
+            const replacementSpan = document.createElement('SPAN');
+            replacementSpan.className = 'hljs-attr';
+            replacementSpan.innerText = 'm';
 
             node.replaceWith(split[0], replacementSpan, split[1]);
         });
@@ -88,7 +88,7 @@ export class HighlightService {
         const whitespace = /^\s*$/;
 
         if (node.nodeType == 3) {
-            if (includeWhitespaceNodes || !whitespace.test(node.nodeValue || "")) {
+            if (includeWhitespaceNodes || !whitespace.test(node.nodeValue || '')) {
                 textNodes.push(node);
             }
         } else {

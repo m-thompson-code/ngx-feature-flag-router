@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef } from "@angular/core";
-import { DemoRoute, FeatureFlag, getFeatureFlagValue, setFeatureFlagValue } from "demo-storage";
-import { HighlightService } from "../services/highlight/highlight.service";
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { DemoRoute, FeatureFlag, getFeatureFlagValue, setFeatureFlagValue } from 'demo-storage';
+import { HighlightService } from '../services/highlight/highlight.service';
 
 @Component({
-    selector: "demo-example",
-    templateUrl: "./example.component.html",
-    styleUrls: ["./example.component.scss"],
+    selector: 'demo-example',
+    templateUrl: './example.component.html',
+    styleUrls: ['./example.component.scss'],
 })
 export class ExampleComponent implements AfterViewInit {
     featureFlag: FeatureFlag;

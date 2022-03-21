@@ -1,5 +1,5 @@
-import { ɵisObservable as isObservable, ɵisPromise as isPromise } from "@angular/core";
-import { from, Observable, of } from "rxjs";
+import { ɵisObservable as isObservable, ɵisPromise as isPromise } from '@angular/core';
+import { from, Observable, of } from 'rxjs';
 
 /**
  * `wrapIntoObservable` from

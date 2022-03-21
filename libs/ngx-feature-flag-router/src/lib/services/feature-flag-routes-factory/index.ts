@@ -1,1 +1,1 @@
-export * from "./feature-flag-routes-factory.service";
+export * from './feature-flag-routes-factory.service';

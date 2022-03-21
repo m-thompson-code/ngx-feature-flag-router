@@ -1,4 +1,4 @@
-import { Route, UrlMatchResult, UrlSegment, UrlSegmentGroup } from "@angular/router";
+import { Route, UrlMatchResult, UrlSegment, UrlSegmentGroup } from '@angular/router';
 
 /**
  * Angular 8 and 9 have the wrong return type for UrlMatcher.

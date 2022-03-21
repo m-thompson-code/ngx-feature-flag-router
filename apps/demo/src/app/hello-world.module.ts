@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { HelloWorldComponent } from "./hello-world/hello-world.component";
-import { RouterModule, Routes } from "@angular/router";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { HelloWorldComponent } from './hello-world/hello-world.component';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
     {
-        path: "",
+        path: '',
         component: HelloWorldComponent,
     },
 ];

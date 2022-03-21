@@ -1,4 +1,4 @@
-import { FeatureFlagRoutes, FeatureFlagRoutesService } from "../../models";
+import { FeatureFlagRoutes, FeatureFlagRoutesService } from '../../models';
 
 /**
  * `FeatureFlagRoutesService` used when no `FeatureFlagRoutesService` is provided

@@ -1,10 +1,10 @@
-import { TestBed } from "@angular/core/testing";
-import { Router, Routes, ROUTES } from "@angular/router";
-import { RouterTestingModule } from "@angular/router/testing";
-import { Component, Injectable, NgModule } from "@angular/core";
-import { FeatureFlagRoutesFactoryService } from "./services";
-import { FeatureFlagRoutes, FeatureFlagRoutesService } from "./models";
-import { FeatureFlagRouterModule } from "./feature-flag-router.module";
+import { TestBed } from '@angular/core/testing';
+import { Router, Routes, ROUTES } from '@angular/router';
+import { RouterTestingModule } from '@angular/router/testing';
+import { Component, Injectable, NgModule } from '@angular/core';
+import { FeatureFlagRoutesFactoryService } from './services';
+import { FeatureFlagRoutes, FeatureFlagRoutesService } from './models';
+import { FeatureFlagRouterModule } from './feature-flag-router.module';
 
 @Component({})
 class MockComponent {}
@@ -26,16 +26,16 @@ class TestFeatureFlagRoutesService implements FeatureFlagRoutesService {
     getFeatureRoutes(): FeatureFlagRoutes {
         return [
             {
-                path: "milk",
+                path: 'milk',
                 loadChildren: ANOTHER_MOCK_LOAD_CHILDREN,
             },
-            { path: "bull", component: AnotherMockComponent },
+            { path: 'bull', component: AnotherMockComponent },
         ];
     }
 }
 
-describe("FeatureFlagRouterModule", () => {
-    it("should have a module definition", async () => {
+describe('FeatureFlagRouterModule', () => {
+    it('should have a module definition', async () => {
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule, FeatureFlagRouterModule],
         }).compileComponents();
@@ -45,7 +45,7 @@ describe("FeatureFlagRouterModule", () => {
         expect(TestBed.inject(ROUTES)).toStrictEqual([[]]);
     });
 
-    it("should provide FeatureFlagRoutesService and FeatureFlagRoutesFactoryService", async () => {
+    it('should provide FeatureFlagRoutesService and FeatureFlagRoutesFactoryService', async () => {
         await TestBed.configureTestingModule({
             imports: [RouterTestingModule, FeatureFlagRouterModule.forChild([])],
         }).compileComponents();
@@ -55,14 +55,14 @@ describe("FeatureFlagRouterModule", () => {
         expect(TestBed.inject(FeatureFlagRoutesFactoryService)).toBeDefined();
     });
 
-    it("should set routes to Router.config", async () => {
+    it('should set routes to Router.config', async () => {
         const featureFlagRoutes: Routes = [
             {
-                path: "moo",
+                path: 'moo',
                 loadChildren: MOCK_LOAD_CHILDREN,
                 children: undefined,
             },
-            { path: "cow", component: MockComponent, children: undefined },
+            { path: 'cow', component: MockComponent, children: undefined },
         ];
 
         await TestBed.configureTestingModule({
@@ -74,10 +74,10 @@ describe("FeatureFlagRouterModule", () => {
         expect(TestBed.inject(ROUTES)).toStrictEqual([[], featureFlagRoutes]);
     });
 
-    it("should also use injected TestFeatureFlagRoutesService to set Router.config", async () => {
+    it('should also use injected TestFeatureFlagRoutesService to set Router.config', async () => {
         const featureFlagRoutes: Routes = [
-            { path: "moo", loadChildren: MOCK_LOAD_CHILDREN },
-            { path: "cow", component: MockComponent },
+            { path: 'moo', loadChildren: MOCK_LOAD_CHILDREN },
+            { path: 'cow', component: MockComponent },
         ];
 
         await TestBed.configureTestingModule({
@@ -87,10 +87,10 @@ describe("FeatureFlagRouterModule", () => {
 
         const additionalExpectedRoutes: Routes = [
             {
-                path: "milk",
+                path: 'milk',
                 loadChildren: ANOTHER_MOCK_LOAD_CHILDREN,
             },
-            { path: "bull", component: AnotherMockComponent },
+            { path: 'bull', component: AnotherMockComponent },
         ];
 
         const expectations = [

@@ -1,14 +1,14 @@
-import { CommonModule, ViewportScroller } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { Router, RouterModule, Scroll } from "@angular/router";
-import { FeatureFlagRoutes } from "ngx-feature-flag-router";
-import { filter } from "rxjs/operators";
+import { CommonModule, ViewportScroller } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { Router, RouterModule, Scroll } from '@angular/router';
+import { FeatureFlagRoutes } from 'ngx-feature-flag-router';
+import { filter } from 'rxjs/operators';
 // import { PreloadAllModules, RouterModule, Routes } from "@angular/router";
 
 const routes: FeatureFlagRoutes = [
     {
-        path: "",
-        loadChildren: () => import("./root/root.module").then((m) => m.RootModule),
+        path: '',
+        loadChildren: () => import('./root/root.module').then((m) => m.RootModule),
     },
     // {
     //     path: "routes",
@@ -41,8 +41,8 @@ const routes: FeatureFlagRoutes = [
         CommonModule,
         RouterModule.forRoot(routes, {
             // preloadingStrategy: PreloadAllModules,
-            onSameUrlNavigation: "reload",
-            scrollPositionRestoration: "enabled",
+            onSameUrlNavigation: 'reload',
+            scrollPositionRestoration: 'enabled',
         }),
     ],
     exports: [RouterModule],

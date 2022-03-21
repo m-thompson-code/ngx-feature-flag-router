@@ -1,8 +1,8 @@
-import { Injectable, isDevMode, OnDestroy, Type } from "@angular/core";
-import { LoadChildrenCallback, Route, Routes, UrlMatcher, UrlSegment, UrlSegmentGroup } from "@angular/router";
-import { Observable, Subject } from "rxjs";
-import { catchError, mergeMap, shareReplay, take, takeUntil, tap } from "rxjs/operators";
-import { defaultUrlMatcher, wrapIntoObservable } from "../../angular-utils";
+import { Injectable, isDevMode, OnDestroy, Type } from '@angular/core';
+import { LoadChildrenCallback, Route, Routes, UrlMatcher, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { catchError, mergeMap, shareReplay, take, takeUntil, tap } from 'rxjs/operators';
+import { defaultUrlMatcher, wrapIntoObservable } from '../../angular-utils';
 import {
     FactoryService,
     FeatureFlagRoute,
@@ -10,8 +10,8 @@ import {
     FeatureFlagRoutesService,
     LegacyUrlMatcher,
     ModernUrlMatcher,
-} from "../../models";
-import { flattened } from "../../utils";
+} from '../../models';
+import { flattened } from '../../utils';
 
 @Injectable()
 export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestroy {
@@ -33,7 +33,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
         const handleError = () => {
             if (isDevMode()) {
-                console.error("`alternativeLoadChildren` is unreliable. All routes will use `loadChildren` instead");
+                console.error('`alternativeLoadChildren` is unreliable. All routes will use `loadChildren` instead');
             }
 
             modules = {
@@ -47,7 +47,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
             const expectedSecondModule = featureFlagValue ? module : alternativeModule;
 
             if (modules && (modules.first !== expectedFirstModule || modules.second !== expectedSecondModule)) {
-                console.error("Unexpected modules were set out of sync of each other");
+                console.error('Unexpected modules were set out of sync of each other');
                 handleError();
                 return;
             }
@@ -68,7 +68,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
                     handleFeatureFlagValue(featureFlagValue);
 
                     if (!modules || !modules.first) {
-                        throw new Error("Unexpected missing first module");
+                        throw new Error('Unexpected missing first module');
                     }
 
                     return modules.first();
@@ -91,7 +91,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
                     handleFeatureFlagValue(featureFlagValue);
 
                     if (!modules || !modules.second) {
-                        throw new Error("Unexpected missing second module");
+                        throw new Error('Unexpected missing second module');
                     }
 
                     return modules.second();
@@ -131,7 +131,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         const featureFlagFunctionReturn = featureFlag();
 
         let firstLoadChildrenFeatureFlagValue: boolean | null =
-            typeof featureFlagFunctionReturn === "boolean" ? featureFlagFunctionReturn : null;
+            typeof featureFlagFunctionReturn === 'boolean' ? featureFlagFunctionReturn : null;
         let observedFeatureFlagValue: boolean | null = firstLoadChildrenFeatureFlagValue;
 
         const featureFlagMatchesdInitialValue = () => {
@@ -141,7 +141,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
             const syncronousFeatureFlagFunctionValue = featureFlag();
 
-            if (typeof syncronousFeatureFlagFunctionValue === "boolean") {
+            if (typeof syncronousFeatureFlagFunctionValue === 'boolean') {
                 observedFeatureFlagValue = syncronousFeatureFlagFunctionValue;
             }
 
@@ -153,7 +153,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         // featureFlag returns a boolean syncronously, so there's no reason to
         // make a subscription since the observed feature flag value won't be used
         // to determine if first UrlMatcher should fail
-        if (typeof featureFlagFunctionReturn !== "boolean") {
+        if (typeof featureFlagFunctionReturn !== 'boolean') {
             featureFlag$.pipe(takeUntil(this.unsubscribe$)).subscribe((value) => {
                 observedFeatureFlagValue = value;
             });

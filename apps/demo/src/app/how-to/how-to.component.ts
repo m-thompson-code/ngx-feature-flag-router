@@ -1,11 +1,11 @@
-import { AfterViewInit, Component, ElementRef } from "@angular/core";
-import { DomSanitizer } from "@angular/platform-browser";
-import { HighlightService } from "../services/highlight/highlight.service";
+import { AfterViewInit, Component, ElementRef } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
+import { HighlightService } from '../services/highlight/highlight.service';
 
 @Component({
-    selector: "demo-how-to",
-    templateUrl: "./how-to.component.html",
-    styleUrls: ["./how-to.component.scss"],
+    selector: 'demo-how-to',
+    templateUrl: './how-to.component.html',
+    styleUrls: ['./how-to.component.scss'],
 })
 export class HowToComponent implements AfterViewInit {
     beforeModuleSample = `

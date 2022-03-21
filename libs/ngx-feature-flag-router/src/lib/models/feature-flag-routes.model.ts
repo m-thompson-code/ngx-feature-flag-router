@@ -1,7 +1,7 @@
-import { LoadChildrenCallback, Route, Routes } from "@angular/router";
-import { Observable } from "rxjs";
+import { LoadChildrenCallback, Route, Routes } from '@angular/router';
+import { Observable } from 'rxjs';
 
-export type PatchedRoute = Omit<Route, "children"> & {
+export type PatchedRoute = Omit<Route, 'children'> & {
     alternativeLoadChildren?: never;
     featureFlag?: never;
     children?: FeatureFlagRoutes;

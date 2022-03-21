@@ -1,11 +1,11 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { RouterModule, Routes } from "@angular/router";
-import { GFeatureComponent } from "./g-feature.component";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+import { GFeatureComponent } from './g-feature.component';
 
 const routes: Routes = [
     {
-        path: "",
+        path: '',
         component: GFeatureComponent,
     },
 ];

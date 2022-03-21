@@ -1,8 +1,8 @@
-import { ANALYZE_FOR_ENTRY_COMPONENTS, forwardRef, ModuleWithProviders, NgModule, Optional, Type } from "@angular/core";
-import { Router, RouterModule, ROUTES } from "@angular/router";
-import { featureFlagRoutesFactory } from "./factories";
-import { FactoryService, FeatureFlagRoutes, FeatureFlagRoutesService } from "./models";
-import { FeatureFlagRoutesFactoryService, DefaultFeatureFlagRoutesService } from "./services";
+import { ANALYZE_FOR_ENTRY_COMPONENTS, forwardRef, ModuleWithProviders, NgModule, Optional, Type } from '@angular/core';
+import { Router, RouterModule, ROUTES } from '@angular/router';
+import { featureFlagRoutesFactory } from './factories';
+import { FactoryService, FeatureFlagRoutes, FeatureFlagRoutesService } from './models';
+import { FeatureFlagRoutesFactoryService, DefaultFeatureFlagRoutesService } from './services';
 
 /**
  * You should use `FeatureRouterModule` instead of `RouterModule`

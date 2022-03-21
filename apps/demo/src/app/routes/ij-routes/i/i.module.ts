@@ -1,18 +1,18 @@
-import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
-import { Routes } from "@angular/router";
-import { FeatureFlagRouterModule } from "ngx-feature-flag-router";
+import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Routes } from '@angular/router';
+import { FeatureFlagRouterModule } from 'ngx-feature-flag-router';
 
-import { IComponent } from "./i.component";
+import { IComponent } from './i.component';
 
 const routes: Routes = [
     {
-        path: "",
+        path: '',
         component: IComponent,
         children: [
             {
-                path: "ij",
-                loadChildren: () => import("../ij.module").then((m) => m.IJModule),
+                path: 'ij',
+                loadChildren: () => import('../ij.module').then((m) => m.IJModule),
             },
         ],
     },

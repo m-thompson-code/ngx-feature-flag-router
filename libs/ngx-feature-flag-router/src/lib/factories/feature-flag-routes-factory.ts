@@ -1,4 +1,4 @@
-import { FactoryService, FeatureFlagRoutes, FeatureFlagRoutesFactory } from "../models";
+import { FactoryService, FeatureFlagRoutes, FeatureFlagRoutesFactory } from '../models';
 
 /**
  * Used to provide `ROUTES` when using `useFactory`

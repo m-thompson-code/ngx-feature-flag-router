@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 import {
     ActivatedRouteSnapshot,
     CanActivate,
@@ -9,18 +9,18 @@ import {
     RouterStateSnapshot,
     UrlSegment,
     UrlTree,
-} from "@angular/router";
-import { Observable } from "rxjs";
+} from '@angular/router';
+import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: "root",
+    providedIn: 'root',
 })
 export class CanActivateGuard implements CanActivate, CanActivateChild, CanLoad {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-        console.log("canActivate");
+        console.log('canActivate');
 
         return true;
     }
@@ -29,13 +29,13 @@ export class CanActivateGuard implements CanActivate, CanActivateChild, CanLoad 
         childRoute: ActivatedRouteSnapshot,
         state: RouterStateSnapshot,
     ): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        console.log("canActivateChild");
+        console.log('canActivateChild');
 
         return true;
     }
 
     canLoad(route: Route, segments: UrlSegment[]): boolean | UrlTree | Observable<boolean | UrlTree> | Promise<boolean | UrlTree> {
-        console.log("canLoad");
+        console.log('canLoad');
 
         return true;
     }

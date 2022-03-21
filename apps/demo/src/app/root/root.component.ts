@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
-    selector: "demo-root",
-    templateUrl: "./root.component.html",
-    styleUrls: ["./root.component.scss"],
+    selector: 'demo-root',
+    templateUrl: './root.component.html',
+    styleUrls: ['./root.component.scss'],
 })
 export class RootComponent {}

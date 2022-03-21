@@ -1,8 +1,8 @@
-import { TestBed } from "@angular/core/testing";
-import { HttpClientTestingModule } from "@angular/common/http/testing";
-import { FeatureFlagService } from "./feature-flag.service";
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { FeatureFlagService } from './feature-flag.service';
 
-describe("FeatureFlagService", () => {
+describe('FeatureFlagService', () => {
     let service: FeatureFlagService;
 
     beforeEach(() => {
@@ -12,7 +12,7 @@ describe("FeatureFlagService", () => {
         service = TestBed.inject(FeatureFlagService);
     });
 
-    it("should be created", () => {
+    it('should be created', () => {
         expect(service).toBeTruthy();
     });
 });
