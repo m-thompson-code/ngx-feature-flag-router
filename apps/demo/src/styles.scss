@@ -1,1 +1,295 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'sass:math';
+
+@import 'global.scss';
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    @include get-background-color('white');
+}
+body,
+input,
+button {
+    font-family: Roboto, 'Helvetica Neue', sans-serif;
+    font-size: $font-size;
+    line-height: 1.65;
+}
+
+h1 {
+    text-align: center;
+}
+
+h1,
+p {
+    margin: $spacing 0;
+}
+
+pre {
+    margin: $spacing 0;
+    width: 100%;
+    max-width: 100%;
+}
+
+code {
+    border-radius: $spacing;
+    overflow-x: auto;
+    width: 100%;
+    padding: $spacing;
+    max-width: 100%;
+}
+
+.inline-highlight {
+    width: 100%;
+    max-width: 100%;
+    border-radius: $spacing * 0.5;
+}
+
+.json {
+    min-height: $spacing * 4;
+    white-space: pre-wrap;
+    word-spacing: $spacing;
+    background: darkslateblue;
+    color: antiquewhite;
+    border-radius: $spacing;
+    padding: $spacing;
+    margin: 0 0 $spacing;
+}
+
+label {
+    display: block;
+    margin: 0 0 $spacing;
+}
+input {
+    display: block;
+    padding: $spacing #{$spacing * 2};
+    margin: 0 0 $spacing;
+    height: $spacing * 6;
+    border-width: $spacing * 0.25;
+    border-radius: $spacing;
+    border-color: grey;
+    width: $input-width;
+}
+input[type='checkbox'],
+input[type='radio'] {
+    margin: 0 0 $spacing;
+    height: $spacing * 4;
+    width: $spacing * 4;
+}
+input[type='color'] {
+    padding: $spacing * 0.5;
+    height: $spacing * 6;
+    width: $spacing * 6;
+}
+input[type='range'] {
+    height: $spacing * 2;
+    width: $input-width;
+}
+input[type='datetime-local'] {
+    width: $input-width;
+}
+button {
+    padding: $spacing #{$spacing * 2};
+    height: $spacing * 6;
+    margin: 0 0 $spacing;
+    border-radius: $spacing;
+}
+
+button {
+    line-height: 0;
+}
+
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: $spacing;
+    align-items: center;
+
+    label,
+    input,
+    button {
+        margin-bottom: 0;
+    }
+    margin: 0 0 $spacing;
+}
+
+.page {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    gap: $spacing;
+
+    .section {
+        flex-grow: 2;
+        width: 50%;
+    }
+}
+
+.black-text {
+    color: $black;
+}
+.white-text {
+    color: $white;
+}
+
+a,
+button {
+    transition: background 200ms, border-color 200ms, color 200ms;
+    cursor: pointer;
+}
+
+@mixin get-anchor-styles($color-name) {
+    & {
+        @include get-color($color-name, -10);
+    }
+    &:visited {
+        @include get-color($color-name, 5);
+    }
+    &:hover {
+        @include get-color($color-name, -20);
+    }
+    &:focus,
+    &:focus-within {
+        @include get-color($color-name, 15);
+    }
+    &:active {
+        @include get-color($color-name, -50);
+    }
+}
+
+@mixin get-button-styles($color-name) {
+    &,
+    &:visited {
+        @include get-background-color($color-name);
+        @include get-color('white');
+    }
+    &:hover {
+        @include get-background-color($color-name, -5);
+        @include get-color('white', -5);
+    }
+    &:focus,
+    &:focus-within {
+        @include get-background-color($color-name, 10);
+        @include get-color('white', 10);
+    }
+    &:active {
+        @include get-background-color($color-name, -10);
+        @include get-color('white', -10);
+    }
+
+    &.flat,
+    &.flat:visited {
+        @include get-background-color('white');
+        @include get-color($color-name);
+        border-style: solid;
+    }
+    &.flat:hover {
+        @include get-background-color('white', -5);
+        @include get-color($color-name, -5);
+        border-style: solid;
+    }
+    &.flat:focus,
+    &.flat:focus-within {
+        @include get-background-color('white', 10);
+        @include get-color($color-name, 10);
+        border-style: solid;
+    }
+    &.flat:active {
+        background: transparent;
+        @include get-color($color-name, -10);
+        border-style: solid;
+    }
+
+    &.clear,
+    &.clear:visited {
+        background: transparent;
+        @include get-color($color-name);
+        border-style: solid;
+    }
+    &.clear:hover {
+        background: transparent;
+        @include get-color($color-name, -5);
+        border-style: solid;
+    }
+    &.clear:focus,
+    &.clear:focus-within {
+        background: transparent;
+        @include get-color($color-name, 10);
+        border-style: solid;
+    }
+    &.clear:active {
+        background: transparent;
+        @include get-color($color-name, -10);
+        border-style: solid;
+    }
+}
+
+a {
+    @include get-anchor-styles('primary');
+    text-decoration: underline;
+}
+
+button {
+    @include get-button-styles('primary');
+}
+
+@mixin get-color-styles($color-name) {
+    .#{$color-name}-background {
+        @include get-background-color($color-name);
+
+        &.lighten-0,
+        .lighten-0,
+        &.darken-0,
+        .darken-0,
+        &.base,
+        .base {
+            @include get-background-color($color-name);
+        }
+
+        $numbers: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75, 80, 85, 90, 95, 100;
+
+        @each $num in $numbers {
+            &.lighten-#{$num},
+            .lighten-#{$num} {
+                @include get-background-color($color-name, -$num);
+            }
+            &.darken-#{$num},
+            .darken-#{$num} {
+                @include get-background-color($color-name, $num);
+            }
+        }
+    }
+
+    .#{$color-name} {
+        @include get-color($color-name);
+    }
+
+    button.#{$color-name} {
+        @include get-button-styles($color-name);
+    }
+}
+
+@each $color-name in 'white', 'grey', 'dark-grey', 'black', 'primary', 'secondary', 'ternary' {
+    @include get-color-styles($color-name);
+}
+
+.hljs-title.class_,
+.hljs-property {
+    color: #6bc8b1; // @NgModule, (routes) fix
+}
+.hljs-params {
+    color: #9cdcfe !important; // m.SomeModule fix
+}
+.hljs-title.function_ {
+    color: #dcdcad; // import(...) fix
+}
+
+.hide {
+    display: none;
+}

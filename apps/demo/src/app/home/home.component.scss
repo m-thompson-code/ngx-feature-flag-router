@@ -1,0 +1,23 @@
+@import '../../global';
+
+:host {
+    min-height: 100vh;
+    width: 100%;
+    padding: $spacing;
+    @include get-color('white');
+    @include get-background-color('primary', 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-text {
+    text-align: center;
+}
+
+div {
+    border-radius: $spacing;
+    padding: $spacing $spacing * 4;
+    max-width: 100%;
+}

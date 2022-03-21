@@ -1,0 +1,23 @@
+{
+    "root": "libs/demo-storage",
+    "sourceRoot": "libs/demo-storage/src",
+    "projectType": "library",
+    "targets": {
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/demo-storage/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/demo-storage"],
+            "options": {
+                "jestConfig": "libs/demo-storage/jest.config.js",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": ["storage"]
+}

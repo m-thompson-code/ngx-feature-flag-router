@@ -1,0 +1,39 @@
+{
+    "projectType": "library",
+    "root": "libs/ngx-feature-flag-router",
+    "sourceRoot": "libs/ngx-feature-flag-router/src",
+    "prefix": "feature-flag-router",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/angular:package",
+            "outputs": ["dist/libs/ngx-feature-flag-router"],
+            "options": {
+                "project": "libs/ngx-feature-flag-router/ng-package.json"
+            },
+            "configurations": {
+                "production": {
+                    "tsConfig": "libs/ngx-feature-flag-router/tsconfig.lib.prod.json"
+                },
+                "development": {
+                    "tsConfig": "libs/ngx-feature-flag-router/tsconfig.lib.json"
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/ngx-feature-flag-router"],
+            "options": {
+                "jestConfig": "libs/ngx-feature-flag-router/jest.config.js",
+                "passWithNoTests": true
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": ["libs/ngx-feature-flag-router/src/**/*.ts", "libs/ngx-feature-flag-router/src/**/*.html"]
+            }
+        }
+    },
+    "tags": ["feature-flag-router"]
+}

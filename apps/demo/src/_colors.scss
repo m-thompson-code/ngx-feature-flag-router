@@ -1,0 +1,1234 @@
+@import './util.scss';
+
+// https://htmlcolorcodes.com/color-picker/
+$white: #eeeeee;
+$grey: #3a4750;
+$dark-grey: #303841;
+$black: black; //rgba(black, 0.87);
+$primary: #00adb5;
+$secondary: #6200b5;
+$ternary: #0800b5;
+$null: null;
+
+$white-map: (
+    base: (
+        value: $white,
+        contrast: $black,
+    ),
+    darken-5: (
+        value: darken($white, 5),
+        contrast: $black,
+    ),
+    darken-10: (
+        value: darken($white, 10),
+        contrast: $black,
+    ),
+    darken-15: (
+        value: darken($white, 15),
+        contrast: $black,
+    ),
+    darken-20: (
+        value: darken($white, 20),
+        contrast: $null,
+    ),
+    darken-25: (
+        value: darken($white, 25),
+        contrast: $null,
+    ),
+    darken-30: (
+        value: darken($white, 30),
+        contrast: $null,
+    ),
+    darken-35: (
+        value: darken($white, 35),
+        contrast: $null,
+    ),
+    darken-40: (
+        value: darken($white, 40),
+        contrast: $null,
+    ),
+    darken-45: (
+        value: darken($white, 45),
+        contrast: $null,
+    ),
+    darken-50: (
+        value: darken($white, 50),
+        contrast: $null,
+    ),
+    darken-55: (
+        value: darken($white, 55),
+        contrast: $null,
+    ),
+    darken-60: (
+        value: darken($white, 60),
+        contrast: $null,
+    ),
+    darken-65: (
+        value: darken($white, 65),
+        contrast: $null,
+    ),
+    darken-70: (
+        value: darken($white, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($white, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($white, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($white, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($white, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($white, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($white, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($white, 5),
+        contrast: $null,
+    ),
+    lighten-10: (
+        value: lighten($white, 10),
+        contrast: $null,
+    ),
+    lighten-15: (
+        value: lighten($white, 15),
+        contrast: $null,
+    ),
+    lighten-20: (
+        value: lighten($white, 20),
+        contrast: $black,
+    ),
+    lighten-25: (
+        value: lighten($white, 25),
+        contrast: $black,
+    ),
+    lighten-30: (
+        value: lighten($white, 30),
+        contrast: $black,
+    ),
+    lighten-35: (
+        value: lighten($white, 35),
+        contrast: $black,
+    ),
+    lighten-40: (
+        value: lighten($white, 40),
+        contrast: $black,
+    ),
+    lighten-45: (
+        value: lighten($white, 45),
+        contrast: $black,
+    ),
+    lighten-50: (
+        value: lighten($white, 50),
+        contrast: $black,
+    ),
+    lighten-55: (
+        value: lighten($white, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($white, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($white, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($white, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($white, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($white, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($white, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($white, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($white, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($white, 100),
+        contrast: $black,
+    ),
+);
+
+$black-map: (
+    base: (
+        value: $black,
+        contrast: $white,
+    ),
+    darken-5: (
+        value: darken($black, 5),
+        contrast: $white,
+    ),
+    darken-10: (
+        value: darken($black, 10),
+        contrast: $white,
+    ),
+    darken-15: (
+        value: darken($black, 15),
+        contrast: $white,
+    ),
+    darken-20: (
+        value: darken($black, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($black, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($black, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($black, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($black, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($black, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($black, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($black, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($black, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($black, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($black, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($black, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($black, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($black, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($black, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($black, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($black, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($black, 5),
+        contrast: $white,
+    ),
+    lighten-10: (
+        value: lighten($black, 10),
+        contrast: $white,
+    ),
+    lighten-15: (
+        value: lighten($black, 15),
+        contrast: $white,
+    ),
+    lighten-20: (
+        value: lighten($black, 20),
+        contrast: $null,
+    ),
+    lighten-25: (
+        value: lighten($black, 25),
+        contrast: $null,
+    ),
+    lighten-30: (
+        value: lighten($black, 30),
+        contrast: $null,
+    ),
+    lighten-35: (
+        value: lighten($black, 35),
+        contrast: $null,
+    ),
+    lighten-40: (
+        value: lighten($black, 40),
+        contrast: $null,
+    ),
+    lighten-45: (
+        value: lighten($black, 45),
+        contrast: $null,
+    ),
+    lighten-50: (
+        value: lighten($black, 50),
+        contrast: $null,
+    ),
+    lighten-55: (
+        value: lighten($black, 55),
+        contrast: $null,
+    ),
+    lighten-60: (
+        value: lighten($black, 60),
+        contrast: $null,
+    ),
+    lighten-65: (
+        value: lighten($black, 65),
+        contrast: $null,
+    ),
+    lighten-70: (
+        value: lighten($black, 70),
+        contrast: $null,
+    ),
+    lighten-75: (
+        value: lighten($black, 75),
+        contrast: $null,
+    ),
+    lighten-80: (
+        value: lighten($black, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($black, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($black, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($black, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($black, 100),
+        contrast: $black,
+    ),
+);
+
+$primary-map: (
+    base: (
+        value: $primary,
+        contrast: $null,
+    ),
+    darken-5: (
+        value: darken($primary, 5),
+        contrast: $null,
+    ),
+    darken-10: (
+        value: darken($primary, 10),
+        contrast: $null,
+    ),
+    darken-15: (
+        value: darken($primary, 15),
+        contrast: $null,
+    ),
+    darken-20: (
+        value: darken($primary, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($primary, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($primary, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($primary, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($primary, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($primary, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($primary, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($primary, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($primary, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($primary, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($primary, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($primary, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($primary, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($primary, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($primary, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($primary, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($primary, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($primary, 5),
+        contrast: $null,
+    ),
+    lighten-10: (
+        value: lighten($primary, 10),
+        contrast: $null,
+    ),
+    lighten-15: (
+        value: lighten($primary, 15),
+        contrast: $black,
+    ),
+    lighten-20: (
+        value: lighten($primary, 20),
+        contrast: $black,
+    ),
+    lighten-25: (
+        value: lighten($primary, 25),
+        contrast: $black,
+    ),
+    lighten-30: (
+        value: lighten($primary, 30),
+        contrast: $black,
+    ),
+    lighten-35: (
+        value: lighten($primary, 35),
+        contrast: $black,
+    ),
+    lighten-40: (
+        value: lighten($primary, 40),
+        contrast: $black,
+    ),
+    lighten-45: (
+        value: lighten($primary, 45),
+        contrast: $black,
+    ),
+    lighten-50: (
+        value: lighten($primary, 50),
+        contrast: $black,
+    ),
+    lighten-55: (
+        value: lighten($primary, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($primary, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($primary, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($primary, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($primary, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($primary, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($primary, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($primary, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($primary, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($primary, 100),
+        contrast: $black,
+    ),
+);
+
+$secondary-map: (
+    base: (
+        value: $secondary,
+        contrast: $white,
+    ),
+    darken-5: (
+        value: darken($secondary, 5),
+        contrast: $white,
+    ),
+    darken-10: (
+        value: darken($secondary, 10),
+        contrast: $white,
+    ),
+    darken-15: (
+        value: darken($secondary, 15),
+        contrast: $white,
+    ),
+    darken-20: (
+        value: darken($secondary, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($secondary, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($secondary, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($secondary, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($secondary, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($secondary, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($secondary, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($secondary, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($secondary, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($secondary, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($secondary, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($secondary, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($secondary, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($secondary, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($secondary, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($secondary, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($secondary, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($secondary, 5),
+        contrast: $null,
+    ),
+    lighten-10: (
+        value: lighten($secondary, 10),
+        contrast: $null,
+    ),
+    lighten-15: (
+        value: lighten($secondary, 15),
+        contrast: $null,
+    ),
+    lighten-20: (
+        value: lighten($secondary, 20),
+        contrast: $null,
+    ),
+    lighten-25: (
+        value: lighten($secondary, 25),
+        contrast: $null,
+    ),
+    lighten-30: (
+        value: lighten($secondary, 30),
+        contrast: $null,
+    ),
+    lighten-35: (
+        value: lighten($secondary, 35),
+        contrast: $null,
+    ),
+    lighten-40: (
+        value: lighten($secondary, 40),
+        contrast: $black,
+    ),
+    lighten-45: (
+        value: lighten($secondary, 45),
+        contrast: $black,
+    ),
+    lighten-50: (
+        value: lighten($secondary, 50),
+        contrast: $black,
+    ),
+    lighten-55: (
+        value: lighten($secondary, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($secondary, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($secondary, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($secondary, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($secondary, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($secondary, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($secondary, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($secondary, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($secondary, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($secondary, 100),
+        contrast: $black,
+    ),
+);
+
+$ternary-map: (
+    base: (
+        value: $ternary,
+        contrast: $white,
+    ),
+    darken-5: (
+        value: darken($ternary, 5),
+        contrast: $white,
+    ),
+    darken-10: (
+        value: darken($ternary, 10),
+        contrast: $white,
+    ),
+    darken-15: (
+        value: darken($ternary, 15),
+        contrast: $white,
+    ),
+    darken-20: (
+        value: darken($ternary, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($ternary, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($ternary, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($ternary, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($ternary, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($ternary, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($ternary, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($ternary, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($ternary, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($ternary, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($ternary, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($ternary, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($ternary, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($ternary, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($ternary, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($ternary, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($ternary, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($ternary, 5),
+        contrast: $white,
+    ),
+    lighten-10: (
+        value: lighten($ternary, 10),
+        contrast: $white,
+    ),
+    lighten-15: (
+        value: lighten($ternary, 15),
+        contrast: $null,
+    ),
+    lighten-20: (
+        value: lighten($ternary, 20),
+        contrast: $null,
+    ),
+    lighten-25: (
+        value: lighten($ternary, 25),
+        contrast: $null,
+    ),
+    lighten-30: (
+        value: lighten($ternary, 30),
+        contrast: $null,
+    ),
+    lighten-35: (
+        value: lighten($ternary, 35),
+        contrast: $null,
+    ),
+    lighten-40: (
+        value: lighten($ternary, 40),
+        contrast: $null,
+    ),
+    lighten-45: (
+        value: lighten($ternary, 45),
+        contrast: $null,
+    ),
+    lighten-50: (
+        value: lighten($ternary, 50),
+        contrast: $black,
+    ),
+    lighten-55: (
+        value: lighten($ternary, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($ternary, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($ternary, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($ternary, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($ternary, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($ternary, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($ternary, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($ternary, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($ternary, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($ternary, 100),
+        contrast: $black,
+    ),
+);
+
+$dark-grey-map: (
+    base: (
+        value: $dark-grey,
+        contrast: $white,
+    ),
+    darken-5: (
+        value: darken($dark-grey, 5),
+        contrast: $white,
+    ),
+    darken-10: (
+        value: darken($dark-grey, 10),
+        contrast: $white,
+    ),
+    darken-15: (
+        value: darken($dark-grey, 15),
+        contrast: $white,
+    ),
+    darken-20: (
+        value: darken($dark-grey, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($dark-grey, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($dark-grey, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($dark-grey, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($dark-grey, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($dark-grey, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($dark-grey, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($dark-grey, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($dark-grey, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($dark-grey, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($dark-grey, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($dark-grey, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($dark-grey, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($dark-grey, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($dark-grey, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($dark-grey, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($dark-grey, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($dark-grey, 5),
+        contrast: $white,
+    ),
+    lighten-10: (
+        value: lighten($dark-grey, 10),
+        contrast: $white,
+    ),
+    lighten-15: (
+        value: lighten($dark-grey, 15),
+        contrast: $white,
+    ),
+    lighten-20: (
+        value: lighten($dark-grey, 20),
+        contrast: $null,
+    ),
+    lighten-25: (
+        value: lighten($dark-grey, 25),
+        contrast: $null,
+    ),
+    lighten-30: (
+        value: lighten($dark-grey, 30),
+        contrast: $null,
+    ),
+    lighten-35: (
+        value: lighten($dark-grey, 35),
+        contrast: $null,
+    ),
+    lighten-40: (
+        value: lighten($dark-grey, 40),
+        contrast: $null,
+    ),
+    lighten-45: (
+        value: lighten($dark-grey, 45),
+        contrast: $null,
+    ),
+    lighten-50: (
+        value: lighten($dark-grey, 50),
+        contrast: $null,
+    ),
+    lighten-55: (
+        value: lighten($dark-grey, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($dark-grey, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($dark-grey, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($dark-grey, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($dark-grey, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($dark-grey, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($dark-grey, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($dark-grey, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($dark-grey, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($dark-grey, 100),
+        contrast: $black,
+    ),
+);
+
+$grey-map: (
+    base: (
+        value: $grey,
+        contrast: $white,
+    ),
+    darken-5: (
+        value: darken($grey, 5),
+        contrast: $white,
+    ),
+    darken-10: (
+        value: darken($grey, 10),
+        contrast: $white,
+    ),
+    darken-15: (
+        value: darken($grey, 15),
+        contrast: $white,
+    ),
+    darken-20: (
+        value: darken($grey, 20),
+        contrast: $white,
+    ),
+    darken-25: (
+        value: darken($grey, 25),
+        contrast: $white,
+    ),
+    darken-30: (
+        value: darken($grey, 30),
+        contrast: $white,
+    ),
+    darken-35: (
+        value: darken($grey, 35),
+        contrast: $white,
+    ),
+    darken-40: (
+        value: darken($grey, 40),
+        contrast: $white,
+    ),
+    darken-45: (
+        value: darken($grey, 45),
+        contrast: $white,
+    ),
+    darken-50: (
+        value: darken($grey, 50),
+        contrast: $white,
+    ),
+    darken-55: (
+        value: darken($grey, 55),
+        contrast: $white,
+    ),
+    darken-60: (
+        value: darken($grey, 60),
+        contrast: $white,
+    ),
+    darken-65: (
+        value: darken($grey, 65),
+        contrast: $white,
+    ),
+    darken-70: (
+        value: darken($grey, 70),
+        contrast: $white,
+    ),
+    darken-75: (
+        value: darken($grey, 75),
+        contrast: $white,
+    ),
+    darken-80: (
+        value: darken($grey, 80),
+        contrast: $white,
+    ),
+    darken-85: (
+        value: darken($grey, 85),
+        contrast: $white,
+    ),
+    darken-90: (
+        value: darken($grey, 90),
+        contrast: $white,
+    ),
+    darken-95: (
+        value: darken($grey, 95),
+        contrast: $white,
+    ),
+    darken-100: (
+        value: darken($grey, 100),
+        contrast: $white,
+    ),
+    lighten-5: (
+        value: lighten($grey, 5),
+        contrast: $white,
+    ),
+    lighten-10: (
+        value: lighten($grey, 10),
+        contrast: $white,
+    ),
+    lighten-15: (
+        value: lighten($grey, 15),
+        contrast: $null,
+    ),
+    lighten-20: (
+        value: lighten($grey, 20),
+        contrast: $null,
+    ),
+    lighten-25: (
+        value: lighten($grey, 25),
+        contrast: $null,
+    ),
+    lighten-30: (
+        value: lighten($grey, 30),
+        contrast: $null,
+    ),
+    lighten-35: (
+        value: lighten($grey, 35),
+        contrast: $null,
+    ),
+    lighten-40: (
+        value: lighten($grey, 40),
+        contrast: $null,
+    ),
+    lighten-45: (
+        value: lighten($grey, 45),
+        contrast: $null,
+    ),
+    lighten-50: (
+        value: lighten($grey, 50),
+        contrast: $null,
+    ),
+    lighten-55: (
+        value: lighten($grey, 55),
+        contrast: $black,
+    ),
+    lighten-60: (
+        value: lighten($grey, 60),
+        contrast: $black,
+    ),
+    lighten-65: (
+        value: lighten($grey, 65),
+        contrast: $black,
+    ),
+    lighten-70: (
+        value: lighten($grey, 70),
+        contrast: $black,
+    ),
+    lighten-75: (
+        value: lighten($grey, 75),
+        contrast: $black,
+    ),
+    lighten-80: (
+        value: lighten($grey, 80),
+        contrast: $black,
+    ),
+    lighten-85: (
+        value: lighten($grey, 85),
+        contrast: $black,
+    ),
+    lighten-90: (
+        value: lighten($grey, 90),
+        contrast: $black,
+    ),
+    lighten-95: (
+        value: lighten($grey, 95),
+        contrast: $black,
+    ),
+    lighten-100: (
+        value: lighten($grey, 100),
+        contrast: $black,
+    ),
+);
+
+$colors-map: (
+    'white': $white-map,
+    'grey': $grey-map,
+    'dark-grey': $dark-grey-map,
+    'black': $black-map,
+    'primary': $primary-map,
+    'secondary': $secondary-map,
+    'ternary': $ternary-map,
+);
+
+@mixin get-backgound-color-and-contrast($color-name, $key) {
+    $background-color: map-deep-get($colors-map, $color-name, $key, 'value');
+    background: $background-color;
+    $contrast: map-deep-get($colors-map, $color-name, $key, 'contrast');
+
+    @if $contrast {
+        color: $contrast;
+        border-color: $contrast;
+        /** #{color-name} #{$background-color} #{$key} #{$contrast} **/
+    } @else {
+        /** #{color-name} #{$background-color} #{$key} (no contrast) **/
+    }
+}
+
+@mixin get-background-color($color-name, $darken: 0) {
+    @if $darken == 0 {
+        @include get-backgound-color-and-contrast($color-name, 'base');
+    } @else if $darken > 0 {
+        @include get-backgound-color-and-contrast($color-name, 'darken-#{$darken}');
+    } @else {
+        $lighten: -$darken;
+
+        @include get-backgound-color-and-contrast($color-name, 'lighten-#{$lighten}');
+    }
+}
+
+@mixin get-color($color-name, $darken: 0) {
+    @if $darken == 0 {
+        $color: map-deep-get($colors-map, $color-name, 'base', 'value');
+        color: $color;
+        border-color: $color;
+    } @else if $darken > 0 {
+        $color: map-deep-get($colors-map, $color-name, 'darken-#{$darken}', 'value');
+        color: $color;
+        border-color: $color;
+    } @else {
+        $lighten: -$darken;
+
+        $color: map-deep-get($colors-map, $color-name, 'lighten-#{$lighten}', 'value');
+        color: $color;
+        border-color: $color;
+    }
+}
