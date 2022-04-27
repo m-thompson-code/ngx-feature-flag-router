@@ -1,40 +1,18 @@
-import { exec, spawn } from 'child_process';
 import * as fs from 'fs-extra';
 import * as path from 'path';
+import {
+    getProjectPath,
+    getDistPath,
+    getSrcPath,
+    getPermSrcPath,
+    getAppPath,
+    getMainAppPath,
+    getLibSrcPath,
+    getMainLibSrcPath,
+} from './app/paths';
+import { spawn } from './app/spawn-helper';
 
 const angularVersion = +process.argv[2] || 0;
-
-const getProjectPath = (__angularVersion) => {
-    return `apps/legacy/angular-${__angularVersion}`;
-}
-
-const getDistPath = (__angularVersion) => {
-    return  path.join(getProjectPath(__angularVersion), 'dist/ngx-feature-flag-router');
-}
-
-const getSrcPath = (__angularVersion) => {
-    return  path.join(getProjectPath(__angularVersion), 'src');
-}
-
-const getPermSrcPath = (__angularVersion) => {
-    return  path.join(getProjectPath(__angularVersion), '__src__');
-}
-
-const getAppPath = (__angularVersion) => {
-    return  path.join(getSrcPath(__angularVersion), 'app');
-}
-
-const getMainAppPath = () => {
-    return  'apps/legacy/src/app';
-}
-
-const getLibSrcPath = (__angularVersion) => {
-    return  path.join(getProjectPath(__angularVersion), 'projects/ngx-feature-flag-router/src');
-}
-
-const getMainLibSrcPath = () => {
-    return  'libs/ngx-feature-flag-router/src';
-}
 
 const copyFromMainPaths = (__angularVersion) => {
     const projectPath = getProjectPath(__angularVersion);
@@ -64,28 +42,17 @@ const copyFromMainPaths = (__angularVersion) => {
     fs.copySync(mainLibSrcPath, libSrcPath, { overwrite: true });
 
     console.log('copied');
-}
+};
 
 const test = async (...args) => {
-    return new Promise((resolve, reject) => {
-        const moo = spawn('npx', ['start-server-and-test', ...args], { stdio: 'inherit' });
-
-        moo.on('exit', (code) => {
-            resolve(code);
-        });
-
-        moo.on('error', (error) => {
-            console.error(error);
-            reject(error);
-        });
-    });
+    return spawn('npx', ['start-server-and-test', ...args]);
 };
 
 const hasDependencies = (__angularVersion) => {
     const projectPath = getProjectPath(__angularVersion);
 
     const nodeModulesPath = path.join(projectPath, 'node_modules');
-    
+
     return fs.existsSync(nodeModulesPath);
 };
 
@@ -96,35 +63,13 @@ const installDependencies = async (__angularVersion) => {
 
     fs.removeSync(nodeModulesPath);
 
-    return new Promise((resolve, reject) => {
-        const moo = spawn('npm', ['run', '--prefix', projectPath, 'install-dependencies'], { stdio: 'inherit' });
-
-        moo.on('exit', (code) => {
-            resolve(code);
-        });
-
-        moo.on('error', (error) => {
-            console.error(error);
-            reject(error);
-        });
-    });
+    return spawn('npm', ['run', '--prefix', projectPath, 'install-dependencies']);
 };
 
 const buildLib = async (__angularVersion) => {
     const projectPath = getProjectPath(__angularVersion);
 
-    return new Promise((resolve, reject) => {
-        const moo = spawn('npm', ['run', '--prefix', projectPath, 'build-lib'], { stdio: 'inherit' });
-
-        moo.on('exit', (code) => {
-            resolve(code);
-        });
-
-        moo.on('error', (error) => {
-            console.error(error);
-            reject(error);
-        });
-    });
+    return spawn('npm', ['run', '--prefix', projectPath, 'build-lib']);
 };
 
 const validateLib = async (__angularVersion) => {
@@ -135,7 +80,7 @@ const validateLib = async (__angularVersion) => {
 
         try {
             await installDependencies(__angularVersion);
-        } catch(error) {
+        } catch (error) {
             console.error(error);
             return;
         }
@@ -145,7 +90,7 @@ const validateLib = async (__angularVersion) => {
 
     try {
         await buildLib(__angularVersion);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         return;
     }
@@ -154,15 +99,15 @@ const validateLib = async (__angularVersion) => {
 
     try {
         await test('npm run --prefix apps/legacy/angular-9 start', 'http://0.0.0.0:4200', 'nx e2e-angular-9 legacy-e2e');
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         return;
     }
-}
+};
 
 const main = async () => {
     if (isNaN(angularVersion) || (angularVersion !== 0 && (angularVersion < 8 || angularVersion > 13))) {
-        exec(`echo "Unexpected angular version" ${angularVersion}`);
+        console.log(`Unexpected angular version: ${angularVersion}`);
 
         process.exit(1);
     }
@@ -171,7 +116,7 @@ const main = async () => {
 
     try {
         await validateLib(__angularVersion);
-    } catch(error) {
+    } catch (error) {
         console.error(error);
         return;
     }

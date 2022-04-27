@@ -28,8 +28,7 @@
         "format": "nx format:write --all .",
         "test": "nx run-many --all --target=test --maxParallel=1",
         "e2e": "nx e2e demo-e2e",
-        "legacy-e2e": "node legacy-e2e",
-        "moo": "node -v",
+        "legacy-e2e": "nx serve legacy-manager --watch=false",
         "build": "nx build",
         "publish": "npm run test && npm run build && npm publish dist/libs/ngx-feature-flag-router",
         "deploy": "npm run test && npm run build && ng deploy --base-href=/ngx-feature-flag-router/ --cname=github.com"

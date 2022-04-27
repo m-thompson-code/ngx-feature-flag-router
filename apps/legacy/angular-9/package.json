@@ -7,7 +7,6 @@
     "build": "ng build",
     "install-dependencies": "npm install",
     "build-lib": "ng build ngx-feature-flag-router --prod",
-    "moo": "node -v",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
