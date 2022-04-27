@@ -1,6 +1,6 @@
 # Add files here to ignore them from prettier formatting
-
-/dist
-/coverage
+node_modules
+dist
+coverage
 .angular
 package-lock.json

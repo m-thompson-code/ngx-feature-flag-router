@@ -1,0 +1,9 @@
+<div><a id="home" routerLink="/">Home</a> | <a id="sync" routerLink="sync">sync</a> | <a id="async" routerLink="async">async</a></div>
+
+<div><button id="sync-off" (click)="setSync(false)">Sync OFF</button> | <button id="sync-on" (click)="setSync(true)">Sync ON</button></div>
+
+<div>
+    <button id="async-off" (click)="setAsync(false)">Async OFF</button> | <button id="async-on" (click)="setAsync(true)">Async ON</button>
+</div>
+
+<router-outlet></router-outlet>

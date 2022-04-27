@@ -1,6 +1,6 @@
 {
     "root": true,
-    "ignorePatterns": [".angular/*", "coverage/*", "**/*"],
+    "ignorePatterns": [".angular/*", "dist/*", "coverage/*", "**/*"],
     "plugins": ["@nrwl/nx"],
     "overrides": [
         {

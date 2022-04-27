@@ -11,6 +11,20 @@
 # dependencies
 /node_modules
 
+# Legacy temporary application sources
+/apps/legacy/angular-9/src
+/apps/legacy/angular-10/src
+/apps/legacy/angular-11/src
+/apps/legacy/angular-12/src
+/apps/legacy/angular-13/src
+
+# Legacy temporary libraries
+/apps/legacy/angular-9/projects/ngx-feature-flag-router/src
+/apps/legacy/angular-10/projects/ngx-feature-flag-router/src
+/apps/legacy/angular-11/projects/ngx-feature-flag-router/src
+/apps/legacy/angular-12/projects/ngx-feature-flag-router/src
+/apps/legacy/angular-13/projects/ngx-feature-flag-router/src
+
 # IDEs and editors
 /.idea
 .project

@@ -1,0 +1,30 @@
+{
+    "root": "apps/legacy-e2e",
+    "sourceRoot": "apps/legacy-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "baseUrl": "http://0.0.0.0:4200"
+            }
+        },
+        "e2e-angular-9": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "baseUrl": "http://0.0.0.0:4200"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/legacy-e2e/**/*.{js,ts}"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["demo"]
+}
