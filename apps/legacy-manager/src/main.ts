@@ -1,5 +1,4 @@
 import * as fs from 'fs-extra';
-import * as path from 'path';
 import {
     getProjectPath,
     getDistPath,
@@ -9,6 +8,7 @@ import {
     getMainAppPath,
     getLibSrcPath,
     getMainLibSrcPath,
+    getNodeModulesPath,
 } from './app/paths';
 import { spawn } from './app/spawn-helper';
 
@@ -49,9 +49,7 @@ const test = async (...args) => {
 };
 
 const hasDependencies = (__angularVersion) => {
-    const projectPath = getProjectPath(__angularVersion);
-
-    const nodeModulesPath = path.join(projectPath, 'node_modules');
+    const nodeModulesPath = getNodeModulesPath(__angularVersion);
 
     return fs.existsSync(nodeModulesPath);
 };
@@ -59,7 +57,7 @@ const hasDependencies = (__angularVersion) => {
 const installDependencies = async (__angularVersion) => {
     const projectPath = getProjectPath(__angularVersion);
 
-    const nodeModulesPath = path.join(projectPath, 'node_modules');
+    const nodeModulesPath = getNodeModulesPath(__angularVersion);
 
     fs.removeSync(nodeModulesPath);
 
