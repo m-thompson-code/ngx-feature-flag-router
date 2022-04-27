@@ -77,6 +77,7 @@
         "@nrwl/node": "^14.0.3",
         "@nrwl/nx-cloud": "latest",
         "@nrwl/workspace": "13.9.3",
+        "@types/fs-extra": "^9.0.13",
         "@types/jest": "27.0.2",
         "@types/node": "16.11.7",
         "@typescript-eslint/eslint-plugin": "~5.10.0",

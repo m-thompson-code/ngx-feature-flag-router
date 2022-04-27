@@ -1,3 +1,9 @@
+/**
+ * 
+ * DEPRECATED, LOGIC HAS BEEN MOVED TO LEGACY MANAGER APP
+ * 
+ */
+
 const { exec, spawn } = require('child_process');
 const fs = require('fs-extra');
 const path = require('path');
