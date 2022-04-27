@@ -6,6 +6,7 @@
         "demo-storage": "libs/demo-storage",
         "legacy": "apps/legacy",
         "legacy-e2e": "apps/legacy-e2e",
+        "legacy-manager": "apps/legacy-manager",
         "ngx-feature-flag-router": "libs/ngx-feature-flag-router"
     }
 }
