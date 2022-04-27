@@ -96,7 +96,11 @@ const validateLib = async (__angularVersion) => {
     console.log('create lib build');
 
     try {
-        await test('npm run --prefix apps/legacy/angular-9 start', 'http://0.0.0.0:4200', 'nx e2e-angular-9 legacy-e2e');
+        await test(
+            `npm run --prefix apps/legacy/angular-${__angularVersion} start`,
+            'http://0.0.0.0:4200',
+            `nx e2e-angular-${__angularVersion} legacy-e2e`,
+        );
     } catch (error) {
         console.error(error);
         return;
@@ -110,13 +114,15 @@ const main = async () => {
         process.exit(1);
     }
 
-    const __angularVersion = 9;
+    const __angularVersions = [9, 10];
 
-    try {
-        await validateLib(__angularVersion);
-    } catch (error) {
-        console.error(error);
-        return;
+    for (const __angularVersion of __angularVersions) {
+        try {
+            await validateLib(__angularVersion);
+        } catch (error) {
+            console.error(error);
+            return;
+        }
     }
 };
 

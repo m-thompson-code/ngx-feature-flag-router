@@ -1,11 +1,11 @@
 {
   "name": "legacy",
-  "version": "0.0.0",
+  "version": "9.0.0",
   "scripts": {
     "ng": "ng",
+    "install-dependencies": "npm install",
     "start": "ng serve",
     "build": "ng build",
-    "install-dependencies": "npm install",
     "build-lib": "ng build ngx-feature-flag-router --prod",
     "test": "ng test",
     "lint": "ng lint",
