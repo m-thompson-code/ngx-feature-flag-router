@@ -25,13 +25,13 @@ const copyFromMainPaths = (__angularVersion) => {
     const mainLibSrcPath = getMainLibSrcPath();
 
     console.log(projectPath);
-    console.log(distPath);
-    console.log(srcPath);
-    console.log(permSrcPath);
-    console.log(appPath);
-    console.log(mainAppPath);
-    console.log(libSrcPath);
-    console.log(mainLibSrcPath);
+    // console.log(distPath);
+    // console.log(srcPath);
+    // console.log(permSrcPath);
+    // console.log(appPath);
+    // console.log(mainAppPath);
+    // console.log(libSrcPath);
+    // console.log(mainLibSrcPath);
 
     fs.removeSync(distPath);
     fs.removeSync(srcPath);
@@ -76,35 +76,20 @@ const validateLib = async (__angularVersion) => {
     if (!hasDependencies(__angularVersion)) {
         console.log('installing dependencies');
 
-        try {
-            await installDependencies(__angularVersion);
-        } catch (error) {
-            console.error(error);
-            return;
-        }
+        await installDependencies(__angularVersion);
     }
 
     copyFromMainPaths(__angularVersion);
 
-    try {
-        await buildLib(__angularVersion);
-    } catch (error) {
-        console.error(error);
-        return;
-    }
+    await buildLib(__angularVersion);
 
     console.log('create lib build');
 
-    try {
-        await test(
-            `npm run --prefix apps/legacy/angular-${__angularVersion} start`,
-            'http://0.0.0.0:4200',
-            `nx e2e-angular-${__angularVersion} legacy-e2e`,
-        );
-    } catch (error) {
-        console.error(error);
-        return;
-    }
+    await test(
+        `npm run --prefix ${getProjectPath(__angularVersion)} start`,
+        'http://0.0.0.0:4200',
+        `nx e2e-angular-${__angularVersion} legacy-e2e`,
+    );
 };
 
 const main = async () => {
@@ -114,7 +99,7 @@ const main = async () => {
         process.exit(1);
     }
 
-    const __angularVersions = [9, 10];
+    const __angularVersions = [9, 10, 11, 12];
 
     for (const __angularVersion of __angularVersions) {
         try {

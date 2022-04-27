@@ -1,0 +1,12 @@
+{
+    "fileServerFolder": ".",
+    "fixturesFolder": "./src/fixtures",
+    "integrationFolder": "./src/integration",
+    "modifyObstructiveCode": false,
+    "supportFile": "./src/support/index.ts",
+    "pluginsFile": false,
+    "video": true,
+    "videosFolder": "../../dist/cypress/apps/legacy-e2e/angular-10/videos",
+    "screenshotsFolder": "../../dist/cypress/apps/legacy-e2e/angular-10/screenshots",
+    "chromeWebSecurity": false
+}

@@ -13,35 +13,35 @@
         "e2e-angular-9": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "cypressConfig": "apps/legacy-e2e/cypress.angular-9.json",
                 "baseUrl": "http://0.0.0.0:4200"
             }
         },
         "e2e-angular-10": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "cypressConfig": "apps/legacy-e2e/cypress.angular-10.json",
                 "baseUrl": "http://0.0.0.0:4200"
             }
         },
         "e2e-angular-11": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "cypressConfig": "apps/legacy-e2e/cypress.angular-11.json",
                 "baseUrl": "http://0.0.0.0:4200"
             }
         },
         "e2e-angular-12": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "cypressConfig": "apps/legacy-e2e/cypress.angular-12.json",
                 "baseUrl": "http://0.0.0.0:4200"
             }
         },
         "e2e-angular-13": {
             "executor": "@nrwl/cypress:cypress",
             "options": {
-                "cypressConfig": "apps/legacy-e2e/cypress.json",
+                "cypressConfig": "apps/legacy-e2e/cypress.angular-13.json",
                 "baseUrl": "http://0.0.0.0:4200"
             }
         },

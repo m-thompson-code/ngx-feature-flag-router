@@ -6,7 +6,7 @@
     "install-dependencies": "npm install",
     "start": "ng serve",
     "build": "ng build",
-    "build-lib": "ng build ngx-feature-flag-router",
+    "build-lib": "ng build ngx-feature-flag-router --prod",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
