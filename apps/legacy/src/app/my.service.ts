@@ -15,7 +15,7 @@ export class MyService implements FeatureFlagRoutesService {
                 path: 'async',
                 loadChildren: () => import('./async-off/async-off.module').then((m) => m.AsyncOffModule),
                 alternativeLoadChildren: () => import('./async-on/async-on.module').then((m) => m.AsyncOnModule),
-                featureFlag: () => timer(5000).pipe(mergeMap(() => this.asyncFlag$)),
+                featureFlag: () => timer(1000).pipe(mergeMap(() => this.asyncFlag$)),
             },
         ];
     }

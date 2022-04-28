@@ -10,7 +10,7 @@ export class AppComponent {
     constructor(private readonly myService: MyService) {}
 
     setSync(state: boolean): void {
-        (window as any).__sync_feature_flag_state__ = state;
+        window.__sync_feature_flag_state__ = state;
     }
 
     setAsync(state: boolean): void {
