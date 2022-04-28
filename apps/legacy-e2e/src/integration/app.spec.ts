@@ -1,78 +1,181 @@
-import { getAsyncAnchor, getAsyncOffButton, getAsyncOffHeader, getAsyncOnButton, getAsyncOnHeader, getRootHeader, getSyncAnchor, getSyncOffButton, getSyncOffHeader, getSyncOnButton, getSyncOnHeader } from '../support/app.po';
+import {
+    getAngularModule,
+    getAsyncAnchor,
+    getAsyncOffButton,
+    getAsyncOffHeader,
+    getAsyncOnButton,
+    getAsyncOnHeader,
+    getRootHeader,
+    getSyncAnchor,
+    getSyncOffButton,
+    getSyncOffHeader,
+    getSyncOnButton,
+    getSyncOnHeader,
+} from '../support/app.po';
 
 describe('demo', () => {
     beforeEach(() => cy.visit('/'));
 
-    it('should display welcome message', () => {
-        // // Custom command example, see `../support/commands.ts` file
-        // cy.login('my-email@something.com', 'myPassword');
-        cy.url().should('eq', 'http://0.0.0.0:4200/');
-        
-        // Function helper example, see `../support/app.po.ts` file
-        getRootHeader().contains('root works!');
+    describe('root page', () => {
+        it('should display root header', () => {
+            cy.url().should('eq', 'http://0.0.0.0:4200/');
+
+            // Function helper example, see `../support/app.po.ts` file
+            getRootHeader().contains('root works!');
+        });
     });
 
     describe('no interaction', () => {
-        it('should navigate to sync-off page', () => {
-            cy.window().its('__sync_feature_flag_state__').should('equal', undefined);
-
+        it('should have sync-off header', () => {
             getSyncAnchor().click();
-            
+
             // Function helper example, see `../support/app.po.ts` file
             getSyncOffHeader().contains('sync-off works!');
-            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
         });
 
-        it('should navigate to async-off page', () => {
+        it('should have async-off header', () => {
             getAsyncAnchor().click();
-            
+
             // Function helper example, see `../support/app.po.ts` file
             getAsyncOffHeader().contains('async-off works!');
-            cy.url().should('eq', 'http://0.0.0.0:4200/async');
         });
     });
 
     describe('turning sync/async off', () => {
-        it('should navigate to sync-off page', () => {
+        it('should navigate to sync page', () => {
             getSyncOffButton().click();
-            cy.window().its('__sync_feature_flag_state__').should('equal', false);
-
             getSyncAnchor().click();
-            
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
+        });
+
+        it('should have sync-off header', () => {
+            getSyncOffButton().click();
+            getSyncAnchor().click();
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
+
             // Function helper example, see `../support/app.po.ts` file
             getSyncOffHeader().contains('sync-off works!');
-            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
         });
 
-        it('should navigate to async-off page', () => {
-            getAsyncOffButton().click();
-            getAsyncAnchor().click();
-            
-            // Function helper example, see `../support/app.po.ts` file
-            getAsyncOffHeader().contains('async-off works!');
-            cy.url().should('eq', 'http://0.0.0.0:4200/async');
-        });
-    });
+        it('should lazy-load sync-off module and not sync-on module', () => {
+            getSyncOffButton().click();
 
-    describe('turning sync/async on', () => {
-        it('should navigate to sync-on page', () => {
-            getSyncOnButton().click();
-            cy.window().its('__sync_feature_flag_state__').should('equal', true);
+            getAngularModule('sync-off');
+            getAngularModule('sync-on');
+
+            cy.get('@sync-off-module').should('not.exist');
 
             getSyncAnchor().click();
-            
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
+
+            cy.get('@sync-off-module').should('exist');
+            cy.get('@sync-on-module').should('not.exist');
+        });
+
+        it('should navigate to async page', () => {
+            getSyncOffButton().click();
+            getAsyncAnchor().click();
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/async');
+        });
+
+        it('should have async-off header', () => {
+            getAsyncOffButton().click();
+            getAsyncAnchor().click();
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/async');
+
             // Function helper example, see `../support/app.po.ts` file
-            getSyncOnHeader().contains('sync-on works!');
+            getAsyncOffHeader().contains('async-off works!');
+        });
+
+        // it('should lazy-load async-off module and not async-on module', () => {
+        //     getAsyncOffButton().click();
+
+        //     interceptAsyncOffModule();
+        //     interceptAsyncOnModule();
+
+        //     cy.get('@async-off-module').should('not.exist');
+
+        //     getAsyncAnchor().click();
+
+        //     cy.url().should('eq', 'http://0.0.0.0:4200/async');
+
+        //     cy.get('@async-off-module').should('exist');
+        //     cy.get('@async-on-module').should('not.exist');
+        // });
+    });
+
+    describe('turning sync/async on (should be sync/async off)', () => {
+        it('should navigate to sync page', () => {
+            getSyncOnButton().click();
+            getSyncAnchor().click();
+
             cy.url().should('eq', 'http://0.0.0.0:4200/sync');
         });
 
-        it('should navigate to async-on page', () => {
-            getAsyncOnButton().click();
-            getAsyncAnchor().click();
-            
+        it('should have sync-on header', () => {
+            getSyncOnButton().click();
+            getSyncAnchor().click();
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/sync');
+
             // Function helper example, see `../support/app.po.ts` file
-            getAsyncOnHeader().contains('async-on works!');
+            getSyncOnHeader().contains('sync-on works!');
+        });
+
+        // it('should lazy-load sync-on module and not sync-on module', () => {
+        //     getSyncOnButton().click();
+
+        //     interceptSyncOffModule();
+        //     interceptSyncOnModule();
+
+        //     cy.get('@sync-on-module').should('not.exist');
+
+        //     getSyncOnButton().click();
+        //     getSyncAnchor().click();
+
+        //     cy.url().should('eq', 'http://0.0.0.0:4200/sync');
+
+        //     cy.get('@sync-on-module').should('exist');
+        //     cy.get('@sync-off-module').should('not.exist');
+        // });
+
+        it('should navigate to async page', () => {
+            getAsyncOnButton().click();
+
+            getAsyncAnchor().click();
+
             cy.url().should('eq', 'http://0.0.0.0:4200/async');
         });
+
+        it('should have async-on header', () => {
+            getAsyncOnButton().click();
+            getAsyncAnchor().click();
+
+            cy.url().should('eq', 'http://0.0.0.0:4200/async');
+
+            // Function helper example, see `../support/app.po.ts` file
+            getAsyncOnHeader().contains('async-on works!');
+        });
+
+        // it('should lazy-load async-on module and not async-on module', () => {
+        //     getAsyncOnButton().click();
+
+        //     interceptAsyncOffModule();
+        //     interceptAsyncOnModule();
+
+        //     cy.get('@async-on-module').should('not.exist');
+
+        //     getAsyncAnchor().click();
+
+        //     cy.url().should('eq', 'http://0.0.0.0:4200/async');
+
+        //     cy.get('@async-on-module').should('exist');
+        //     cy.get('@async-off-module').should('not.exist');
+        // });
     });
 });

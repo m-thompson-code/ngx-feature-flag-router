@@ -16,10 +16,19 @@ export const getSyncOnButton = () => cy.get('button#sync-on');
 
 export const getAsyncOnButton = () => cy.get('button#async-on');
 
-// spy on POST requests to /users endpoint
-export const interceptSyncOffModule = () =>
-    cy.intercept('GET', '//apps_legacy_src_app_sync-off_sync-off_module_ts.js').as('sync-off-module');
+export const getAngularModule = (moduleName: string) => {
+    const angularVersion = Cypress.env('ANGULAR_VERSION');
+    const appPath = Cypress.env('APP_PATH');
 
-// spy on POST requests to /users endpoint
-export const interceptAsyncOffModule = () =>
-    cy.intercept('GET', '//apps_legacy_src_app_async-off_async-off_module_ts.js').as('async-off-module');
+    if (angularVersion <= 11) {
+        cy.intercept('GET', `//${moduleName}-${moduleName}-module.js`).as(`${moduleName}-module`);
+        return;
+    }
+    cy.intercept('GET', `//${appPath}_${moduleName}_${moduleName}_module_ts.js`).as(`${moduleName}-module`);
+
+    // if (angularVersion === 12) {
+    //     return
+    // }
+
+    // cy.intercept('GET', `//apps_legacy_src_app_${moduleName}_${moduleName}_module_ts.js`).as(`${moduleName}-module`);
+};
