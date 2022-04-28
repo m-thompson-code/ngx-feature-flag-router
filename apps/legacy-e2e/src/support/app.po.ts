@@ -16,7 +16,7 @@ export const getSyncOnButton = () => cy.get('button#sync-on');
 
 export const getAsyncOnButton = () => cy.get('button#async-on');
 
-export const getAngularModule = (moduleName: string) => {
+export const interceptAngularModule = (moduleName: string) => {
     const angularVersion = Cypress.env('ANGULAR_VERSION');
     const appPath = Cypress.env('APP_PATH');
 
@@ -25,10 +25,4 @@ export const getAngularModule = (moduleName: string) => {
         return;
     }
     cy.intercept('GET', `//${appPath}_${moduleName}_${moduleName}_module_ts.js`).as(`${moduleName}-module`);
-
-    // if (angularVersion === 12) {
-    //     return
-    // }
-
-    // cy.intercept('GET', `//apps_legacy_src_app_${moduleName}_${moduleName}_module_ts.js`).as(`${moduleName}-module`);
 };

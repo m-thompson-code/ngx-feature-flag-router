@@ -11,6 +11,7 @@
     "chromeWebSecurity": false,
     "env": {
         "ANGULAR_VERSION": 12,
-        "APP_PATH": "src_app"
+        "APP_PATH": "src_app",
+        "PORT": 4200
     }
 }
