@@ -1,10 +1,32 @@
 {
   "name": "ngx-feature-flag-router",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^12.2.0",
-    "@angular/core": "^12.2.0"
+  "version": "12.0.0",
+  "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag",
+  "license": "MIT",
+  "repository": {
+      "type": "git",
+      "url": "git+https://github.com/m-thompson-code/ngx-feature-flag-router.git"
   },
+  "bugs": {
+      "url": "https://github.com/m-thompson-code/ngx-feature-flag-router/issues"
+  },
+  "homepage": "https://m-thompson-code.github.io/ngx-feature-flag-router/",
+  "author": "Mark Thompson",
+  "keywords": [
+      "nx",
+      "ng",
+      "angular",
+      "router",
+      "RouterModule",
+      "lazy loading",
+      "conditional",
+      "feature flag"
+  ],
+  "peerDependencies": {
+    "@angular/common": ">= 12",
+    "@angular/core": ">= 12",
+    "rxjs": "6 || 7"
+},
   "dependencies": {
     "tslib": "^2.3.0"
   }
