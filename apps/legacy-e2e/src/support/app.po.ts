@@ -4,16 +4,13 @@ export const getSyncOnHeader = () => cy.get('h1#sync-on-header');
 export const getAsyncOffHeader = () => cy.get('h1#async-off-header');
 export const getAsyncOnHeader = () => cy.get('h1#async-on-header');
 
+export const getRootAnchor = () => cy.get('a#root');
 export const getSyncAnchor = () => cy.get('a#sync');
-
 export const getAsyncAnchor = () => cy.get('a#async');
 
 export const getSyncOffButton = () => cy.get('button#sync-off');
-
 export const getAsyncOffButton = () => cy.get('button#async-off');
-
 export const getSyncOnButton = () => cy.get('button#sync-on');
-
 export const getAsyncOnButton = () => cy.get('button#async-on');
 
 export const interceptAngularModule = (moduleName: string) => {

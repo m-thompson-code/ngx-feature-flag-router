@@ -4,6 +4,7 @@ import {
     getAsyncOffHeader,
     getAsyncOnButton,
     getAsyncOnHeader,
+    getRootAnchor,
     getRootHeader,
     getSyncAnchor,
     getSyncOffButton,
@@ -202,6 +203,89 @@ describe('demo', () => {
 
             cy.get('@async-on-module').should('exist');
             cy.get('@async-off-module').should('not.exist');
+        });
+    });
+
+
+
+
+    describe('navigating back and forth', () => {
+        it('should properly navigate between sync pages given feature flag', () => {
+            const port = Cypress.env('PORT');
+
+            getSyncOnButton().click();
+
+            interceptAngularModule('sync-off');
+            interceptAngularModule('sync-on');
+
+            cy.get('@sync-on-module').should('not.exist');
+
+            getSyncOnButton().click();
+            getSyncAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
+            getSyncOnHeader().contains('sync-on works!');
+
+            cy.get('@sync-on-module').should('exist');
+            cy.get('@sync-off-module').should('not.exist');
+
+            getRootAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/`);
+
+            getSyncOffButton().click();
+            getSyncAnchor().click();
+
+            getSyncOffHeader().contains('sync-off works!');
+            cy.get('@sync-off-module').should('exist');
+
+            getRootAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/`);
+
+            getSyncOnButton().click();
+            getSyncAnchor().click();
+
+            getSyncOnHeader().contains('sync-on works!');
+        });
+
+        it('should properly navigate between async pages given feature flag', () => {
+            const port = Cypress.env('PORT');
+
+            getAsyncOnButton().click();
+
+            interceptAngularModule('async-off');
+            interceptAngularModule('async-on');
+
+            cy.get('@async-on-module').should('not.exist');
+
+            getAsyncOnButton().click();
+            getAsyncAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/async`);
+            getAsyncOnHeader().contains('async-on works!');
+
+            cy.get('@async-on-module').should('exist');
+            cy.get('@async-off-module').should('not.exist');
+
+            getRootAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/`);
+
+            getAsyncOffButton().click();
+            getAsyncAnchor().click();
+
+            getAsyncOffHeader().contains('async-off works!');
+            cy.get('@async-off-module').should('exist');
+
+            getRootAnchor().click();
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/`);
+
+            getAsyncOnButton().click();
+            getAsyncAnchor().click();
+
+            getAsyncOnHeader().contains('async-on works!');
         });
     });
 });
