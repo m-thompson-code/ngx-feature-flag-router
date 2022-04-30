@@ -1,5 +1,5 @@
 module.exports = {
-    displayName: 'legacy-manager',
+    displayName: 'legacy-utilities',
     preset: '../../jest.preset.js',
     globals: {
         'ts-jest': {
@@ -11,5 +11,5 @@ module.exports = {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/legacy-manager',
+    coverageDirectory: '../../coverage/libs/legacy-utilities',
 };

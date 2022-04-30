@@ -1,0 +1,32 @@
+{
+    "root": "libs/legacy-utilities",
+    "sourceRoot": "libs/legacy-utilities/src",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/js:tsc",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/libs/legacy-utilities",
+                "main": "libs/legacy-utilities/src/index.ts",
+                "tsConfig": "libs/legacy-utilities/tsconfig.lib.json",
+                "assets": ["libs/legacy-utilities/*.md"]
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["libs/legacy-utilities/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/libs/legacy-utilities"],
+            "options": {
+                "jestConfig": "libs/legacy-utilities/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

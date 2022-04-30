@@ -1,12 +1,15 @@
 {
     "version": 2,
     "projects": {
+        "build-legacy": "apps/build-legacy",
         "demo": "apps/demo",
         "demo-e2e": "apps/demo-e2e",
         "demo-storage": "libs/demo-storage",
         "legacy": "apps/legacy",
         "legacy-e2e": "apps/legacy-e2e",
-        "legacy-manager": "apps/legacy-manager",
-        "ngx-feature-flag-router": "libs/ngx-feature-flag-router"
+        "legacy-utilities": "libs/legacy-utilities",
+        "ngx-feature-flag-router": "libs/ngx-feature-flag-router",
+        "publish-legacy": "apps/publish-legacy",
+        "test-legacy": "apps/test-legacy"
     }
 }

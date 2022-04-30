@@ -24,14 +24,17 @@
     "scripts": {
         "ng": "nx",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2015 browser module main",
+        "e2e": "nx e2e demo-e2e",
         "start": "nx serve",
         "format": "nx format:write --all .",
-        "test": "nx run-many --all --target=test --maxParallel=1",
-        "e2e": "nx e2e demo-e2e",
-        "legacy-e2e": "nx serve legacy-manager --watch=false",
-        "build": "nx build",
-        "publish": "npm run test && npm run build && npm publish dist/libs/ngx-feature-flag-router",
-        "deploy": "npm run test && npm run build && ng deploy --base-href=/ngx-feature-flag-router/ --cname=github.com"
+        "test:demo": "nx run-many --projects=demo,ngx-feature-flag-router --target=test && nx serve test-legacy --watch=false -c=source",
+        "test:legacy": "nx serve test-legacy --watch=false",
+        "test": "nx run-many --all --target=test --maxParallel=1 && npm run test:legacy",
+        "build:demo": "nx build demo",
+        "build:legacy": "nx serve build-legacy --watch=false",
+        "build:lib": "nx run-many --all --exclude=build-legacy,test-legacy,legacy-utilities --target=build --maxParallel=1 && npm run build:legacy",
+        "publish": "npm run build:lib && npm run test && nx serve publish-legacy --watch=false",
+        "deploy": "npm run test:demo && npm run build:demo && ng deploy --base-href=/ngx-feature-flag-router/ --cname=github.com"
     },
     "private": true,
     "husky": {

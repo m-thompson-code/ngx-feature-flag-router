@@ -1,0 +1,127 @@
+{
+    "root": "apps/build-legacy",
+    "sourceRoot": "apps/build-legacy/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/node:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/build-legacy",
+                "main": "apps/build-legacy/src/main.ts",
+                "tsConfig": "apps/build-legacy/tsconfig.app.json",
+                "assets": ["apps/build-legacy/src/assets"]
+            },
+            "configurations": {
+                "all": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.prod.ts"
+                        }
+                    ]
+                },
+                "source": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.source.ts"
+                        }
+                    ]
+                },
+                "9": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.9.ts"
+                        }
+                    ]
+                },
+                "10": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.10.ts"
+                        }
+                    ]
+                },
+                "11": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.11.ts"
+                        }
+                    ]
+                },
+                "12": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/build-legacy/src/environments/environment.ts",
+                            "with": "apps/build-legacy/src/environments/environment.12.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "build-legacy:build"
+            },
+            "configurations": {
+                "all": {
+                    "buildTarget": "build-legacy:build:all"
+                },
+                "source": {
+                    "buildTarget": "build-legacy:build:source"
+                },
+                "9": {
+                    "buildTarget": "build-legacy:build:9"
+                },
+                "10": {
+                    "buildTarget": "build-legacy:build:10"
+                },
+                "11": {
+                    "buildTarget": "build-legacy:build:11"
+                },
+                "12": {
+                    "buildTarget": "build-legacy:build:12"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/build-legacy/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/build-legacy"],
+            "options": {
+                "jestConfig": "apps/build-legacy/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

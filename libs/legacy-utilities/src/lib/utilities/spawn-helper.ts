@@ -2,16 +2,16 @@ import { spawn as __internal_spawn__, SpawnOptions } from 'child_process';
 
 export const spawn = async (command: string, args: readonly string[] = [], options: SpawnOptions = {}) => {
     return new Promise((resolve, reject) => {
-        const moo = __internal_spawn__(command, [...args], { stdio: 'inherit', ...options });
-        let code: any;
-        let error: any;
+        const spawnInstance = __internal_spawn__(command, [...args], { stdio: 'inherit', ...options });
+        let code: unknown;
+        let error: unknown;
 
-        const setCode = (_code) => {
+        const setCode = (_code: unknown) => {
             code = _code;
             return handleComplete();
         }
 
-        const setError = (_error) => {
+        const setError = (_error: unknown) => {
             error = _error;
             console.error(error);
             return handleComplete();
@@ -29,20 +29,16 @@ export const spawn = async (command: string, args: readonly string[] = [], optio
             return resolve(code);
         };
 
-        moo.on('exit', (code) => {
-            setCode(code);
+        spawnInstance.on('exit', (exitCode) => {
+            setCode(exitCode);
         });
 
-        moo.on('error', (error) => {
-            setError(error);
+        spawnInstance.on('error', (spawnError) => {
+            setError(spawnError);
         });
 
-        moo.on('close', (code) => {
-            setCode(code);
-        });
-
-        moo.on('disconnect', (code) => {
-            setCode(code);
+        spawnInstance.on('close', (closeCode) => {
+            setCode(closeCode);
         });
     });
 };
