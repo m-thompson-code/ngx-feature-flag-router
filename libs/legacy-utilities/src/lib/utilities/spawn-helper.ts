@@ -1,8 +1,8 @@
-import { spawn as __internal_spawn__, SpawnOptions } from 'child_process';
+import { spawn as __node_spawn__, SpawnOptions } from 'child_process';
 
 export const spawn = async (command: string, args: readonly string[] = [], options: SpawnOptions = {}) => {
     return new Promise((resolve, reject) => {
-        const spawnInstance = __internal_spawn__(command, [...args], { stdio: 'inherit', ...options });
+        const spawnInstance = __node_spawn__(command, [...args], { stdio: 'inherit', ...options });
         let code: unknown;
         let error: unknown;
 
