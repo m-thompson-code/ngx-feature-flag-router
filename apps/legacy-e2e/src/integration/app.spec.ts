@@ -23,7 +23,7 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/`);
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that home page loads with root
             getRootHeader().contains('root works!');
         });
     });
@@ -32,14 +32,14 @@ describe('demo', () => {
         it('should have sync-off header', () => {
             getSyncAnchor().click();
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that navigating to sync page loads sync-off module by default
             getSyncOffHeader().contains('sync-off works!');
         });
 
         it('should have async-off header', () => {
             getAsyncAnchor().click();
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that navigating to async page loads async-off module by default
             getAsyncOffHeader().contains('async-off works!');
         });
     });
@@ -51,6 +51,7 @@ describe('demo', () => {
             getSyncOffButton().click();
             getSyncAnchor().click();
 
+            // Confirm correct sync url for sync page
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
         });
 
@@ -62,7 +63,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that when sync feature flag is set to off,
+            // sync-off page loads
             getSyncOffHeader().contains('sync-off works!');
         });
 
@@ -80,6 +82,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
 
+            // Confirm that when sync feature flag is set to off,
+            // sync-off module loads
             cy.get('@sync-off-module').should('exist');
             cy.get('@sync-on-module').should('not.exist');
         });
@@ -90,6 +94,7 @@ describe('demo', () => {
             getSyncOffButton().click();
             getAsyncAnchor().click();
 
+            // Confirm correct async url for async page
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
         });
 
@@ -101,7 +106,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that when async feature flag is set to off,
+            // async-off page loads
             getAsyncOffHeader().contains('async-off works!');
         });
 
@@ -119,18 +125,21 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
 
+            // Confirm that when async feature flag is set to off,
+            // async-off module loads
             cy.get('@async-off-module').should('exist');
             cy.get('@async-on-module').should('not.exist');
         });
     });
 
-    describe('turning sync/async on (should be sync/async off)', () => {
+    describe('turning sync/async on', () => {
         it('should navigate to sync page', () => {
             const port = Cypress.env('PORT');
 
             getSyncOnButton().click();
             getSyncAnchor().click();
 
+            // Confirm correct sync url for sync page
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
         });
 
@@ -142,7 +151,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that when sync feature flag is set to on,
+            // sync-on page loads
             getSyncOnHeader().contains('sync-on works!');
         });
 
@@ -161,6 +171,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/sync`);
 
+            // Confirm that when sync feature flag is set to on,
+            // sync-on module loads
             cy.get('@sync-on-module').should('exist');
             cy.get('@sync-off-module').should('not.exist');
         });
@@ -172,6 +184,7 @@ describe('demo', () => {
 
             getAsyncAnchor().click();
 
+            // Confirm correct async url for async page
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
         });
 
@@ -183,7 +196,8 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
 
-            // Function helper example, see `../support/app.po.ts` file
+            // Confirm that when async feature flag is set to on,
+            // async-on page loads
             getAsyncOnHeader().contains('async-on works!');
         });
 
@@ -201,13 +215,12 @@ describe('demo', () => {
 
             cy.url().should('eq', `http://0.0.0.0:${port}/async`);
 
+            // Confirm that when async feature flag is set to on,
+            // async-on module loads
             cy.get('@async-on-module').should('exist');
             cy.get('@async-off-module').should('not.exist');
         });
     });
-
-
-
 
     describe('navigating back and forth', () => {
         it('should properly navigate between sync pages given feature flag', () => {
