@@ -8,6 +8,7 @@
         "legacy": "apps/legacy",
         "legacy-e2e": "apps/legacy-e2e",
         "legacy-utilities": "libs/legacy-utilities",
+        "legacy-version-control": "apps/legacy-version-control",
         "ngx-feature-flag-router": "libs/ngx-feature-flag-router",
         "publish-legacy": "apps/publish-legacy",
         "test-legacy": "apps/test-legacy"

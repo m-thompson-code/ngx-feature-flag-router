@@ -1,0 +1,52 @@
+{
+    "root": "apps/legacy-version-control",
+    "sourceRoot": "apps/legacy-version-control/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/node:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/legacy-version-control",
+                "main": "apps/legacy-version-control/src/main.ts",
+                "tsConfig": "apps/legacy-version-control/tsconfig.app.json",
+                "assets": ["apps/legacy-version-control/src/assets"]
+            },
+            "configurations": {
+                "production": {
+                    "optimization": true,
+                    "extractLicenses": true,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy-version-control/src/environments/environment.ts",
+                            "with": "apps/legacy-version-control/src/environments/environment.prod.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "legacy-version-control:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/legacy-version-control/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/legacy-version-control"],
+            "options": {
+                "jestConfig": "apps/legacy-version-control/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

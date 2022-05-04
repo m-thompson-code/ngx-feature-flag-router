@@ -14,6 +14,7 @@
         "skipLibCheck": true,
         "skipDefaultLibCheck": true,
         "baseUrl": ".",
+        "resolveJsonModule": true,
         "paths": {
             "demo-storage": ["libs/demo-storage/src/index.ts"],
             "legacy-utilities": ["libs/legacy-utilities/src/index.ts"],
