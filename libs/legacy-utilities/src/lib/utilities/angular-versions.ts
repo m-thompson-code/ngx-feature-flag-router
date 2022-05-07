@@ -7,5 +7,3 @@ export const ALL_ANGULAR_VERSIONS = [
     AngularVersion.eleven,
     AngularVersion.twelve,
 ] as const;
-
-export const SOURCE_ANGULAR_VERSION = 13;
