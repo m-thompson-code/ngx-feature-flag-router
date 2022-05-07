@@ -40,7 +40,7 @@ export const updateLegacyPackageJson = (angularVersion: AngularVersion): void =>
     console.log(legacyLibPackageJsonPath);
     console.log(legacyLibPackage);
 
-    // fs.writeJSONSync(legacyPackageLockJsonPath, legacyPackageLockJson);
+    fs.writeJSONSync(legacyLibPackageJsonPath, legacyLibPackage);
 }
 
 // /Users/markthompson/Documents/github/personal/ngx-feature-flag-router/package-lock.json
