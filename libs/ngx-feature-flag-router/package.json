@@ -20,7 +20,8 @@
         "RouterModule",
         "lazy loading",
         "conditional",
-        "feature flag"
+        "feature flag",
+        "loadChildren"
     ],
     "peerDependencies": {
         "@angular/common": "13",
