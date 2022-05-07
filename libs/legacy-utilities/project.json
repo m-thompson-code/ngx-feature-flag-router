@@ -1,5 +1,4 @@
 {
-    "root": "libs/legacy-utilities",
     "sourceRoot": "libs/legacy-utilities/src",
     "targets": {
         "build": {

@@ -1,6 +1,6 @@
 module.exports = {
     displayName: 'legacy',
-    preset: '../../jest.preset.js',
+
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
         'ts-jest': {
@@ -18,11 +18,6 @@ module.exports = {
         'jest-preset-angular/build/serializers/ng-snapshot',
         'jest-preset-angular/build/serializers/html-comment',
     ],
-    modulePathIgnorePatterns: [
-        'angular-9',
-        'angular-10',
-        'angular-11',
-        'angular-12',
-        'angular-13',
-    ]
+    modulePathIgnorePatterns: ['angular-9', 'angular-10', 'angular-11', 'angular-12', 'angular-13'],
+    preset: '../../jest.preset.ts',
 };

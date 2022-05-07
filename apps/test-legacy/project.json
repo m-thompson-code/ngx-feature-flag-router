@@ -1,5 +1,4 @@
 {
-    "root": "apps/test-legacy",
     "sourceRoot": "apps/test-legacy/src",
     "projectType": "application",
     "targets": {
@@ -13,28 +12,6 @@
                 "assets": ["apps/test-legacy/src/assets"]
             },
             "configurations": {
-                "all": {
-                    "optimization": true,
-                    "extractLicenses": false,
-                    "inspect": false,
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.prod.ts"
-                        }
-                    ]
-                },
-                "source": {
-                    "optimization": true,
-                    "extractLicenses": false,
-                    "inspect": false,
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.source.ts"
-                        }
-                    ]
-                },
                 "9": {
                     "optimization": true,
                     "extractLicenses": false,
@@ -78,32 +55,28 @@
                             "with": "apps/test-legacy/src/environments/environment.12.ts"
                         }
                     ]
-                }
-            }
-        },
-        "serve": {
-            "executor": "@nrwl/node:node",
-            "options": {
-                "buildTarget": "test-legacy:build"
-            },
-            "configurations": {
+                },
                 "all": {
-                    "buildTarget": "test-legacy:build:all"
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/test-legacy/src/environments/environment.ts",
+                            "with": "apps/test-legacy/src/environments/environment.prod.ts"
+                        }
+                    ]
                 },
                 "source": {
-                    "buildTarget": "test-legacy:build:source"
-                },
-                "9": {
-                    "buildTarget": "test-legacy:build:9"
-                },
-                "10": {
-                    "buildTarget": "test-legacy:build:10"
-                },
-                "11": {
-                    "buildTarget": "test-legacy:build:11"
-                },
-                "12": {
-                    "buildTarget": "test-legacy:build:12"
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/test-legacy/src/environments/environment.ts",
+                            "with": "apps/test-legacy/src/environments/environment.source.ts"
+                        }
+                    ]
                 }
             }
         },

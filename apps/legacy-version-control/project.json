@@ -1,5 +1,4 @@
 {
-    "root": "apps/legacy-version-control",
     "sourceRoot": "apps/legacy-version-control/src",
     "projectType": "application",
     "targets": {
@@ -13,28 +12,6 @@
                 "assets": ["apps/legacy-version-control/src/assets"]
             },
             "configurations": {
-                "all": {
-                    "optimization": true,
-                    "extractLicenses": false,
-                    "inspect": false,
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/legacy-version-control/src/environments/environment.ts",
-                            "with": "libs/legacy-utilities/src/environments/environment.ts"
-                        }
-                    ]
-                },
-                "source": {
-                    "optimization": true,
-                    "extractLicenses": false,
-                    "inspect": false,
-                    "fileReplacements": [
-                        {
-                            "replace": "apps/legacy-version-control/src/environments/environment.ts",
-                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
-                        }
-                    ]
-                },
                 "9": {
                     "optimization": true,
                     "extractLicenses": false,
@@ -78,32 +55,28 @@
                             "with": "libs/legacy-utilities/src/environments/environment.12.ts"
                         }
                     ]
-                }
-            }
-        },
-        "serve": {
-            "executor": "@nrwl/node:node",
-            "options": {
-                "buildTarget": "legacy-version-control:build"
-            },
-            "configurations": {
+                },
                 "all": {
-                    "buildTarget": "legacy-version-control:build:all"
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy-version-control/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
+                        }
+                    ]
                 },
                 "source": {
-                    "buildTarget": "legacy-version-control:build:source"
-                },
-                "9": {
-                    "buildTarget": "legacy-version-control:build:9"
-                },
-                "10": {
-                    "buildTarget": "legacy-version-control:build:10"
-                },
-                "11": {
-                    "buildTarget": "legacy-version-control:build:11"
-                },
-                "12": {
-                    "buildTarget": "legacy-version-control:build:12"
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy-version-control/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
+                        }
+                    ]
                 }
             }
         },

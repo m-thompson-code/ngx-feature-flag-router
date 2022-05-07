@@ -10,11 +10,12 @@ export const runServerAndE2ETests = async (serve: string, url: string, e2e: stri
 
 export const runLegacyE2EScripts = async (angularVersion: AngularVersion) => {
     if (angularVersion === AngularVersion.source) {
-        return runServerAndE2ETests(
-            'nx serve legacy',
-            HOST_URL,
-            'nx e2e legacy-e2e',
-        );
+        return spawn('nx', ['e2e', 'legacy-e2e']);
+        // return runServerAndE2ETests(
+        //     'nx serve legacy',
+        //     HOST_URL,
+        //     'nx e2e legacy-e2e',
+        // );
     }
 
     return runServerAndE2ETests(

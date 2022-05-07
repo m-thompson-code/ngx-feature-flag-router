@@ -1,6 +1,5 @@
 {
     "projectType": "library",
-    "root": "libs/ngx-feature-flag-router",
     "sourceRoot": "libs/ngx-feature-flag-router/src",
     "prefix": "feature-flag-router",
     "targets": {
@@ -24,7 +23,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/libs/ngx-feature-flag-router"],
             "options": {
-                "jestConfig": "libs/ngx-feature-flag-router/jest.config.js",
+                "jestConfig": "libs/ngx-feature-flag-router/jest.config.ts",
                 "passWithNoTests": true
             }
         },

@@ -1,6 +1,5 @@
 {
     "projectType": "application",
-    "root": "apps/legacy",
     "sourceRoot": "apps/legacy/src",
     "prefix": "legacy",
     "targets": {
@@ -82,7 +81,7 @@
             "executor": "@nrwl/jest:jest",
             "outputs": ["coverage/apps/legacy"],
             "options": {
-                "jestConfig": "apps/legacy/jest.config.js",
+                "jestConfig": "apps/legacy/jest.config.ts",
                 "passWithNoTests": true
             }
         }
