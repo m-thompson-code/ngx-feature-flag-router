@@ -23,8 +23,8 @@
       "feature flag"
   ],
   "peerDependencies": {
-    "@angular/common": ">= 12",
-    "@angular/core": ">= 12",
+    "@angular/common": "12",
+    "@angular/core": "12",
     "rxjs": "6 || 7"
 },
   "dependencies": {

@@ -18,6 +18,7 @@
         "paths": {
             "demo-storage": ["libs/demo-storage/src/index.ts"],
             "legacy-utilities": ["libs/legacy-utilities/src/index.ts"],
+            "environment": ["libs/legacy-utilities/src/environments/environment.ts"],
             "ngx-feature-flag-router": ["libs/ngx-feature-flag-router/src/index.ts"]
         }
     },

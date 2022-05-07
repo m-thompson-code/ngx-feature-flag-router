@@ -4,55 +4,44 @@ import * as fs from 'fs-extra';
 
 import { AngularVersion } from '../types';
 import {
-    ALL_ANGULAR_VERSIONS,
-    // PACKAGE_JSON_DIRECTORIES,
-    // PACKAGE_LOCK_JSON_DIRECTORIES,
-    // PACKAGE_LIB_JSON_DIRECTORIES,
     getLegacyLibPackageJsonPath,
-    getLegacyPackageJsonPath,
-    getLegacyPackageLockJsonPath,
-    // getPackageVersion,
-    // getPackageVersionString,
+    getPackageMajorVersion,
+    getPackageVersion,
+    getPackageVersionString,
     getProjectPackageJsonPath,
-    getProjectPackageLockJsonPath,
 } from '../utilities';
 
-export const test = () => {
-    // console.log('package.json');
-    // const file = editJsonFile('package.json');
-    // const packageJson = file.get();
-    // console.log(packageJson);
-    // console.log(packageJson.version);
-    // console.log(getPackageVersion(packageJson.version));
-    // console.log(getPackageVersionString(getPackageVersion(packageJson.version)));
-
+export const updateLegacyPackageJson = (angularVersion: AngularVersion): void => {
     console.log(getProjectPackageJsonPath());
 
-    // const source = fs.readJsonSync(getProjectPackageJsonPath());
+    const sourcePackage = fs.readJsonSync(getProjectPackageJsonPath());
 
-    // const { version,
-    //     license,
-    //     repository,
-    //     bugs,
-    //     homepage,
-    //     author,
-    //     keywords } = source;
+    const { version: sourceVersion, description, license, repository, bugs, homepage, author, keywords } = sourcePackage;
 
-    console.log(getProjectPackageLockJsonPath());
-    console.log(fs.readJsonSync(getProjectPackageLockJsonPath()).version);
+    const packageVersion = getPackageVersion(sourceVersion);
 
-    for (const angularVersion of ALL_ANGULAR_VERSIONS) {
-        if (angularVersion !== AngularVersion.source) {
-            console.log(getLegacyPackageJsonPath(angularVersion));
-            console.log(fs.readJsonSync(getLegacyPackageJsonPath(angularVersion)).version);
-            console.log(getLegacyPackageLockJsonPath(angularVersion));
-            console.log(fs.readJsonSync(getLegacyPackageLockJsonPath(angularVersion)).version);
-        }
+    const legacyVersion = getPackageVersionString({ ...packageVersion, major: getPackageMajorVersion(angularVersion) });
 
-        console.log(getLegacyLibPackageJsonPath(angularVersion));
-        console.log(fs.readJsonSync(getLegacyLibPackageJsonPath(angularVersion)).version);
-    }
-};
+    const legacyLibPackageJsonPath = getLegacyLibPackageJsonPath(angularVersion);
+
+    const _legacyLibPackageJson = fs.readJsonSync(legacyLibPackageJsonPath);
+    const legacyLibPackage = {
+        ..._legacyLibPackageJson,
+        version: legacyVersion,
+        description,
+        license,
+        repository,
+        bugs,
+        homepage,
+        author,
+        keywords,
+    };
+
+    console.log(legacyLibPackageJsonPath);
+    console.log(legacyLibPackage);
+
+    // fs.writeJSONSync(legacyPackageLockJsonPath, legacyPackageLockJson);
+}
 
 // /Users/markthompson/Documents/github/personal/ngx-feature-flag-router/package-lock.json
 

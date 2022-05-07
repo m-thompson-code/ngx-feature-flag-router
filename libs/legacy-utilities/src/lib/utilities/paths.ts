@@ -63,26 +63,6 @@ export const getProjectPackageJsonPath = (): string => {
     return 'package.json';
 };
 
-export const getProjectPackageLockJsonPath = (): string => {
-    return 'package-lock.json';
-};
-
-export const getLegacyPackageJsonPath = (angularVersion: AngularVersion): string => {
-    if (angularVersion === AngularVersion.source) {
-        throw new Error('Unexpected AngularVersion source. Source legacy package.json');
-    }
-
-    return path.join(getProjectPath(angularVersion), 'package.json');
-};
-
-export const getLegacyPackageLockJsonPath = (angularVersion: AngularVersion): string => {
-    if (angularVersion === AngularVersion.source) {
-        throw new Error('Unexpected AngularVersion source. Source legacy package-lock.json');
-    }
-
-    return path.join(getProjectPath(angularVersion), 'package-lock.json');
-};
-
 export const getLegacyLibPackageJsonPath = (angularVersion: AngularVersion): string => {
     if (angularVersion === AngularVersion.source) {
         return 'libs/ngx-feature-flag-router/package.json';

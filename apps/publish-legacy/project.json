@@ -20,7 +20,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.prod.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
                         }
                     ]
                 },
@@ -31,7 +31,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.source.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
                         }
                     ]
                 },
@@ -42,7 +42,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.9.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.9.ts"
                         }
                     ]
                 },
@@ -53,7 +53,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.10.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.10.ts"
                         }
                     ]
                 },
@@ -64,7 +64,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.11.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.11.ts"
                         }
                     ]
                 },
@@ -75,7 +75,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/publish-legacy/src/environments/environment.ts",
-                            "with": "apps/publish-legacy/src/environments/environment.12.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.12.ts"
                         }
                     ]
                 }

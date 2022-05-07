@@ -1,6 +1,7 @@
 {
     "name": "ngx-feature-flag-router",
-    "version": "13.0.0",
+    "version": "13.0.1",
+    "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -19,7 +20,8 @@
         "RouterModule",
         "lazy loading",
         "conditional",
-        "feature flag"
+        "feature flag",
+        "loadChildren"
     ],
     "scripts": {
         "ng": "nx",
@@ -34,7 +36,7 @@
         "build:demo": "nx build demo",
         "build:legacy": "nx serve build-legacy --watch=false",
         "build:lib": "nx run-many --all --exclude=build-legacy,test-legacy,legacy-utilities --target=build --maxParallel=1 && npm run build:legacy",
-        "publish": "npm run build:lib && npm run test && nx serve publish-legacy --watch=false",
+        "publish": "npm run sync-packages && npm run build:lib && npm run test && nx serve publish-legacy --watch=false",
         "deploy": "npm run test:demo && npm run build:demo && ng deploy --base-href=/ngx-feature-flag-router/ --cname=github.com"
     },
     "private": true,

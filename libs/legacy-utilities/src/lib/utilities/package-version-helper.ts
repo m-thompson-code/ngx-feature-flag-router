@@ -1,4 +1,16 @@
-import { PackageVersion } from '../types';
+import { AngularVersion, PackageMajorVersion, PackageVersion } from '../types';
+
+export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageMajorVersion => {
+    const majorVersions: Record<AngularVersion, PackageMajorVersion> = {
+        [AngularVersion.nine]: PackageMajorVersion.nine,
+        [AngularVersion.ten]: PackageMajorVersion.ten,
+        [AngularVersion.eleven]: PackageMajorVersion.eleven,
+        [AngularVersion.twelve]: PackageMajorVersion.twelve,
+        [AngularVersion.source]: PackageMajorVersion.source,
+    };
+
+    return majorVersions[angularVersion];
+}
 
 export const getPackageVersion = (versionString: string): PackageVersion => {
     const parts = versionString.split('.');
