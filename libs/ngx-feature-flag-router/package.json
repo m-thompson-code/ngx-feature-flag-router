@@ -1,6 +1,6 @@
 {
     "name": "ngx-feature-flag-router",
-    "version": "13.0.0",
+    "version": "13.0.1",
     "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag",
     "license": "MIT",
     "repository": {

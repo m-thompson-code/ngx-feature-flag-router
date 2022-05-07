@@ -10,6 +10,7 @@ export const buildLegacyLib = async (angularVersion: AngularVersion): Promise<vo
     }
 
     await ensureLegacyHasDependencies(angularVersion);
+    
     distributeSourceLegacyFiles(angularVersion);
 
     const projectPath = getProjectPath(angularVersion);

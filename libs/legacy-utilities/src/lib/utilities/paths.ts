@@ -5,8 +5,8 @@ export const getProjectPath = (angularVersion: AngularVersion): string => {
     if (angularVersion === AngularVersion.source) {
         return 'apps/legacy';
     }
-
-    return `apps/legacy/angular-${angularVersion}`;
+    
+    return `apps/legacy/older-angular-versions/angular-${angularVersion}`;
 };
 
 export const getNodeModulesPath = (angularVersion: AngularVersion): string => {

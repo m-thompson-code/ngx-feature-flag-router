@@ -1,6 +1,6 @@
 {
     "name": "ngx-feature-flag-router",
-    "version": "9.0.0",
+    "version": "10.0.1",
     "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag",
     "license": "MIT",
     "repository": {
@@ -24,11 +24,11 @@
         "loadChildren"
     ],
     "peerDependencies": {
-        "@angular/common": "9",
-        "@angular/core": "9",
+        "@angular/common": "10",
+        "@angular/core": "10",
         "rxjs": "6"
     },
     "dependencies": {
-        "tslib": "^1.10.0"
+        "tslib": "^2.0.0"
     }
 }
