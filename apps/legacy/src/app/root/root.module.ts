@@ -13,7 +13,11 @@ const routes: FeatureFlagRoutes = [
         path: 'sync',
         loadChildren: () => import('../sync-off/sync-off.module').then((m) => m.SyncOffModule),
         alternativeLoadChildren: () => import('../sync-on/sync-on.module').then((m) => m.SyncOnModule),
-        featureFlag: () => (window as any).__sync_feature_flag_state__ || false,
+        featureFlag: () => (window as { __sync_feature_flag_state__?: boolean }).__sync_feature_flag_state__ || false,
+    },
+    {
+        path: 'preloadable',
+        loadChildren: () => import('../preloadable/preloadable.module').then((m) => m.PreloadableModule),
     },
 ];
 

@@ -15,10 +15,10 @@ import {
 } from '../support/app.po';
 
 describe('demo', () => {
-    beforeEach(() => cy.visit('/'));
-
     describe('root page', () => {
         it('should display root header', () => {
+            cy.visit('/');
+
             const port = Cypress.env('PORT');
 
             cy.url().should('eq', `http://0.0.0.0:${port}/`);
@@ -26,10 +26,28 @@ describe('demo', () => {
             // Confirm that home page loads with root
             getRootHeader().contains('root works!');
         });
+
+        it('should render with preloadable module eagerly preloading thanks to `PreloadAllNonFeatureFlagModules`', () => {
+            const port = Cypress.env('PORT');
+
+            interceptAngularModule('preloadable');
+            interceptAngularModule('sync-off');
+            interceptAngularModule('sync-on');
+
+            cy.visit('/');
+
+            cy.url().should('eq', `http://0.0.0.0:${port}/`);
+
+            cy.get('@preloadable-module').should('exist');
+            cy.get('@sync-off-module').should('not.exist');
+            cy.get('@sync-on-module').should('not.exist');
+        });
     });
 
     describe('no interaction', () => {
         it('should have sync-off header', () => {
+            cy.visit('/');
+
             getSyncAnchor().click();
 
             // Confirm that navigating to sync page loads sync-off module by default
@@ -37,6 +55,8 @@ describe('demo', () => {
         });
 
         it('should have async-off header', () => {
+            cy.visit('/');
+
             getAsyncAnchor().click();
 
             // Confirm that navigating to async page loads async-off module by default
@@ -45,6 +65,10 @@ describe('demo', () => {
     });
 
     describe('turning sync/async off', () => {
+        beforeEach(() => {
+            cy.visit('/');
+        });
+
         it('should navigate to sync page', () => {
             const port = Cypress.env('PORT');
 
@@ -133,6 +157,10 @@ describe('demo', () => {
     });
 
     describe('turning sync/async on', () => {
+        beforeEach(() => {
+            cy.visit('/');
+        });
+
         it('should navigate to sync page', () => {
             const port = Cypress.env('PORT');
 
@@ -223,6 +251,10 @@ describe('demo', () => {
     });
 
     describe('navigating back and forth', () => {
+        beforeEach(() => {
+            cy.visit('/');
+        });
+
         it('should properly navigate between sync pages given feature flag', () => {
             const port = Cypress.env('PORT');
 
