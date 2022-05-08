@@ -34,4 +34,4 @@ export const ensureLegacyHasDependencies = async (angularVersion: AngularVersion
     }
 
     await installLegacyDependencies(angularVersion);
-}
+};

@@ -11,7 +11,7 @@ import {
 
 export const getLegacyPackageJson = (angularVersion: AngularVersion): Record<string,string> => {
     return fs.readJsonSync(getLegacyLibPackageJsonPath(angularVersion));
-}
+};
 
 export const getUpdatedLegacyPackageJson = (angularVersion: AngularVersion): { [x: string]: string } => {
     const sourcePackage = fs.readJsonSync(getProjectPackageJsonPath());
@@ -45,4 +45,4 @@ export const writeUpdatedLegacyPackageJson = (angularVersion: AngularVersion): v
     fs.writeJSONSync(legacyLibPackageJsonPath, legacyLibPackage, {
         spaces: 4,
     });
-}
+};

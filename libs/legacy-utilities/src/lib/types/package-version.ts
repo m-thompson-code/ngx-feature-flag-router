@@ -1,9 +1,15 @@
+/**
+ * npm package version
+ */
 export interface PackageVersion {
     major: number;
     minor: number;
     patch: number;
 }
 
+/**
+ * Possible major versions of npm package for supported Angular versions
+ */
 export enum PackageMajorVersion {
     nine =  9,
     ten =  10,
