@@ -9,7 +9,11 @@ import {
     getProjectPackageJsonPath,
 } from '../utilities';
 
-export const updateLegacyPackageJson = (angularVersion: AngularVersion): void => {
+export const getLegacyPackageJson = (angularVersion: AngularVersion): Record<string,string> => {
+    return fs.readJsonSync(getLegacyLibPackageJsonPath(angularVersion));
+}
+
+export const getUpdatedLegacyPackageJson = (angularVersion: AngularVersion): { [x: string]: string } => {
     const sourcePackage = fs.readJsonSync(getProjectPackageJsonPath());
 
     const { version: sourceVersion, description, license, repository, bugs, homepage, author, keywords } = sourcePackage;
@@ -18,11 +22,10 @@ export const updateLegacyPackageJson = (angularVersion: AngularVersion): void =>
 
     const legacyVersion = getPackageVersionString({ ...packageVersion, major: getPackageMajorVersion(angularVersion) });
 
-    const legacyLibPackageJsonPath = getLegacyLibPackageJsonPath(angularVersion);
+    const legacyLibPackageJson = getLegacyPackageJson(angularVersion);
 
-    const _legacyLibPackageJson = fs.readJsonSync(legacyLibPackageJsonPath);
-    const legacyLibPackage = {
-        ..._legacyLibPackageJson,
+    return {
+        ...legacyLibPackageJson,
         version: legacyVersion,
         description,
         license,
@@ -32,6 +35,12 @@ export const updateLegacyPackageJson = (angularVersion: AngularVersion): void =>
         author,
         keywords,
     };
+}
+
+export const writeUpdatedLegacyPackageJson = (angularVersion: AngularVersion): void => {
+    const legacyLibPackageJsonPath = getLegacyLibPackageJsonPath(angularVersion);
+
+    const legacyLibPackage = getUpdatedLegacyPackageJson(angularVersion);
 
     fs.writeJSONSync(legacyLibPackageJsonPath, legacyLibPackage, {
         spaces: 4,

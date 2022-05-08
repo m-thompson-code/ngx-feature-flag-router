@@ -1,6 +1,6 @@
-import { spawn as __node_spawn__, SpawnOptions } from 'child_process';
+import { spawn as __node_spawn__, execSync as __exec_sync__, SpawnOptions } from 'child_process';
 
-export const spawn = async (command: string, args: readonly string[] = [], options: SpawnOptions = {}) => {
+export const spawn = async (command: string, args: readonly string[] = [], options: SpawnOptions = {}): Promise<unknown> => {
     return new Promise((resolve, reject) => {
         const spawnInstance = __node_spawn__(command, [...args], { stdio: 'inherit', ...options });
         let code: unknown;
@@ -13,7 +13,6 @@ export const spawn = async (command: string, args: readonly string[] = [], optio
 
         const setError = (_error: unknown) => {
             error = _error;
-            console.error(error);
             return handleComplete();
         }
 
@@ -41,4 +40,8 @@ export const spawn = async (command: string, args: readonly string[] = [], optio
             setCode(closeCode);
         });
     });
+};
+
+export const exec = (command: string): string => {
+    return __exec_sync__(command, { encoding: 'utf8'});
 };

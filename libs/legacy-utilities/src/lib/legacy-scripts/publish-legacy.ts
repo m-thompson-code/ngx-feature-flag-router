@@ -1,11 +1,11 @@
 import { AngularVersion } from '../types';
-import { spawn } from '../utilities';
+import { exec, getDistPath, spawn } from '../utilities';
+
+export const getExistingLegacyLibPackageVersions = async(): Promise<string[]> => {
+    const response = exec('npm show ngx-feature-flag-router versions');
+    return JSON.parse(response.replace(/'/g, '"'));
+}
 
 export const publishLegacyLib = async (angularVersion: AngularVersion): Promise<void> => {
-    if (angularVersion === AngularVersion.source) {
-        await spawn('npm', ['publish', 'dist/libs/ngx-feature-flag-router']);
-        return;
-    }
-
-    await spawn('npm', ['publish', `apps/legacy/angular-${angularVersion}/dist/ngx-feature-flag-router`]);
+    await spawn('npm', ['publish', getDistPath(angularVersion)]);
 };
