@@ -1,4 +1,5 @@
 export * from './angular-versions';
+export * from './fs-helpers';
 export * from './package-version-helper';
 export * from './paths';
-export * from './spawn-helper';
+export * from './child-process-helper';

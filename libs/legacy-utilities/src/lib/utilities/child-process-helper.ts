@@ -3,6 +3,7 @@ import { spawn as __node_spawn__, execSync as __exec_sync__, SpawnOptions } from
 export const spawn = async (command: string, args: readonly string[] = [], options: SpawnOptions = {}): Promise<unknown> => {
     return new Promise((resolve, reject) => {
         const spawnInstance = __node_spawn__(command, [...args], { stdio: 'inherit', ...options });
+        
         let code: unknown;
         let error: unknown;
 

@@ -1,6 +1,6 @@
 import { AngularVersion } from '../types';
 import { getProjectPath } from '../utilities';
-import { spawn } from '../utilities/spawn-helper';
+import { spawn } from '../utilities/child-process-helper';
 
 const HOST_URL = 'http://0.0.0.0:4200';
 

@@ -1,5 +1,10 @@
 import { AngularVersion, PackageMajorVersion, PackageVersion } from '../types';
 
+/**
+ * Returns package.json version based on AngularVersion. All AngularVersions are the same as their PackageMajorVersion.
+ * 
+ * The only exception is source. This will map to the latest angular version for PackageMajorVersion
+ */
 export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageMajorVersion => {
     const majorVersions: Record<AngularVersion, PackageMajorVersion> = {
         [AngularVersion.nine]: PackageMajorVersion.nine,
@@ -12,8 +17,11 @@ export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageM
     return majorVersions[angularVersion];
 }
 
-export const getPackageVersion = (versionString: string): PackageVersion => {
-    const parts = versionString.split('.');
+/**
+ * Parses package version string to PackageVersion instance where major, minor, patch versions are properties
+ */
+export const getPackageVersion = (packageVersionString: string): PackageVersion => {
+    const parts = packageVersionString.split('.');
 
     if (parts.length !== 3) {
         throw new Error('Unexpected number of parts for version');
@@ -40,6 +48,9 @@ export const getPackageVersion = (versionString: string): PackageVersion => {
     };
 };
 
+/**
+ * Parses PackageVersion values to a string: `${major}.${minor}.${patch}`
+ */
 export const getPackageVersionString = (version: PackageVersion): string => {
     return `${version.major}.${version.minor}.${version.patch}`;
 };

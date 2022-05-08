@@ -1,7 +1,7 @@
 import * as fs from 'fs-extra';
 import { AngularVersion } from '../types';
+import { clearAndCopySync } from '../utilities';
 import {
-    getProjectPath,
     getDistPath,
     getSrcPath,
     getPermSrcPath,
@@ -9,8 +9,16 @@ import {
     getLibSrcPath,
 } from '../utilities/paths';
 
+/**
+ * Cleans AngularVersion legacy app and ngx-feature-flag-router lib directories
+ * then copies from source legacy app and ngx-feature-flag-router lib directories 
+ * to AngularVersion legacy app and ngx-feature-flag-router lib directories.
+ */
 export const distributeSourceLegacyFiles = (angularVersion: AngularVersion): void => {
-    const projectPath = getProjectPath(angularVersion);
+    if (angularVersion === AngularVersion.source) {
+        throw new Error('Unexpected AngularVersion is source. Cannot copy from source to source');
+    }
+    
     const distPath = getDistPath(angularVersion);
     const srcPath = getSrcPath(angularVersion);
     const permSrcPath = getPermSrcPath(angularVersion);
@@ -19,22 +27,10 @@ export const distributeSourceLegacyFiles = (angularVersion: AngularVersion): voi
     const libSrcPath = getLibSrcPath(angularVersion);
     const sourceLibSrcPath = getLibSrcPath(AngularVersion.source);
 
-    console.log(projectPath);
-    // console.log(distPath);
-    // console.log(srcPath);
-    // console.log(permSrcPath);
-    // console.log(appPath);
-    // console.log(sourceAppPath);
-    // console.log(libSrcPath);
-    // console.log(sourceLibSrcPath);
-
     fs.removeSync(distPath);
     fs.removeSync(srcPath);
-    fs.copySync(permSrcPath, srcPath, { overwrite: true });
-    fs.removeSync(appPath);
-    fs.copySync(sourceAppPath, appPath, { overwrite: true });
-    fs.removeSync(libSrcPath);
-    fs.copySync(sourceLibSrcPath, libSrcPath, { overwrite: true });
-
-    console.log('distributeSourceLegacyFiles', angularVersion);
+    
+    clearAndCopySync(permSrcPath, srcPath);
+    clearAndCopySync(sourceAppPath, appPath);
+    clearAndCopySync(sourceLibSrcPath, libSrcPath);
 };

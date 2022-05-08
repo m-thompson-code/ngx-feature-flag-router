@@ -1,6 +1,9 @@
 import { AngularVersion, buildLegacyLib, runLegacyE2EScripts } from 'legacy-utilities';
 import { environment } from './environments/environment';
 
+/**
+ * Run e2e tests for all angular versions of ngx-feature-flag-router libs
+ */
 const main = async () => {
     for (const angularVersion of environment.angularVersions) {
         try {
