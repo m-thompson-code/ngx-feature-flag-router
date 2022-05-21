@@ -1,5 +1,4 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { HighlightService } from '../services/highlight/highlight.service';
 
 @Component({
@@ -9,7 +8,7 @@ import { HighlightService } from '../services/highlight/highlight.service';
 })
 export class HowToComponent implements AfterViewInit {
     beforeModuleSample = `
-import { RouterModule, Routes } from "@angular/router";
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [/*...*/];
 
@@ -20,7 +19,7 @@ export class MyModule {}
     `.trim();
 
     afterModuleSample = `
-import { FeatureFlagRouterModule, FeatureFlagRoutes } from "ngx-feature-flag-router";
+import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
 const routes: FeatureFlagRoutes = [/*...*/];
 
@@ -33,8 +32,8 @@ export class MyModule {}
     beforeRoutesSample = `
 const routes: Routes = [
     {
-        path: "hello-world",
-        loadChildren: () => import("./hello-world.module").then((m) => m.HelloWorldModule),
+        path: 'hello-world',
+        loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
     }
 ]
         `.trim();
@@ -42,16 +41,15 @@ const routes: Routes = [
     afterRoutesSample = `
 const routes: FeatureFlagRoutes = [
     {
-        path: "hello-world",
-        loadChildren: () => import("./hello-world.module").then((m) => m.HelloWorldModule),
-        alternativeLoadChildren: () => import("./feature.module").then((m) => m.FeatureModule),
+        path: 'hello-world',
+        loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
+        alternativeLoadChildren: () => import('./feature.module').then((m) => m.FeatureModule),
         featureFlag: () => showFeature(),// Function that returns boolean
     }
 ]
         `.trim();
 
     constructor(
-        private readonly domSanitizer: DomSanitizer,
         private readonly elementRef: ElementRef,
         private readonly highlightService: HighlightService,
     ) {}

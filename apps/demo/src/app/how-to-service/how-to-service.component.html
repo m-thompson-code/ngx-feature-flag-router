@@ -1,0 +1,21 @@
+<div class="max-large-content-width">
+    <h1>How to Use Service / API</h1>
+
+    <p>
+        1. Add your Service ( <code class="inline-highlight language-typescript">MyService</code> ) as the second argument of <code class="inline-highlight language-typescript">FeatureFlagRouterModule.forChild()</code>
+    </p>
+    
+    <pre><code class="language-typescript">{{ moduleSample }}</code></pre>
+    
+    <p>
+        2. Add <code class="inline-highlight language-typescript">implements FeatureFlagRoutesService</code> to your Service.
+    </p>
+    
+    <pre><code class="language-typescript">{{ implementsSample }}</code></pre>
+
+    <p>
+        3. Add <code class="inline-highlight language-typescript">getFeatureRoutes()</code> method and return your <code class="inline-highlight language-typescript">FeatureFlagRoutes</code>
+    </p>
+    
+    <pre><code class="language-typescript">{{ getFeatureRoutesSample }}</code></pre>    
+</div>

@@ -4,7 +4,7 @@
     min-height: 100vh;
     width: 100%;
     padding: $spacing;
-    @include get-background-color('dark-grey');
+    @include get-background-color('secondary');
     display: flex;
     flex-direction: column;
     justify-content: center;

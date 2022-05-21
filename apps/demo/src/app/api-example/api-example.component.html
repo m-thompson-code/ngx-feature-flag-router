@@ -1,0 +1,81 @@
+<div class="max-large-content-width" *ngIf="{ value: userId$ | async } as userId">
+    <h1>Service / API Example</h1>
+
+    <p>
+        The
+        <code class="inline-highlight language-typescript">ngx-feature-flag-router</code>
+        library also allows you to use <span class="primary">Services</span> to populate your routes. This allows for more complex feature flagging that requires dependencies such as 
+        <code class="inline-highlight language-typescript">HttpClient</code>
+        ,
+        <code class="inline-highlight language-typescript">NGRX</code>
+        ,
+        <code class="inline-highlight language-typescript">NGXS</code>
+        , etc.
+    </p>
+
+    <p [class.hide]="userId.value === 0">
+        When you navigate to the API page. Angular will lazy-load
+        <code class="inline-highlight language-typescript">ApiFeatureFlagOnModule</code>
+    </p>
+
+    <p [class.hide]="userId.value === 1">
+        When you navigate to the API page. Angular will lazy-load
+        <code class="inline-highlight language-typescript">ApiFeatureFlagOffModule</code>
+    </p>
+
+    <p [class.hide]="userId.value === 0">
+        Open up your
+        <a href="https://developer.chrome.com/docs/devtools/network/" target="_blank">network tab</a>
+        to
+        <a href="https://angular.io/guide/lazy-loading-ngmodules#verify-lazy-loading" target="_blank">verify</a>
+        that
+        <span class="primary break-anywhere">apps_demo_src_app_api-feature-flag-on_module_ts.xxx.js</span>
+        is lazy-loaded.
+    </p>
+    
+    <p [class.hide]="userId.value === 1">
+        Open up your
+        <a href="https://developer.chrome.com/docs/devtools/network/" target="_blank">network tab</a>
+        to
+        <a href="https://angular.io/guide/lazy-loading-ngmodules#verify-lazy-loading" target="_blank">verify</a>
+        that
+        <span class="primary break-anywhere">apps_demo_src_app_api-feature-flag-off_module_ts.xxx.js</span> is lazy-loaded.
+    </p>
+
+    <p [class.hide]="userId.value === 1">
+        As you turn the feature flag ON or OFF, a request for
+        <code class="inline-highlight language-typescript">permissions.json</code>
+        will be made. Feature flagging will be based on the API response. If 
+        <code class="inline-highlight language-typescript">authorized</code> is 
+        <code class="inline-highlight language-typescript">true</code>
+        , then user will be navigated with feature flag ON.
+    </p>
+
+    <div class="buttons">
+        <button
+            [ngClass]="{
+                primary: true,
+                clear: userId.value === 0
+            }"
+            (click)="turnFeatureFlag(FeatureFlag.ON)"
+        >
+            Turn Feature Flag On
+        </button>
+        <button
+            [ngClass]="{
+                primary: true,
+                clear: userId.value === 1
+            }"
+            (click)="turnFeatureFlag(FeatureFlag.OFF)"
+        >
+            Turn Feature Flag Off
+        </button>
+    </div>
+    
+    <div class="flex-center">
+        <a routerLink="api-example">Navigate to API page</a>    
+    </div>
+    <div class="flex-center">
+        <a routerLink="how-to-use-with-service">How to use Service</a>    
+    </div>
+</div>

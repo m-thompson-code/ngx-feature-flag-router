@@ -20,13 +20,8 @@ export class ExampleComponent implements AfterViewInit {
         this.highlightService.highlight(this.elementRef.nativeElement);
     }
 
-    turnFeatureFlagOn(): void {
-        setFeatureFlagValue(DemoRoute.HELLO_WORLD, FeatureFlag.ON);
-        this.featureFlag = getFeatureFlagValue(DemoRoute.HELLO_WORLD);
-    }
-
-    turnFeatureFlagOff(): void {
-        setFeatureFlagValue(DemoRoute.HELLO_WORLD, FeatureFlag.OFF);
+    turnFeatureFlag(featureFlag: FeatureFlag): void {
+        setFeatureFlagValue(DemoRoute.HELLO_WORLD, featureFlag);
         this.featureFlag = getFeatureFlagValue(DemoRoute.HELLO_WORLD);
     }
 }

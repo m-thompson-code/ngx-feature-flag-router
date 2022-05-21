@@ -4,15 +4,6 @@ export enum FeatureFlag {
 }
 
 export enum DemoRoute {
-    A = 'A',
-    B = 'B',
-    C = 'C',
-    D = 'D',
-    E = 'E',
-    F = 'F',
-    G = 'G',
-    H = 'H',
-    I = 'I',
-    J = 'J',
+    API_EXAMPLE = 'api_example',
     HELLO_WORLD = 'HELLO_WORLD',
 }

@@ -35,6 +35,13 @@ pre {
     margin: $spacing 0;
     width: 100%;
     max-width: 100%;
+
+    // Handle width (mobile) overflow issue
+    display: flex;
+    code {
+        width: 0;
+        flex: 1;
+    }
 }
 
 code {
@@ -43,6 +50,7 @@ code {
     width: 100%;
     padding: $spacing;
     max-width: 100%;
+    font-size: $code-font-size;
 }
 
 .inline-highlight {
@@ -131,6 +139,18 @@ button {
     }
 }
 
+.flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.max-large-content-width {
+    display: block;
+    margin: 0 auto;
+    max-width: 900px;
+}
+
 .black-text {
     color: $black;
 }
@@ -146,13 +166,13 @@ button {
 
 @mixin get-anchor-styles($color-name) {
     & {
-        @include get-color($color-name, -10);
+        @include get-color($color-name, -20);
     }
     &:visited {
-        @include get-color($color-name, 5);
+        @include get-color($color-name, -5);
     }
     &:hover {
-        @include get-color($color-name, -20);
+        @include get-color($color-name, -35);
     }
     &:focus,
     &:focus-within {
@@ -279,15 +299,43 @@ button {
     @include get-color-styles($color-name);
 }
 
+.break-anywhere {
+    overflow-wrap: anywhere;
+}
+
 .hljs-title.class_,
 .hljs-property {
     color: #6bc8b1; // @NgModule, (routes) fix
 }
-.hljs-params {
-    color: #9cdcfe !important; // m.SomeModule fix
+
+:not(.class_) {
+    &.method-color {
+        color: #dcdcad !important; // .get<...> fix
+    }
 }
+
+.hljs-params, .hljs-property {
+    color: #9cdcfe !important; // prop fix
+
+    &.class-color, &.hljs-title.class_ {
+        color: #6bc8b1 !important;// m.SomeModule fix, class prop fix
+    }
+}
+
 .hljs-title.function_ {
     color: #dcdcad; // import(...) fix
+}
+
+.hljs-variable.language_.this-color {
+    color: #569cd6;// this. fix
+}
+
+.white-symbol-color {
+    color: #dcdcdc !important;// prop: Prop fix (:)
+}
+
+.return-color {
+    color: #d081c4 !important;// return color fix
 }
 
 .hide {
