@@ -1,3 +1,4 @@
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ApiExampleComponent } from './api-example.component';
@@ -8,6 +9,7 @@ describe('ApiExampleComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [HttpClientTestingModule],
             declarations: [ApiExampleComponent],
         }).compileComponents();
     });
