@@ -1,4 +1,5 @@
 {
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/legacy-version-control/src",
     "projectType": "application",
     "targets": {
@@ -8,8 +9,7 @@
             "options": {
                 "outputPath": "dist/apps/legacy-version-control",
                 "main": "apps/legacy-version-control/src/main.ts",
-                "tsConfig": "apps/legacy-version-control/tsconfig.app.json",
-                "assets": ["apps/legacy-version-control/src/assets"]
+                "tsConfig": "apps/legacy-version-control/tsconfig.app.json"
             },
             "configurations": {
                 "9": {

@@ -1,4 +1,5 @@
 {
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/publish-legacy/src",
     "projectType": "application",
     "targets": {
@@ -8,8 +9,7 @@
             "options": {
                 "outputPath": "dist/apps/publish-legacy",
                 "main": "apps/publish-legacy/src/main.ts",
-                "tsConfig": "apps/publish-legacy/tsconfig.app.json",
-                "assets": ["apps/publish-legacy/src/assets"]
+                "tsConfig": "apps/publish-legacy/tsconfig.app.json"
             },
             "configurations": {
                 "9": {

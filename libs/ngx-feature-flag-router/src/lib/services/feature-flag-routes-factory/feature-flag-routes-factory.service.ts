@@ -1,7 +1,7 @@
-import { Injectable, isDevMode, OnDestroy, Type } from '@angular/core';
-import { LoadChildrenCallback, Route, Routes, UrlMatcher, UrlSegment, UrlSegmentGroup } from '@angular/router';
+import { Injectable, isDevMode, NgModuleFactory, OnDestroy } from '@angular/core';
+import { LoadChildrenCallback, Route, UrlMatcher, UrlSegment, UrlSegmentGroup } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
-import { catchError, mergeMap, shareReplay, take, takeUntil, tap } from 'rxjs/operators';
+import { catchError, map, mergeMap, shareReplay, take, takeUntil, tap } from 'rxjs/operators';
 import { defaultUrlMatcher, wrapIntoObservable } from '../../angular-utils';
 import {
     FactoryService,
@@ -9,7 +9,9 @@ import {
     FeatureFlagRoutes,
     FeatureFlagRoutesService,
     LegacyUrlMatcher,
+    LoadChildrenObservableCallback,
     ModernUrlMatcher,
+    PatchedRoute,
 } from '../../models';
 import { flattened } from '../../utils';
 
@@ -18,17 +20,33 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
     private readonly unsubscribe$ = new Subject<void>();
     constructor(private readonly featureFlagRoutesService: FeatureFlagRoutesService) {}
 
+    getLoadChildrenObservableCallback(loadChildren: LoadChildrenCallback): LoadChildrenObservableCallback {
+        return () => {
+            const observableOfLoadChildren = wrapIntoObservable(loadChildren());
+
+            return observableOfLoadChildren.pipe(
+                map((loadChildrenValue) => {
+                    if (loadChildrenValue instanceof NgModuleFactory) {
+                        throw new Error('NgModuleFactory is deprecated and is not supported');
+                    }
+
+                    return loadChildrenValue;
+                }),
+            );
+        };
+    }
+
     getLoadChildrens(
         featureFlag: Observable<boolean>,
         loadChildren: LoadChildrenCallback,
         alternativeFeatureChildren: LoadChildrenCallback,
-    ): [() => Observable<Type<unknown>>, () => Observable<Type<unknown>>] {
-        const module: () => Observable<Type<unknown>> = () => wrapIntoObservable(loadChildren());
-        const alternativeModule: () => Observable<Type<unknown>> = () => wrapIntoObservable(alternativeFeatureChildren());
+    ): [LoadChildrenObservableCallback, LoadChildrenObservableCallback] {
+        const module: LoadChildrenObservableCallback = this.getLoadChildrenObservableCallback(loadChildren);
+        const alternativeModule: LoadChildrenObservableCallback = this.getLoadChildrenObservableCallback(alternativeFeatureChildren);
 
         let modules: {
-            first: () => Observable<Type<unknown>>;
-            second: () => Observable<Type<unknown>>;
+            first: LoadChildrenObservableCallback;
+            second: LoadChildrenObservableCallback;
         } | null = null;
 
         const handleError = () => {
@@ -110,7 +128,11 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
     getUrlMatchers(featureFlagMatchesdInitialValue: () => boolean, possibleUrlMatcher?: UrlMatcher): [UrlMatcher, UrlMatcher] {
         const urlMatcher: ModernUrlMatcher = possibleUrlMatcher || defaultUrlMatcher;
 
-        const firstUrlMatcher: ModernUrlMatcher = (segments: UrlSegment[], group: UrlSegmentGroup, route: Route) => {
+        const firstUrlMatcher: ModernUrlMatcher = (
+            segments: UrlSegment[],
+            group: UrlSegmentGroup,
+            route: PatchedRoute | FeatureFlagRoute,
+        ) => {
             // Since current feature flag value matches the initial value found,
             // it's safe to use the first lazy-load route since it lazy-loads alternative module based on feature flag
             if (featureFlagMatchesdInitialValue()) {
@@ -125,7 +147,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         return [firstUrlMatcher, urlMatcher] as [LegacyUrlMatcher, LegacyUrlMatcher];
     }
 
-    getRoutesFromFeatureFlagRoute(featureFlagRoute: FeatureFlagRoute): [Route, Route] {
+    getRoutesFromFeatureFlagRoute(featureFlagRoute: FeatureFlagRoute): [PatchedRoute, PatchedRoute] {
         const { featureFlag, loadChildren, alternativeLoadChildren } = featureFlagRoute;
 
         const featureFlagFunctionReturn = featureFlag();
@@ -177,30 +199,35 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
         const children = this.getChildrenFromFeatureFlagRoutes(featureFlagRoute);
 
+        // deal with Route not allowed to have both `path` and `matcher` property
+        // source: https://github.com/angular/angular/blob/13.3.x/packages/router/src/utils/config.ts#L67
+
         // Avoid setting path to empty string,
         // to allow for UrlMatcher always run on navigate, path is set to `undefined` instead of empty string
-        // Angular normally avoids using the UrlMatcher if path is empty string since they cache the first result
-        const path = featureFlagRoute.path || undefined;
+        // Angular normally avoids using the UrlMatcher if path is empty string since Angular will cache the first result
+        const featureFlagPath = featureFlagRoute.path || undefined;
 
         return [
             {
                 ...featureFlagRoute,
-                path,
+                featureFlagPath,
+                path: undefined,
                 children,
                 loadChildren: firstLoadChildren,
                 matcher: firstUrlMatcher,
-            },
+            } as Route,
             {
                 ...featureFlagRoute,
-                path,
+                featureFlagPath,
+                path: undefined,
                 children,
                 loadChildren: secondLoadChildren,
                 matcher: secondUrlMatcher,
-            },
+            } as Route,
         ];
     }
 
-    getChildrenFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagRoute | Route): Routes | undefined {
+    getChildrenFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagRoute | Route): PatchedRoute[] | undefined {
         if (!featureFlagRoutes.children) {
             return undefined;
         }
@@ -208,7 +235,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         return this.getRoutesFromFeatureFlagRoutes(featureFlagRoutes.children);
     }
 
-    getRoutesFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagRoutes): Routes {
+    getRoutesFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagRoutes): PatchedRoute[] {
         return flattened(
             featureFlagRoutes.map((featureFlagRoute) => {
                 if (!featureFlagRoute.alternativeLoadChildren) {
@@ -225,7 +252,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         );
     }
 
-    getRoutesFromFeatureFlagRoutesService(): Routes {
+    getRoutesFromFeatureFlagRoutesService(): PatchedRoute[] {
         return this.getRoutesFromFeatureFlagRoutes(this.featureFlagRoutesService.getFeatureRoutes());
     }
 

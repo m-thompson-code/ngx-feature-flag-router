@@ -147,7 +147,8 @@ describe('featureFlagRoutesFactory()', () => {
             it('should be able to generate two routes per route with alternativeLoadChild', () => {
                 expect(routes).toStrictEqual([
                     {
-                        path: 'moo',
+                        path: undefined,
+                        featureFlagPath: 'moo',
                         loadChildren: expect.any(Function),
                         alternativeLoadChildren: expect.any(Function),
                         featureFlag,
@@ -155,7 +156,8 @@ describe('featureFlagRoutesFactory()', () => {
                         children: undefined,
                     },
                     {
-                        path: 'moo',
+                        path: undefined,
+                        featureFlagPath: 'moo',
                         loadChildren: expect.any(Function),
                         alternativeLoadChildren: expect.any(Function),
                         featureFlag,
@@ -294,7 +296,8 @@ describe('featureFlagRoutesFactory()', () => {
 
             expect(routes).toStrictEqual([
                 {
-                    path: 'milk',
+                    path: undefined,
+                    featureFlagPath: 'milk',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag: TEST_FEATURE_FLAG_ROUTES_SERVICE_FEATURE_FLAG_FUNCTION,
@@ -302,7 +305,8 @@ describe('featureFlagRoutesFactory()', () => {
                     children: undefined,
                 },
                 {
-                    path: 'milk',
+                    path: undefined,
+                    featureFlagPath: 'milk',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag: TEST_FEATURE_FLAG_ROUTES_SERVICE_FEATURE_FLAG_FUNCTION,
@@ -311,7 +315,8 @@ describe('featureFlagRoutesFactory()', () => {
                 },
                 { path: 'bull', children: undefined },
                 {
-                    path: 'moo',
+                    path: undefined,
+                    featureFlagPath: 'moo',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag,
@@ -319,7 +324,8 @@ describe('featureFlagRoutesFactory()', () => {
                     children: undefined,
                 },
                 {
-                    path: 'moo',
+                    path: undefined,
+                    featureFlagPath: 'moo',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
                     featureFlag,

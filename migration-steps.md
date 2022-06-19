@@ -106,7 +106,7 @@ copy `apps/legacy/src/app` to `apps/legacy/older-angular-versions/angular-13/__s
 copy `apps/legacy/src/window.d.ts` to `apps/legacy/older-angular-versions/angular-13/__src__/window.d.ts`
 copy `apps/legacy/older-angular-versions/angular-12/projects/ngx-feature-flag-router` to `apps/legacy/older-angular-versions/angular-12/projects/ngx-feature-flag-router`
 
-9. Update `apps/legacy/older-angular-versions/angular-13/projects/ngx-feature-flag-router/package.json` to have refer to the correct major version:
+9. Update `apps/legacy/older-angular-versions/angular-13/projects/ngx-feature-flag-router/package.json` to refer to the correct major version:
 
 ```json
 {
@@ -123,6 +123,33 @@ copy `apps/legacy/older-angular-versions/angular-12/projects/ngx-feature-flag-ro
 
 ```
 
+10. Update `apps/legacy/older-angular-versions/angular-13/__src__/index.html`:
+
+```html
+<!doctype html>
+    <!-- .... -->
+    <head>
+        <!-- .... -->
+        <title>Legacy 13</title>
+        <!-- .... -->
+    <body>
+        <legacy-root></legacy-root>
+    </body>
+</html>
+```
+
+11. Update `apps/legacy/older-angular-versions/angular-13/package.json` to have include expected npm scripts:
+
+```json
+"scripts": {
+    // ...
+    "install-dependencies": "npm install",
+    // ...
+    "build-lib": "ng build ngx-feature-flag-router",
+    // ...
+  },
+```
+
 ### Add e2e configuration for latest older version of Angular
 
 1. Create configuration file for latest older major version of Angular:
@@ -132,10 +159,10 @@ Copy from `apps/legacy-e2e/cypress.angular-12.json` to create `apps/legacy-e2e/c
 in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There should be 3 locations:
 
 ```json
-"videosFolder": "../../dist/cypress/apps/legacy-e2e/angular-12/videos",
-"screenshotsFolder": "../../dist/cypress/apps/legacy-e2e/angular-12/screenshots",
+"videosFolder": "../../dist/cypress/apps/legacy-e2e/angular-13/videos",
+"screenshotsFolder": "../../dist/cypress/apps/legacy-e2e/angular-13/screenshots",
 "env": {
-    "ANGULAR_VERSION": 12,
+    "ANGULAR_VERSION": 13,
    // ...
 }
 //...
@@ -216,3 +243,76 @@ in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There shou
     ]
 },
 ```
+
+### Add 
+
+1. Add to Environment enum at `libs/legacy-utilities/src/lib/types/angular-versions.ts`
+
+```typescript
+export enum AngularVersion {
+    // ...
+    thirteen =  13,
+    // ...
+};
+```
+
+2. Include `environment.X.ts` in `libs/legacy-utilities/src/environments`
+
+```typescript
+// eslint-disable-next-line @nrwl/nx/enforce-module-boundaries
+import { AngularVersion } from 'legacy-utilities';
+import { Environment } from './environment.type';
+
+export const environment: Environment = {
+    angularVersions: [AngularVersion.thirteen],
+} as const;
+
+```
+
+3. Include latest old major version to `getPackageMajorVersion` at `libs/legacy-utilities/src/lib/utilities/package-version-helper.ts`:
+
+```typescript
+export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageMajorVersion => {
+    const majorVersions: Record<AngularVersion, PackageMajorVersion> = {
+        [AngularVersion.thirteen]: PackageMajorVersion.thirteen,
+        // ...
+    };
+}
+```
+
+4. Include latest old major version to `PackageMajorVersion` and update `source` at `libs/legacy-utilities/src/lib/types/package-version.ts`:
+
+```typescript
+export enum PackageMajorVersion {
+    // ...
+    thirteen = 13,
+    source =  14,
+}
+```
+
+5. Add latest old major version to `ALL_ANGULAR_VERSIONS` at `libs/legacy-utilities/src/lib/utilities/angular-versions.ts`
+
+```typescript
+export const ALL_ANGULAR_VERSIONS = [
+    // ...
+    AngularVersion.thirteen,
+    // ...
+] as const;
+```
+
+### Update package.json versions:
+
+1. `package.json`
+2. `libs/ngx-feature-flag-router/package.json`
+
+### Update .gitignore:
+
+1. Add temporary directories for latest old major version:
+
+# Legacy temporary application sources
+# ...
+/apps/legacy/older-angular-versions/angular-13/src
+
+# Legacy temporary libraries
+# ...
+/apps/legacy/older-angular-versions/angular-13/projects/ngx-feature-flag-router/src

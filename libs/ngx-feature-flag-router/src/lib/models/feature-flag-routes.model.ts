@@ -1,11 +1,21 @@
 import { LoadChildrenCallback, Route, Routes } from '@angular/router';
 import { Observable } from 'rxjs';
 
+/**
+ * `Route` interface but with added optional never properties
+ * to allow checking against `FeatureFlagRoute` properties.
+ */
 export type PatchedRoute = Omit<Route, 'children'> & {
+    featureFlagPath?: never;
     alternativeLoadChildren?: never;
     featureFlag?: never;
     children?: FeatureFlagRoutes;
 };
+
+export type ProcessedFeatureFlagRoute = Omit<PatchedRoute, 'path'> & {
+    featureFlagPath: string;
+    path: undefined;
+}
 
 /**
  * `FeatureFlagRoute` extends `Route`
@@ -93,4 +103,4 @@ export abstract class FactoryService {
     abstract getRoutesFromFeatureFlagRoutesService(): Routes;
 }
 
-export type FeatureFlagRoutesFactory = (routes: FeatureFlagRoutes) => (featureFlagRoutesFactoryService: FactoryService) => Routes;
+export type FeatureFlagRoutesFactory = (routes: FeatureFlagRoutes) => (featureFlagRoutesFactoryService: FactoryService) => PatchedRoute[];

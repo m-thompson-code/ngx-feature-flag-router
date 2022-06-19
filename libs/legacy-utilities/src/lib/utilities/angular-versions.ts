@@ -9,5 +9,6 @@ export const ALL_ANGULAR_VERSIONS = [
     AngularVersion.ten,
     AngularVersion.eleven,
     AngularVersion.twelve,
+    AngularVersion.thirteen,
     AngularVersion.source,
 ] as const;

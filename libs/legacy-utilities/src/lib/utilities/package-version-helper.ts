@@ -11,6 +11,7 @@ export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageM
         [AngularVersion.ten]: PackageMajorVersion.ten,
         [AngularVersion.eleven]: PackageMajorVersion.eleven,
         [AngularVersion.twelve]: PackageMajorVersion.twelve,
+        [AngularVersion.thirteen]: PackageMajorVersion.thirteen,
         [AngularVersion.source]: PackageMajorVersion.source,
     };
 

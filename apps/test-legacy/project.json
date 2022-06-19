@@ -1,4 +1,5 @@
 {
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
     "sourceRoot": "apps/test-legacy/src",
     "projectType": "application",
     "targets": {
@@ -8,8 +9,7 @@
             "options": {
                 "outputPath": "dist/apps/test-legacy",
                 "main": "apps/test-legacy/src/main.ts",
-                "tsConfig": "apps/test-legacy/tsconfig.app.json",
-                "assets": ["apps/test-legacy/src/assets"]
+                "tsConfig": "apps/test-legacy/tsconfig.app.json"
             },
             "configurations": {
                 "9": {
