@@ -7,5 +7,5 @@ export const getExistingLegacyLibPackageVersions = async(): Promise<string[]> =>
 };
 
 export const publishLegacyLib = async (angularVersion: AngularVersion): Promise<void> => {
-    await spawn('npm', ['publish', getDistPath(angularVersion)]);
+    await spawn('npm', ['publish', getDistPath(angularVersion), '--dry-run']);
 };

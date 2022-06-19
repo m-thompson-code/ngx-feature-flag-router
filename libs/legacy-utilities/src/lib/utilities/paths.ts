@@ -28,7 +28,7 @@ export const getNodeModulesPath = (angularVersion: AngularVersion): string => {
  */
 export const getDistPath = (angularVersion: AngularVersion): string => {
     if (angularVersion === AngularVersion.source) {
-        return 'dist/ngx-feature-flag-router';
+        return 'dist/libs/ngx-feature-flag-router';
     }
 
     return path.join(getProjectPath(angularVersion), 'dist/ngx-feature-flag-router');

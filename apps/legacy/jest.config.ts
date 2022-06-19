@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     displayName: 'legacy',
 
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
@@ -19,5 +19,5 @@ module.exports = {
         'jest-preset-angular/build/serializers/html-comment',
     ],
     modulePathIgnorePatterns: ['angular-9', 'angular-10', 'angular-11', 'angular-12', 'angular-13'],
-    preset: '../../jest.preset.ts',
+    preset: '../../jest.preset.js',
 };

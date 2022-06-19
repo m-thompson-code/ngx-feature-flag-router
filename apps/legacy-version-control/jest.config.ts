@@ -1,4 +1,4 @@
-module.exports = {
+export default {
     displayName: 'legacy-version-control',
 
     globals: {
@@ -12,5 +12,5 @@ module.exports = {
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
     coverageDirectory: '../../coverage/apps/legacy-version-control',
-    preset: '../../jest.preset.ts',
+    preset: '../../jest.preset.js',
 };
