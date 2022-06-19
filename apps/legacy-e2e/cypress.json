@@ -10,7 +10,7 @@
     "screenshotsFolder": "../../dist/cypress/apps/legacy-e2e/screenshots",
     "chromeWebSecurity": false,
     "env": {
-        "ANGULAR_VERSION": 13,
+        "ANGULAR_VERSION": 14,
         "APP_PATH": "apps_legacy_src_app",
         "PORT": 4200
     }

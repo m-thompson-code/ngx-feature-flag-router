@@ -19,7 +19,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.9.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.9.ts"
                         }
                     ]
                 },
@@ -30,7 +30,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.10.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.10.ts"
                         }
                     ]
                 },
@@ -41,7 +41,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.11.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.11.ts"
                         }
                     ]
                 },
@@ -52,7 +52,18 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.12.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.12.ts"
+                        }
+                    ]
+                },
+                "13": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/test-legacy/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.13.ts"
                         }
                     ]
                 },
@@ -63,7 +74,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.prod.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
                         }
                     ]
                 },
@@ -74,7 +85,7 @@
                     "fileReplacements": [
                         {
                             "replace": "apps/test-legacy/src/environments/environment.ts",
-                            "with": "apps/test-legacy/src/environments/environment.source.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
                         }
                     ]
                 }

@@ -56,6 +56,17 @@
                         }
                     ]
                 },
+                "13": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.13.ts"
+                        }
+                    ]
+                },
                 "all": {
                     "optimization": true,
                     "extractLicenses": false,
