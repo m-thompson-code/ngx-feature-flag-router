@@ -1,5 +1,5 @@
 import { UrlMatchResult, UrlSegment, UrlSegmentGroup } from '@angular/router';
-import { PatchedRoute, ProcessedFeatureFlagRoute } from '../models';
+import { HasPathProperties } from '../models';
 
 /**
  * `defaultUrlMatcher` from
@@ -15,7 +15,7 @@ import { PatchedRoute, ProcessedFeatureFlagRoute } from '../models';
 export function defaultUrlMatcher(
     segments: UrlSegment[],
     segmentGroup: UrlSegmentGroup,
-    route: PatchedRoute | ProcessedFeatureFlagRoute,
+    route: HasPathProperties,
 ): UrlMatchResult | null {
     // This part is changed,
     // default behavior is to assume that routes always have property `path` as string
@@ -60,8 +60,8 @@ export function defaultUrlMatcher(
  * Get path of `Route`. Checks `path` property and `featureFlagPath` property.
  * If no path is found, returns empty string.
  */
-export const getRoutePath = (route: PatchedRoute | ProcessedFeatureFlagRoute): string => {
-    const path = route.path ?? route.featureFlagPath;
+export const getRoutePath = (route: HasPathProperties): string => {
+    const path = route.path || route.featureFlagPath;
 
     if (!path) {
         return '';

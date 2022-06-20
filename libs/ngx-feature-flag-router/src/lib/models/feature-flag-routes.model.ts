@@ -1,26 +1,45 @@
-import { LoadChildrenCallback, Route, Routes } from '@angular/router';
+import { LoadChildren, Route, Routes } from '@angular/router';
 import { Observable } from 'rxjs';
+
+export interface HasPathProperties {
+    path?: string;
+    featureFlagPath?: string;
+    pathMatch?: string;
+}
 
 /**
  * `Route` interface but with added optional never properties
  * to allow checking against `FeatureFlagRoute` properties.
+ * 
+ * Also assumes that children can be FeatureFlagRoutes and not just Routes.
  */
 export type PatchedRoute = Omit<Route, 'children'> & {
     featureFlagPath?: never;
     alternativeLoadChildren?: never;
     featureFlag?: never;
     children?: FeatureFlagRoutes;
+    loadChildren?: LoadChildren;
 };
 
-export type ProcessedFeatureFlagRoute = Omit<PatchedRoute, 'path'> & {
-    featureFlagPath: string;
+export type ProcessedFeatureFlagRoute = Omit<FeatureFlagRoute, 'children' | 'loadChildren' | 'alternativeLoadChildren' | 'featureFlag'> & {
+    children?: ProcessedFeatureFlagRoute[];
+    loadChildren?: LoadChildren | undefined;
+    alternativeLoadChildren?: LoadChildren | undefined;
+    featureFlag?: FeatureFlagRoute['featureFlag'] | undefined;
+} & ({
+    featureFlagPath?: string | undefined;
     path: undefined;
-}
+} | {
+    featureFlagPath?: never;
+    path?: string;
+})
 
 /**
  * `FeatureFlagRoute` extends `Route`
  *
- * All properties are the same as `Route` except that `loadChildren` is required instead of optional
+ * All properties are the same as `Route` except that `loadChildren` is required instead of optional, and there are extra properties:
+ * 1. alternativeLoadChildren
+ * 2. featureFlag
  *
  * When using `FeatureFlagRoute` to navigate, `featureFlag` determines
  * if `loadChildren` or `alternativeLoadChildren` is used when lazy loading module for navigation
@@ -37,14 +56,14 @@ export interface FeatureFlagRoute extends Route {
      * if `alternativeLoadChildren` and `featureFlag` are also defined,
      * `loadChildren` will be used to lazy-load child routes when `featureFlag`'s latest value is `false`
      */
-    loadChildren: LoadChildrenCallback;
+    loadChildren: LoadChildren;
     /**
      * An object specifying lazy-loaded child routes.
      *
      * if `loadChildren` and `featureFlag` are also defined,
      * `alternativeLoadChildren` will be used to lazy-load child routes when `featureFlag`'s latest value is `true`
      */
-    alternativeLoadChildren: LoadChildrenCallback;
+    alternativeLoadChildren: LoadChildren;
     /**
      * Used to determine if navigation to this route should use `loadChildren` or `alternativeLoadChildren`
      * to lazy-load child routes.
@@ -58,10 +77,10 @@ export interface FeatureFlagRoute extends Route {
 /**
  * Array of `FeatureFlagRoute` or `Route`
  *
- * `FeatureFlagRoute` has all the same properties of `Route` and 2 other properties:
- *
- * 1. `featureFlag`
- * 2. `alternativeLoadChildren`
+ * `FeatureFlagRoute` properties are the same as `Route` except that `loadChildren` is required instead of optional,
+ * and there are extra properties:
+ * 1. alternativeLoadChildren
+ * 2. featureFlag
  *
  * These properties are used to allow for conditionally lazy-loading an alternative `NgModule` than `loadChildren`
  * Outside of these two properties, `FeatureFlagRoute` serve the same purpose and functionality of `Route`

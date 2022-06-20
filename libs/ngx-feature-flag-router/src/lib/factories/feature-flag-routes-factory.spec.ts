@@ -89,7 +89,7 @@ describe('featureFlagRoutesFactory()', () => {
             const featureFlag = () =>
                 defer(() => {
                     if (shouldError) {
-                        throw 'Expected error from test';
+                        throw new Error('Expected error from test');
                     }
 
                     return of(featureFlagValue);
@@ -198,7 +198,7 @@ describe('featureFlagRoutesFactory()', () => {
 
             it('first and second loadChildren should load (original) loadChildren if error', (done) => {
                 const spy = jest.spyOn(console, 'error').mockImplementation(() => {
-                    /* pass */
+                    /* mute console */
                 });
 
                 expect.assertions(6);
@@ -207,7 +207,7 @@ describe('featureFlagRoutesFactory()', () => {
                 shouldError = true;
 
                 testResults.subscribe(([flag, { firstModule, secondModule }]) => {
-                    expect(spy).nthCalledWith(1, 'Expected error from test');
+                    expect(spy).nthCalledWith(1, new Error('Expected error from test'));
                     expect(spy).nthCalledWith(2, '`alternativeLoadChildren` is unreliable. All routes will use `loadChildren` instead');
                     expect(spy).toBeCalledTimes(2);
 
@@ -223,7 +223,7 @@ describe('featureFlagRoutesFactory()', () => {
                 expect.assertions(4);
 
                 const spy = jest.spyOn(console, 'error').mockImplementation(() => {
-                    /* pass */
+                    /* mute console */
                 });
 
                 featureFlagValue = true;
