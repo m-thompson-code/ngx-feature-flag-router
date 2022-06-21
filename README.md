@@ -1,98 +1,191 @@
 # NgxFeatureFlagRouter
+![GitHub package.json version](https://img.shields.io/github/package-json/v/m-thompson-code/ngx-feature-flag-router)
+[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+![npm](https://img.shields.io/npm/dt/ngx-feature-flag-router)
+![npm](https://img.shields.io/npm/dw/ngx-feature-flag-router)
+![Website](https://img.shields.io/website?down_color=red&down_message=offline&label=demo&up_color=green&up_message=online&url=https%3A%2F%2Fm-thompson-code.github.io%2Fngx-feature-flag-router%2F)
 
-This project was generated using [Nx](https://nx.dev).
+## Installation
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+```bash
+npm install ngx-feature-flag-router
+```
 
-🔎 **Smart, Fast and Extensible Build System**
+## How to Use
 
-## Quick Start & Documentation
+1. Replace `RouterModule.forChild()` with `FeatureFlagRouterModule.forChild()`
 
-[Nx Documentation](https://nx.dev/angular)
+Before:
 
-[10-minute video showing all Nx features](https://nx.dev/getting-started/intro)
+```typescript
+import { RouterModule, Routes } from '@angular/router';
 
-[Interactive Tutorial](https://nx.dev/tutorial/01-create-application)
+const routes: Routes = [/*...*/];
 
-## Adding capabilities to your workspace
+@NgModule({
+    imports: [RouterModule.forChild(routes)]
+})
+export class MyModule {}
+```
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+After: 
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+```typescript
+import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
-Below are our core plugins:
+const routes: FeatureFlagRoutes = [/*...*/];
 
--   [Angular](https://angular.io)
-    -   `ng add @nrwl/angular`
--   [React](https://reactjs.org)
-    -   `ng add @nrwl/react`
--   Web (no framework frontends)
-    -   `ng add @nrwl/web`
--   [Nest](https://nestjs.com)
-    -   `ng add @nrwl/nest`
--   [Express](https://expressjs.com)
-    -   `ng add @nrwl/express`
--   [Node](https://nodejs.org)
-    -   `ng add @nrwl/node`
+@NgModule({
+    imports: [FeatureFlagRouterModule.forChild(routes)]
+})
+export class MyModule {}
+```
 
-There are also many [community plugins](https://nx.dev/community) you could add.
+2. Add `alternativeLoadChildren` and `featureFlag` to conditional lazy-load alternative module when `featureFlag` returns `true`
 
-## Generate an application
+Before:
 
-Run `ng g @nrwl/angular:app my-app` to generate an application.
 
-> You can use any of the plugins above to generate applications as well.
+```typescript
+const routes: Routes = [
+    {
+        path: 'hello-world',
+        loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
+    }
+]
+```
 
-When using Nx, you can create multiple applications and libraries in the same workspace.
 
-## Generate a library
+After:
+```typescript
+const routes: FeatureFlagRoutes = [
+    {
+        path: 'hello-world',
+        loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
+        alternativeLoadChildren: () => import('./feature.module').then((m) => m.FeatureModule),
+        featureFlag: () => showFeature(),// Function that returns boolean
+    }
+]
+```
 
-Run `ng g @nrwl/angular:lib my-lib` to generate a library.
+## How to Use Services / API
 
-> You can also use any of the plugins above to generate libraries as well.
+1. Add your Service ( `MyService` ) as the second argument of `FeatureFlagRouterModule.forChild()`
 
-Libraries are shareable across libraries and applications. They can be imported from `@ngx-feature-flag-router/mylib`.
+```typescript
+import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
-## Development server
+// Initialize routes that don't require Service
+const routes: FeatureFlagRoutes = [/*...*/];
 
-Run `ng serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+@NgModule({
+    imports: [FeatureFlagRouterModule.forChild(routes, MyService)]
+})
+export class MyModule {}
+```
 
-## Code scaffolding
+2. Add implements `FeatureFlagRoutesService` to your Service.
 
-Run `ng g component my-component --project=my-app` to generate a new component.
+```typescript
+@Injectable({ providedIn: 'root' })
+export class FeatureFlagService implements FeatureFlagRoutesService {
+    // ...
+}
+```
 
-## Build
+3. Add `getFeatureRoutes()` method and return your `FeatureFlagRoutes`
 
-Run `ng build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```typescript
+@Injectable({ providedIn: 'root' })
+export class FeatureFlagService implements FeatureFlagRoutesService {
+    // Get current user id
+    private readonly userId$: Observable<number> = this.getUserId();
 
-## Running unit tests
+    constructor(private readonly httpClient: HttpClient) {}
 
-Run `ng test my-app` to execute the unit tests via [Jest](https://jestjs.io).
+    /** Set additional routes using Service */
+    getFeatureRoutes(): FeatureFlagRoutes {
+        return [
+            {
+                path: 'api-example',
+                loadChildren: () => import('api-feature-flag-off.module').then((m) => m.ApiFeatureFlagOffModule),
+                alternativeLoadChildren: () => import('api-feature-flag-on.module').then((m) => m.ApiFeatureFlagOnModule),
+                featureFlag: () => this.showFeature(),// Function that returns Observable<boolean>
+            }
+        ];
+    }
 
-Run `nx affected:test` to execute the unit tests affected by a change.
+    /** Determine showing feature based on user id and API response */
+    showFeature(): Observable<boolean> {
+        // Use current user id
+        return this.userId$.pipe(
+            switchMap(userId => {
+                // Make specific request for that user
+                return this.httpClient.get<UserStatus>('some/api');
+            }),
+            map(userStatus => {
+                // Check if we want to turn feature flag on or not
+                return userStatus.authorized;
+            }),
+            // Replay results until user id changes if you only want to make the api request once
+            shareReplay({ bufferSize: 1, refCount: true })
+        );
+    }
+}
+```
 
-## Running end-to-end tests
+## Mono Repo
 
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
+Demo and library is managed using [Nx](https://nx.dev).
 
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
+## Contributing
 
-## Understand your workspace
+Before adding any new feature or a fix, make sure to open an issue first :)
 
-Run `nx graph` to see a diagram of the dependencies of your projects.
+1. Make sure to use the expected node/npm versions
 
-## Further help
+```bash
+node -v // v14.17.1
+```
 
-Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
+```bash
+npm -v // 6.14.13
+```
 
-## ☁ Nx Cloud
+If you have the wrong versions, I suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) or [volta](https://docs.volta.sh/guide/getting-started) for node version management.
 
-### Distributed Computation Caching & Distributed Task Execution
+2. Clone the project and install dependencies
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
+```
+git clone https://github.com/m-thompson-code/ngx-feature-flag-router.git
+npm install
+```
 
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
+3. Create a new branch
 
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
+```bash
+git checkout -b feature/some-feature
+```
 
-Visit [Nx Cloud](https://nx.app/) to learn more.
+4. Add tests and make sure demo and library jest / cypress tests pass
+
+```bash
+npm run test:demo
+npm run test:lib
+```
+
+You can also run jest tests separately
+
+```bash
+npm run jest:demo
+npm run jest:lib
+```
+
+and cypress tests separately
+
+```bash
+npm run e2e:demo
+npm run e2e:lib
+```
+
+5. commit > push > create a pull request 👍

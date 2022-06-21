@@ -156,8 +156,20 @@ export class HighlightService {
             if (!nodeValue.endsWith('.')) {
                 return;
             }
+
+            if (nodeValue.startsWith('/')) {
+                return;
+            }
             
             const split = nodeValue.split('.');
+
+            if (split.length !== 2) {
+                return;
+            }
+
+            if (split[0] === ')') {
+                return;
+            }
 
             const replacementSpan = document.createElement('SPAN');
             replacementSpan.className = 'hljs-attr';

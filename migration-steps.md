@@ -15,33 +15,33 @@ adds v14 migration script (There is no 14.2.0 release)
 
 [Nx migration docs](https://nx.dev/using-nx/updating-nx#step-1-updating-dependencies-and-generating-migrations)
 
-```cmd
+```bash
 nx migrate 14.1.9 # same as nx migrate @nrwl/workspace@14.1.9
 ```
 
 Follow the steps suggested to complete the migration. Typically this is 2 parts:
 
-```cmd
+```bash
 npm install
 ```
 
-```cmd
+```bash
 nx migrate --run-migrations
 ```
 
 2. Delete migrations.json
 
-```cmd
+```bash
 rm migrations.json
 ```
 
 3. Deploy and publish library
 
-```cmd
+```bash
 npm run deploy:demo
 ```
 
-```cmd
+```bash
 npm run publish:lib
 ```
 
@@ -59,25 +59,25 @@ Navigate to `github/angular-major-versions/angular-13/`
 
 While inside the `github/angular-major-versions/angular-13/` directory and NOT `github/ngx-feature-flag-router`
 
-```cmd
+```bash
 npm i -D @angular/cli@^13
 ```
 
 2. Create new Angular project named `legacy`:
 
-```cmd
+```bash
 ng new legacy --routing=true --style=scss
 ```
 
 3. Go into `legacy` directory:
 
-```cmd
+```bash
 cd legacy
 ```
 
 4. Add `ngx-feature-flag-router` project:
 
-```cmd
+```bash
 ng generate library ngx-feature-flag-router
 ```
 
@@ -89,7 +89,7 @@ Create new directory for older version of Angular. In this case we want an Angul
 
 6. Delete unneeded files/directories:
 
-```cmd
+```bash
 rm apps/legacy/older-angular-versions/angular-13/.vscode
 rm apps/legacy/older-angular-versions/angular-13/src/app
 rm apps/legacy/older-angular-versions/angular-13/src/test.ts
