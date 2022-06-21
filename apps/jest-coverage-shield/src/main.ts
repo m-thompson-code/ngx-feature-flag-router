@@ -21,12 +21,12 @@ interface Props {
 
 interface Shield {
     schemaVersion: 1;
-    label: `coverage: ${PropName}`;
+    label: 'coverage';
     message: string;
     color: Color;
 }
 
-console.log('Hello World!');
+const propNames: PropName[] = [PropName.lines, PropName.statements, PropName.functions, PropName.branches];
 
 const coverageSummary = fs.readJsonSync('coverage/libs/ngx-feature-flag-router/coverage-summary.json');
 
@@ -40,49 +40,45 @@ const getProps = (propName: PropName): Props => {
     };
 }
 
-const getMessage = (props: Props): string => {
-    const { pct, covered, total } = props;
+const getAverage = (): number => {
+    return propNames
+        .map(propName => getProps(propName))
+        .map(props => props.pct)
+        .reduce((percent: number, sum: number) => {
+        return sum + percent;
+    }, 0) / propNames.length;
+};
 
-    return `${pct}% (${covered}/${total})`;
-}
-
-const getColor = (props: Props): Color => {
-    const { pct } = props;
-
-    if (pct <= 65) {
+const getColor = (percent: number): Color => {
+    if (percent <= 65) {
         return Color.red;
     }
 
-    if (pct <= 75) {
+    if (percent <= 80) {
         return Color.orange;
     }
 
     return Color.green;
 }
 
-const getShield = (propName: PropName): Shield => {
-    const props = getProps(propName);
-    const message = getMessage(props);
-    const color = getColor(props);
+const getShield = (): Shield => {
+    const average = getAverage();
+    const color = getColor(average);
 
     return {
         schemaVersion: 1,
-        label: `coverage: ${propName}`,
-        message,
+        label: 'coverage',
+        message: `${+average.toFixed(2)}%`,
         color,
     };
 }
 
-const writeShieldJson = (propName: PropName): void => {
-    const shield = getShield(propName);
+const writeShieldJson = (): void => {
+    const shield = getShield();
 
-    fs.writeJSONSync(`jest-badge/${propName}.json`, shield, {
+    fs.writeJSONSync('jest-badge/coverage.json', shield, {
         spaces: 4,
     });
 }
 
-const propNames: PropName[] = [PropName.lines, PropName.statements, PropName.functions, PropName.branches];
-
-propNames.forEach(propName => {
-    writeShieldJson(propName);
-});
+writeShieldJson();

@@ -1,14 +1,21 @@
 # NgxFeatureFlagRouter
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/m-thompson-code/ngx-feature-flag-router)
-[![License](https://img.shields.io/badge/license-MIT-green)](./LICENSE)
+![GitHub](https://img.shields.io/github/license/m-thompson-code/ngx-feature-flag-router)
 ![npm](https://img.shields.io/npm/dt/ngx-feature-flag-router)
 ![npm](https://img.shields.io/npm/dw/ngx-feature-flag-router)
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&label=demo&up_color=green&up_message=online&url=https%3A%2F%2Fm-thompson-code.github.io%2Fngx-feature-flag-router%2F)
+![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fcoverage.json)
 
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Flines.json)
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fstatements.json)
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Ffunctions.json)
-![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fbranches.json)
+## Angular Major Version Support
+
+| Angular Version | Support                                       |
+| ---             | ---                                           |
+| 9               | Yes                                           |
+| 10              | Yes                                           |
+| 11              | Yes                                           |
+| 12              | Yes                                           |
+| 13              | Yes                                           |
+| 14              | Mostly (no current support for loadComponent) |
 
 ## Installation
 
