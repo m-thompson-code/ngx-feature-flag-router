@@ -40,7 +40,7 @@
         "serve:legacy-version-control": "node dist/apps/legacy-version-control/main.js",
         "jest:lib": "nx run-many --all --target=test --maxParallel=1",
         "e2e:lib": "nx build test-legacy && npm run serve:test-legacy",
-        "test:lib": "npm run jest:lib && npm run e2e:lib",
+        "test:lib": "npm run jest:lib && npm run e2e:lib && npm run generate-jest-shield",
         "build:lib": "nx build build-legacy && npm run serve:build-legacy",
         "sync-packages": "nx build legacy-version-control && npm run serve:legacy-version-control",
         "generate-jest-shield": "nx build jest-coverage-shield && node dist/apps/jest-coverage-shield/main.js",
