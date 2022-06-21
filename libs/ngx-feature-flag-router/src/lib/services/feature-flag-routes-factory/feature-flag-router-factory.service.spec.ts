@@ -56,7 +56,13 @@ describe('FeatureFlagRoutesFactoryService', () => {
     });
 
     describe('getLoadChildrenObservableCallback()', () => {
-        it('should coverage LoadChildren to LoadChildrenObservableCallback', (done) => {
+        it('should throw if argument isn\'t a function (Angular 9)', () => {
+            const result = service.getLoadChildrenObservableCallback('string-import-mock' as any);
+
+            expect(result).toThrowError('loadChildren must be a function');
+        });
+
+        it('should convert LoadChildren to LoadChildrenObservableCallback', (done) => {
             expect.assertions(1);
 
             const result = service.getLoadChildrenObservableCallback(() => MooModule);
