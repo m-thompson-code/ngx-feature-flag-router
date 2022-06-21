@@ -43,6 +43,7 @@
         "test:lib": "npm run jest:lib && npm run e2e:lib",
         "build:lib": "nx build build-legacy && npm run serve:build-legacy",
         "sync-packages": "nx build legacy-version-control && npm run serve:legacy-version-control",
+        "generate-jest-shield": "nx build jest-coverage-shield && node dist/apps/jest-coverage-shield/main.js",
         "publish:lib": "npm run sync-packages && npm run test:lib && npm run build:lib && nx build publish-legacy && npm run serve:publish-legacy"
     },
     "private": true,

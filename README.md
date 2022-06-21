@@ -5,6 +5,11 @@
 ![npm](https://img.shields.io/npm/dw/ngx-feature-flag-router)
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&label=demo&up_color=green&up_message=online&url=https%3A%2F%2Fm-thompson-code.github.io%2Fngx-feature-flag-router%2F)
 
+![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Flines.json)
+![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fstatements.json)
+![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Ffunctions.json)
+![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fbranches.json)
+
 ## Installation
 
 ```bash
