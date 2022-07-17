@@ -177,11 +177,11 @@ Before adding any new feature or a fix, make sure to open an issue first :)
 1. Make sure to use the expected node/npm versions
 
 ```bash
-node -v // v14.17.1
+node -v # v14.17.1
 ```
 
 ```bash
-npm -v // 6.14.13
+npm -v # 6.14.13
 ```
 
 If you have the wrong versions, I suggest using [nvm](https://github.com/nvm-sh/nvm#installing-and-updating) or [volta](https://docs.volta.sh/guide/getting-started) for node version management.
@@ -202,22 +202,28 @@ git checkout -b feature/some-feature
 4. Add tests and make sure demo and library jest / cypress tests pass
 
 ```bash
-npm run test:demo
-npm run test:lib
+npm run test # both demo and ngx-feature-flag-router lib
+```
+
+or
+
+```bash
+npm run test:demo # only demo
+npm run test:lib # only ngx-feature-flag-router lib
 ```
 
 You can also run jest tests separately
 
 ```bash
-npm run jest:demo
-npm run jest:lib
+npm run jest:demo # only demo jest tests
+npm run jest:lib # only ngx-feature-flag-router lib jest tests
 ```
 
 and cypress tests separately
 
 ```bash
-npm run e2e:demo
-npm run e2e:lib
+npm run e2e:demo # only demo cypress tests
+npm run e2e:lib # only ngx-feature-flag-router lib cypress tests
 ```
 
-5. commit > push > create a pull request 👍
+5. commit > push > create a pull request 🚀
