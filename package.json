@@ -29,6 +29,7 @@
         "prepare": "husky install",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
         "format": "nx lint --fix && nx format:write --all .",
+        "lint": "npm run format",
         "start": "nx serve demo",
         "e2e:demo": "nx run-many --projects=demo-e2e,legacy-e2e --target=e2e --maxParallel=1",
         "jest:demo": "nx run-many --projects=demo,ngx-feature-flag-router,legacy --target=test --maxParallel=1",
