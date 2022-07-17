@@ -12,6 +12,7 @@
         "legacy-version-control": "apps/legacy-version-control",
         "ngx-feature-flag-router": "libs/ngx-feature-flag-router",
         "publish-legacy": "apps/publish-legacy",
+        "schematics": "apps/schematics",
         "test-legacy": "apps/test-legacy"
     }
 }

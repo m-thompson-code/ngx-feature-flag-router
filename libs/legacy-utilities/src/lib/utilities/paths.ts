@@ -35,6 +35,13 @@ export const getDistPath = (angularVersion: AngularVersion): string => {
 };
 
 /**
+ * Path to schematics directory of dist of legacy app for specific AngularVersion
+ */
+ export const getDistSchematicsPath = (angularVersion: AngularVersion): string => {
+    return path.join(getDistPath(angularVersion), 'schematics');
+};
+
+/**
  * Path to src of legacy app for specific AngularVersion.
  * For older versions of Angular (anything but source), this src directory is involved with serve, build, test directly.
  * It is also temporary and is rebuilt using the legacy app's __src__ directory

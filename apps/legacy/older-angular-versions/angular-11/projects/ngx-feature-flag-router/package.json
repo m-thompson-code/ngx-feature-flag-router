@@ -1,7 +1,7 @@
 {
     "name": "ngx-feature-flag-router",
     "version": "11.0.3",
-    "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag. Allows for Services to configure Routes and includes helpers to preload strategies.",
+    "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag. Allows for Services to configure Routes and includes helpers for preload strategy.",
     "license": "MIT",
     "repository": {
         "type": "git",
@@ -14,6 +14,7 @@
     "author": "Mark Thompson",
     "keywords": [
         "nx",
+        "monorepo",
         "ng",
         "angular",
         "router",
@@ -23,6 +24,10 @@
         "feature flag",
         "loadChildren"
     ],
+    "schematics": "./schematics/collection.json",
+    "ng-add": {
+        "save": "dependencies"
+    },
     "peerDependencies": {
         "@angular/common": "11",
         "@angular/core": "11",

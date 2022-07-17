@@ -6,21 +6,35 @@
 ![Website](https://img.shields.io/website?down_color=red&down_message=offline&label=demo&up_color=green&up_message=online&url=https%3A%2F%2Fm-thompson-code.github.io%2Fngx-feature-flag-router%2F)
 ![Custom badge](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fm-thompson-code%2Fngx-feature-flag-router%2Fmain%2Fjest-badge%2Fcoverage.json)
 
+[Demo](https://m-thompson-code.github.io/ngx-feature-flag-router/)
+
+Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag. Allows for Services to configure Routes and includes helpers for preload strategy.
+
+This allows you to use an endpoint to lazy-load modules, easily redirect users to 403/404 pages, performant A/B testing for features.
+
 ## Angular Major Version Support
 
 | Angular Version | Support                                       |
 | ---             | ---                                           |
-| 9               | Yes                                           |
-| 10              | Yes                                           |
-| 11              | Yes                                           |
-| 12              | Yes                                           |
-| 13              | Yes                                           |
-| 14              | Mostly (no current support for loadComponent) |
+| 9               | ✅ Yes                                        |
+| 10              | ✅ Yes                                        |
+| 11              | ✅ Yes                                        |
+| 12              | ✅ Yes                                        |
+| 13              | ✅ Yes                                        |
+| 14              | Mostly. Support for `loadComponent` coming soon |
 
 ## Installation
 
+Add:
+
 ```bash
-npm install ngx-feature-flag-router
+ng add ngx-feature-flag-router
+```
+
+Update:
+
+```bash
+ng update ngx-feature-flag-router
 ```
 
 ## How to Use

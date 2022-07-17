@@ -1,0 +1,9 @@
+{
+    "name": "schematics",
+    "version": "14.0.2",
+    "scripts": {
+      "build": "tsc -p tsconfig.schematics.json",
+      "postbuild": "npx copyfiles schematics/*/schema.json schematics/*/files/** schematics/collection.json ../../../../dist/lib-schematics --error"
+    }
+  }
+  
