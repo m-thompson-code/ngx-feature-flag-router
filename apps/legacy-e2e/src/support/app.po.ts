@@ -21,6 +21,6 @@ export const interceptAngularModule = (moduleName: string) => {
         cy.intercept('GET', `//${moduleName}-${moduleName}-module.js`).as(`${moduleName}-module`);
         return;
     }
-    
+
     cy.intercept('GET', `//${appPath}_${moduleName}_${moduleName}_module_ts.js`).as(`${moduleName}-module`);
 };

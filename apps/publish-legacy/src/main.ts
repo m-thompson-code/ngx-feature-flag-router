@@ -23,7 +23,7 @@ const main = async () => {
             // If it doesn't exist, publish it
             await publishLegacyLib(angularVersion);
         }
-    } catch(error) {
+    } catch (error) {
         process.exit(1);
     }
 };

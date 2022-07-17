@@ -7,9 +7,9 @@ import { environment } from './environments/environment';
 const main = async () => {
     try {
         for (const angularVersion of environment.angularVersions) {
-                await buildLegacyLib(angularVersion);
+            await buildLegacyLib(angularVersion);
         }
-    } catch(error) {
+    } catch (error) {
         process.exit(1);
     }
 };

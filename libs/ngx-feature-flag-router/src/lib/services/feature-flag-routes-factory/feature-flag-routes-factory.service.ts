@@ -126,11 +126,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
     getUrlMatchers(featureFlagMatchesInitialValue: () => boolean, possibleUrlMatcher?: UrlMatcher): [UrlMatcher, UrlMatcher] {
         const urlMatcher: ModernUrlMatcher = possibleUrlMatcher || defaultUrlMatcher;
 
-        const firstUrlMatcher: ModernUrlMatcher = (
-            segments: UrlSegment[],
-            group: UrlSegmentGroup,
-            route: Route,
-        ) => {
+        const firstUrlMatcher: ModernUrlMatcher = (segments: UrlSegment[], group: UrlSegmentGroup, route: Route) => {
             // Since current feature flag value matches the initial value found,
             // it's safe to use the first lazy-load route since it lazy-loads alternative module based on feature flag
             if (featureFlagMatchesInitialValue()) {

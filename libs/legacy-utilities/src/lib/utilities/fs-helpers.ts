@@ -6,4 +6,4 @@ import * as fs from 'fs-extra';
 export const clearAndCopySync = (src: string, dest: string, options: fs.CopyOptionsSync = {}) => {
     fs.removeSync(dest);
     fs.copySync(src, dest, { ...options, overwrite: true });
-}
+};

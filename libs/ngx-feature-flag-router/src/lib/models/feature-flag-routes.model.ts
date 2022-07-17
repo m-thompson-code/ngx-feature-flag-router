@@ -10,7 +10,7 @@ export interface HasPathProperties {
 /**
  * `Route` interface but with added optional never properties
  * to allow checking against `FeatureFlagRoute` properties.
- * 
+ *
  * Also assumes that children can be FeatureFlagRoutes and not just Routes.
  */
 export type PatchedRoute = Omit<Route, 'children'> & {
@@ -26,13 +26,16 @@ export type ProcessedFeatureFlagRoute = Omit<FeatureFlagRoute, 'children' | 'loa
     loadChildren?: LoadChildren | undefined;
     alternativeLoadChildren?: LoadChildren | undefined;
     featureFlag?: FeatureFlagRoute['featureFlag'] | undefined;
-} & ({
-    featureFlagPath?: string | undefined;
-    path: undefined;
-} | {
-    featureFlagPath?: never;
-    path?: string;
-})
+} & (
+        | {
+              featureFlagPath?: string | undefined;
+              path: undefined;
+          }
+        | {
+              featureFlagPath?: never;
+              path?: string;
+          }
+    );
 
 /**
  * `FeatureFlagRoute` extends `Route`

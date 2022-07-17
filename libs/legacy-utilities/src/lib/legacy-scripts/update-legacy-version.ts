@@ -9,7 +9,7 @@ import {
     getProjectPackageJsonPath,
 } from '../utilities';
 
-export const getLegacyPackageJson = (angularVersion: AngularVersion): Record<string,string> => {
+export const getLegacyPackageJson = (angularVersion: AngularVersion): Record<string, string> => {
     return fs.readJsonSync(getLegacyLibPackageJsonPath(angularVersion));
 };
 
@@ -35,7 +35,7 @@ export const getUpdatedLegacyPackageJson = (angularVersion: AngularVersion): { [
         author,
         keywords,
     };
-}
+};
 
 export const writeUpdatedLegacyPackageJson = (angularVersion: AngularVersion): void => {
     const legacyLibPackageJsonPath = getLegacyLibPackageJsonPath(angularVersion);

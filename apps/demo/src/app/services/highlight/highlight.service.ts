@@ -160,7 +160,7 @@ export class HighlightService {
             if (nodeValue.startsWith('/')) {
                 return;
             }
-            
+
             const split = nodeValue.split('.');
 
             if (split.length !== 2) {
@@ -185,7 +185,7 @@ export class HighlightService {
 
     doHighlightFix8(containerElement: HTMLElement): void {
         const textNodes = this.getTextNodes(containerElement);
-        const elements = textNodes.map(textNode => textNode.parentElement);
+        const elements = textNodes.map((textNode) => textNode.parentElement);
 
         elements.forEach((element) => {
             if (!element) {

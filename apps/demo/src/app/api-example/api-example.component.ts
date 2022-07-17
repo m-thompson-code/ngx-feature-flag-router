@@ -10,7 +10,7 @@ import { HighlightService } from '../services/highlight/highlight.service';
 })
 export class ApiExampleComponent implements AfterViewInit {
     userId$ = this.featureFlagService.getUserId();
-    
+
     readonly FeatureFlag = FeatureFlag;
 
     constructor(

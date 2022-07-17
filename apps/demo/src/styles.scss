@@ -314,11 +314,13 @@ button {
     }
 }
 
-.hljs-params, .hljs-property {
+.hljs-params,
+.hljs-property {
     color: #9cdcfe !important; // prop fix
 
-    &.class-color, &.hljs-title.class_ {
-        color: #6bc8b1 !important;// m.SomeModule fix, class prop fix
+    &.class-color,
+    &.hljs-title.class_ {
+        color: #6bc8b1 !important; // m.SomeModule fix, class prop fix
     }
 }
 
@@ -327,15 +329,15 @@ button {
 }
 
 .hljs-variable.language_.this-color {
-    color: #569cd6;// this. fix
+    color: #569cd6; // this. fix
 }
 
 .white-symbol-color {
-    color: #dcdcdc !important;// prop: Prop fix (:)
+    color: #dcdcdc !important; // prop: Prop fix (:)
 }
 
 .return-color {
-    color: #d081c4 !important;// return color fix
+    color: #d081c4 !important; // return color fix
 }
 
 .hide {

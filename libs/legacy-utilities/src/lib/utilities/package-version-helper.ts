@@ -2,7 +2,7 @@ import { AngularVersion, PackageMajorVersion, PackageVersion } from '../types';
 
 /**
  * Returns package.json version based on AngularVersion. All AngularVersions are the same as their PackageMajorVersion.
- * 
+ *
  * The only exception is source. This will map to the latest angular version for PackageMajorVersion
  */
 export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageMajorVersion => {
@@ -16,7 +16,7 @@ export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageM
     };
 
     return majorVersions[angularVersion];
-}
+};
 
 /**
  * Parses package version string to PackageVersion instance where major, minor, patch versions are properties
@@ -45,7 +45,9 @@ export const getPackageVersion = (packageVersionString: string): PackageVersion 
     }
 
     return {
-        major, minor, patch
+        major,
+        minor,
+        patch,
     };
 };
 

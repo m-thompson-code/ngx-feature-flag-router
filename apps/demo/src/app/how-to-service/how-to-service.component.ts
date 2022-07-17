@@ -65,10 +65,7 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
 }
 `.trim();
 
-    constructor(
-        private readonly elementRef: ElementRef,
-        private readonly highlightService: HighlightService,
-    ) {}
+    constructor(private readonly elementRef: ElementRef, private readonly highlightService: HighlightService) {}
 
     ngAfterViewInit(): void {
         this.highlightService.highlight(this.elementRef.nativeElement);

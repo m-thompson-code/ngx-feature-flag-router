@@ -11,9 +11,7 @@ describe('PreloadAllNonFeatureFlagModules', () => {
     let service: PreloadAllNonFeatureFlagModules;
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [
-                PreloadAllNonFeatureFlagModules
-            ]
+            providers: [PreloadAllNonFeatureFlagModules],
         });
 
         service = TestBed.inject(PreloadAllNonFeatureFlagModules);
@@ -23,12 +21,11 @@ describe('PreloadAllNonFeatureFlagModules', () => {
         it('should return Observable of null when Route has FeatureFlagRoute properties', (done) => {
             expect.assertions(1);
 
-            const result = service.preload(
-                { alternativeLoadChildren: () => MooModule, featureFlag: () => true } as FeatureFlagRoute, 
-                () => of('moo'),
+            const result = service.preload({ alternativeLoadChildren: () => MooModule, featureFlag: () => true } as FeatureFlagRoute, () =>
+                of('moo'),
             );
 
-            result.subscribe(result => {
+            result.subscribe((result) => {
                 expect(result).toBeNull();
                 done();
             });
@@ -37,12 +34,9 @@ describe('PreloadAllNonFeatureFlagModules', () => {
         it('should return fn callback Observable if Route doesn\t have FeatureFlagRoute properties', (done) => {
             expect.assertions(1);
 
-            const result = service.preload(
-                {} as FeatureFlagRoute, 
-                () => of('moo'),
-            );
+            const result = service.preload({} as FeatureFlagRoute, () => of('moo'));
 
-            result.subscribe(result => {
+            result.subscribe((result) => {
                 expect(result).toBe('moo');
                 done();
             });
@@ -51,12 +45,9 @@ describe('PreloadAllNonFeatureFlagModules', () => {
         it('should return null if fn callback errors', (done) => {
             expect.assertions(1);
 
-            const result = service.preload(
-                {} as FeatureFlagRoute, 
-                () => throwError(() => new Error('cow')),
-            );
+            const result = service.preload({} as FeatureFlagRoute, () => throwError(() => new Error('cow')));
 
-            result.subscribe(result => {
+            result.subscribe((result) => {
                 expect(result).toBeNull();
                 done();
             });

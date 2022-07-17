@@ -9,7 +9,7 @@ export const main = () => {
         for (const angularVersion of ALL_ANGULAR_VERSIONS) {
             writeUpdatedLegacyPackageJson(angularVersion);
         }
-    } catch(error) {
+    } catch (error) {
         process.exit(1);
     }
 };

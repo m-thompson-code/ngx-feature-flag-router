@@ -26,8 +26,9 @@
     ],
     "scripts": {
         "ng": "nx",
+        "prepare": "husky install",
         "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
-        "format": "nx format:write --all .",
+        "format": "nx lint --fix && nx format:write --all .",
         "start": "nx serve demo",
         "e2e:demo": "nx run-many --projects=demo-e2e,legacy-e2e --target=e2e --maxParallel=1",
         "jest:demo": "nx run-many --projects=demo,ngx-feature-flag-router,legacy --target=test --maxParallel=1",
@@ -43,17 +44,6 @@
         "release": "npm run deploy:demo && npm run publish:lib"
     },
     "private": true,
-    "husky": {
-        "hooks": {
-            "pre-commit": "lint-staged"
-        }
-    },
-    "lint-staged": {
-        "*.{ts,html}": [
-            "eslint --ignore-path .gitignore --fix",
-            "git add"
-        ]
-    },
     "dependencies": {
         "@angular/animations": "14.0.2",
         "@angular/common": "14.0.2",
@@ -97,7 +87,7 @@
         "eslint-config-prettier": "8.1.0",
         "eslint-plugin-cypress": "^2.10.3",
         "fs-extra": "^10.0.1",
-        "husky": "^4.3.8",
+        "husky": "^8.0.1",
         "jest": "27.5.1",
         "jest-preset-angular": "11.1.2",
         "lint-staged": "^12.3.7",

@@ -34,19 +34,21 @@ const getProps = (propName: PropName): Props => {
     const props = coverageSummary['total'][propName];
 
     return {
-         total: +props.total,
-         covered: +props.covered,
-         pct: +props.pct,
+        total: +props.total,
+        covered: +props.covered,
+        pct: +props.pct,
     };
-}
+};
 
 const getAverage = (): number => {
-    return propNames
-        .map(propName => getProps(propName))
-        .map(props => props.pct)
-        .reduce((percent: number, sum: number) => {
-        return sum + percent;
-    }, 0) / propNames.length;
+    return (
+        propNames
+            .map((propName) => getProps(propName))
+            .map((props) => props.pct)
+            .reduce((percent: number, sum: number) => {
+                return sum + percent;
+            }, 0) / propNames.length
+    );
 };
 
 const getColor = (percent: number): Color => {
@@ -59,7 +61,7 @@ const getColor = (percent: number): Color => {
     }
 
     return Color.green;
-}
+};
 
 const getShield = (): Shield => {
     const average = getAverage();
@@ -71,7 +73,7 @@ const getShield = (): Shield => {
         message: `${+average.toFixed(2)}%`,
         color,
     };
-}
+};
 
 const writeShieldJson = (): void => {
     const shield = getShield();
@@ -79,10 +81,10 @@ const writeShieldJson = (): void => {
     fs.writeJSONSync('jest-badge/coverage.json', shield, {
         spaces: 4,
     });
-}
+};
 
 try {
     writeShieldJson();
-} catch(error) {
+} catch (error) {
     process.exit(1);
 }

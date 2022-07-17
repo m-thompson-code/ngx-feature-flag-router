@@ -1,4 +1,5 @@
 # NgxFeatureFlagRouter
+
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/m-thompson-code/ngx-feature-flag-router)
 ![GitHub](https://img.shields.io/github/license/m-thompson-code/ngx-feature-flag-router)
 ![npm](https://img.shields.io/npm/dt/ngx-feature-flag-router)
@@ -14,13 +15,13 @@ This allows you to use an endpoint to lazy-load modules, easily redirect users t
 
 ## Angular Major Version Support
 
-| Angular Version | Support                                       |
-| ---             | ---                                           |
-| 9               | ✅ Yes                                        |
-| 10              | ✅ Yes                                        |
-| 11              | ✅ Yes                                        |
-| 12              | ✅ Yes                                        |
-| 13              | ✅ Yes                                        |
+| Angular Version | Support                                         |
+| --------------- | ----------------------------------------------- |
+| 9               | ✅ Yes                                          |
+| 10              | ✅ Yes                                          |
+| 11              | ✅ Yes                                          |
+| 12              | ✅ Yes                                          |
+| 13              | ✅ Yes                                          |
 | 14              | Mostly. Support for `loadComponent` coming soon |
 
 ## Installation
@@ -46,23 +47,27 @@ Before:
 ```typescript
 import { RouterModule, Routes } from '@angular/router';
 
-const routes: Routes = [/*...*/];
+const routes: Routes = [
+    /*...*/
+];
 
 @NgModule({
-    imports: [RouterModule.forChild(routes)]
+    imports: [RouterModule.forChild(routes)],
 })
 export class MyModule {}
 ```
 
-After: 
+After:
 
 ```typescript
 import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
-const routes: FeatureFlagRoutes = [/*...*/];
+const routes: FeatureFlagRoutes = [
+    /*...*/
+];
 
 @NgModule({
-    imports: [FeatureFlagRouterModule.forChild(routes)]
+    imports: [FeatureFlagRouterModule.forChild(routes)],
 })
 export class MyModule {}
 ```
@@ -71,27 +76,26 @@ export class MyModule {}
 
 Before:
 
-
 ```typescript
 const routes: Routes = [
     {
         path: 'hello-world',
         loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
-    }
-]
+    },
+];
 ```
 
-
 After:
+
 ```typescript
 const routes: FeatureFlagRoutes = [
     {
         path: 'hello-world',
         loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
         alternativeLoadChildren: () => import('./feature.module').then((m) => m.FeatureModule),
-        featureFlag: () => showFeature(),// Function that returns boolean
-    }
-]
+        featureFlag: () => showFeature(), // Function that returns boolean
+    },
+];
 ```
 
 ## How to Use Services / API
@@ -102,10 +106,12 @@ const routes: FeatureFlagRoutes = [
 import { FeatureFlagRouterModule, FeatureFlagRoutes } from 'ngx-feature-flag-router';
 
 // Initialize routes that don't require Service
-const routes: FeatureFlagRoutes = [/*...*/];
+const routes: FeatureFlagRoutes = [
+    /*...*/
+];
 
 @NgModule({
-    imports: [FeatureFlagRouterModule.forChild(routes, MyService)]
+    imports: [FeatureFlagRouterModule.forChild(routes, MyService)],
 })
 export class MyModule {}
 ```
@@ -136,8 +142,8 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
                 path: 'api-example',
                 loadChildren: () => import('api-feature-flag-off.module').then((m) => m.ApiFeatureFlagOffModule),
                 alternativeLoadChildren: () => import('api-feature-flag-on.module').then((m) => m.ApiFeatureFlagOnModule),
-                featureFlag: () => this.showFeature(),// Function that returns Observable<boolean>
-            }
+                featureFlag: () => this.showFeature(), // Function that returns Observable<boolean>
+            },
         ];
     }
 
@@ -145,16 +151,16 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
     showFeature(): Observable<boolean> {
         // Use current user id
         return this.userId$.pipe(
-            switchMap(userId => {
+            switchMap((userId) => {
                 // Make specific request for that user
                 return this.httpClient.get<UserStatus>('some/api');
             }),
-            map(userStatus => {
+            map((userStatus) => {
                 // Check if we want to turn feature flag on or not
                 return userStatus.authorized;
             }),
             // Replay results until user id changes if you only want to make the api request once
-            shareReplay({ bufferSize: 1, refCount: true })
+            shareReplay({ bufferSize: 1, refCount: true }),
         );
     }
 }

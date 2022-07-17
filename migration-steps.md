@@ -48,6 +48,7 @@ npm run publish:lib
 Complete this step to confirm that demo and lib still function as expected
 
 ### Add Previous Version to legacy/older-angular-versions
+
 1. Create directory outside of `ngx-feature-flag-router` project
 
 `github/ngx-feature-flag-router`// <-- root of Nx project
@@ -115,12 +116,11 @@ copy `apps/legacy/older-angular-versions/angular-12/projects/ngx-feature-flag-ro
     "peerDependencies": {
         "@angular/common": "13",
         "@angular/core": "13",
-        "@angular/router": "13",
+        "@angular/router": "13"
         // ...
-    },
+    }
     // ...
 }
-
 ```
 
 10. Update `apps/legacy/older-angular-versions/angular-13/__src__/index.html`:
@@ -244,16 +244,16 @@ in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There shou
 },
 ```
 
-### Add 
+### Add
 
 1. Add to Environment enum at `libs/legacy-utilities/src/lib/types/angular-versions.ts`
 
 ```typescript
 export enum AngularVersion {
     // ...
-    thirteen =  13,
+    thirteen = 13,
     // ...
-};
+}
 ```
 
 2. Include `environment.X.ts` in `libs/legacy-utilities/src/environments`
@@ -266,7 +266,6 @@ import { Environment } from './environment.type';
 export const environment: Environment = {
     angularVersions: [AngularVersion.thirteen],
 } as const;
-
 ```
 
 3. Include latest old major version to `getPackageMajorVersion` at `libs/legacy-utilities/src/lib/utilities/package-version-helper.ts`:
@@ -277,7 +276,7 @@ export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageM
         [AngularVersion.thirteen]: PackageMajorVersion.thirteen,
         // ...
     };
-}
+};
 ```
 
 4. Include latest old major version to `PackageMajorVersion` and update `source` at `libs/legacy-utilities/src/lib/types/package-version.ts`:
@@ -286,7 +285,7 @@ export const getPackageMajorVersion = (angularVersion: AngularVersion): PackageM
 export enum PackageMajorVersion {
     // ...
     thirteen = 13,
-    source =  14,
+    source = 14,
 }
 ```
 
@@ -310,9 +309,13 @@ export const ALL_ANGULAR_VERSIONS = [
 1. Add temporary directories for latest old major version:
 
 # Legacy temporary application sources
+
 # ...
+
 /apps/legacy/older-angular-versions/angular-13/src
 
 # Legacy temporary libraries
+
 # ...
+
 /apps/legacy/older-angular-versions/angular-13/projects/ngx-feature-flag-router/src

@@ -6,10 +6,10 @@ import { FeatureFlagRoute } from '../models';
 
 /**
  * Preload all NgModules except any FeatureFlagRoutes.
- * 
+ *
  * This means that any route that has properties `alternativeLoadChildren` or `featureFlag`
  * will not be loaded using the preloading strategy.
- * 
+ *
  * This can be useful for avoiding circular lazy-loading.
  */
 @Injectable()

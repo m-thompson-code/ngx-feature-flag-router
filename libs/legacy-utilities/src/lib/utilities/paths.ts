@@ -8,7 +8,7 @@ export const getProjectPath = (angularVersion: AngularVersion): string => {
     if (angularVersion === AngularVersion.source) {
         return 'apps/legacy';
     }
-    
+
     return `apps/legacy/older-angular-versions/angular-${angularVersion}`;
 };
 
@@ -37,7 +37,7 @@ export const getDistPath = (angularVersion: AngularVersion): string => {
 /**
  * Path to schematics directory of dist of legacy app for specific AngularVersion
  */
- export const getDistSchematicsPath = (angularVersion: AngularVersion): string => {
+export const getDistSchematicsPath = (angularVersion: AngularVersion): string => {
     return path.join(getDistPath(angularVersion), 'schematics');
 };
 
@@ -75,7 +75,7 @@ export const getAppPath = (angularVersion: AngularVersion): string => {
     }
 
     return path.join(getSrcPath(angularVersion), 'app');
-}
+};
 
 /**
  * Path to ngx-feature-flag-router src for specific AngularVersion

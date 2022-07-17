@@ -19,7 +19,7 @@ export const buildLegacyLib = async (angularVersion: AngularVersion): Promise<vo
 
     // Make sure node_modules exists
     await ensureLegacyHasDependencies(angularVersion);
-    
+
     // Copy from source legacy app and ngx-feature-flag-router
     distributeSourceLegacyFiles(angularVersion);
 

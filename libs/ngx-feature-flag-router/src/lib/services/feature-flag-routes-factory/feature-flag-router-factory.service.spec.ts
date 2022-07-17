@@ -56,7 +56,7 @@ describe('FeatureFlagRoutesFactoryService', () => {
     });
 
     describe('getLoadChildrenObservableCallback()', () => {
-        it('should throw if argument isn\'t a function (Angular 9)', () => {
+        it("should throw if argument isn't a function (Angular 9)", () => {
             const result = service.getLoadChildrenObservableCallback('string-import-mock' as any);
 
             expect(result).toThrowError('loadChildren must be a function');
@@ -125,7 +125,7 @@ describe('FeatureFlagRoutesFactoryService', () => {
                 () => throwError(() => new Error('unexpected feature flag error')),
             );
 
-            secondLoadChildren().subscribe(module => {
+            secondLoadChildren().subscribe((module) => {
                 expect(module).toBe(MooModule);
                 done();
             });

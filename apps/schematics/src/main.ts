@@ -5,12 +5,7 @@ import { ALL_ANGULAR_VERSIONS, getDistSchematicsPath, spawn } from 'legacy-utili
  * Build schematics
  */
 export const buildSchematics = async (): Promise<void> => {
-    await spawn('npm', [
-        'run',
-        '--prefix',
-        'apps/schematics/src/lib-schematics',
-        'build',
-    ]);
+    await spawn('npm', ['run', '--prefix', 'apps/schematics/src/lib-schematics', 'build']);
 };
 
 /**
@@ -23,11 +18,11 @@ export const copySchematicsToLibBuilds = () => {
             const dest = getDistSchematicsPath(angularVersion);
 
             fs.copySync(src, dest, { overwrite: true });
-        } catch(error) {
+        } catch (error) {
             process.exit(1);
         }
     }
-}
+};
 
 /**
  * Build schematics and copy to all ngx-feature-flag-router builds.
@@ -38,7 +33,7 @@ const main = async () => {
         await buildSchematics();
 
         copySchematicsToLibBuilds();
-    } catch(error) {
+    } catch (error) {
         process.exit(1);
     }
 };

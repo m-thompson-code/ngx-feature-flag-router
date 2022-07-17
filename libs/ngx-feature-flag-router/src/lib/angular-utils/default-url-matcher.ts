@@ -12,11 +12,7 @@ import { HasPathProperties } from '../models';
  *
  * Matches the route configuration (`route`) against the actual URL (`segments`).
  */
-export function defaultUrlMatcher(
-    segments: UrlSegment[],
-    segmentGroup: UrlSegmentGroup,
-    route: HasPathProperties,
-): UrlMatchResult | null {
+export function defaultUrlMatcher(segments: UrlSegment[], segmentGroup: UrlSegmentGroup, route: HasPathProperties): UrlMatchResult | null {
     // This part is changed,
     // default behavior is to assume that routes always have property `path` as string
     // to allow for UrlMatcher always run on navigate, path is set to `undefined` instead of empty string

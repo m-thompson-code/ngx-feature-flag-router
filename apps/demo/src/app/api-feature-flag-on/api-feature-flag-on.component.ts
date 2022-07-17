@@ -6,4 +6,3 @@ import { Component } from '@angular/core';
     styleUrls: ['./api-feature-flag-on.component.scss'],
 })
 export class ApiFeatureFlagOnComponent {}
-

@@ -16,9 +16,12 @@ const routes: Routes = [
     declarations: [AppComponent],
     // Typescript tries to import BrowserModule from older versions of angular due to nested
     // node_modules, this error can be ignored
-    imports: [BrowserModule, RouterModule.forRoot(routes, {
-        preloadingStrategy: PreloadAllNonFeatureFlagModules
-    })],
+    imports: [
+        BrowserModule,
+        RouterModule.forRoot(routes, {
+            preloadingStrategy: PreloadAllNonFeatureFlagModules,
+        }),
+    ],
     exports: [RouterModule],
     providers: [PreloadAllNonFeatureFlagModules],
     bootstrap: [AppComponent],

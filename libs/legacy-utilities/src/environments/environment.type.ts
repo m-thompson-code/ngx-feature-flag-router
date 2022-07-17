@@ -2,5 +2,5 @@
 import { AngularVersion } from 'legacy-utilities';
 
 export type Environment = Readonly<{
-    readonly angularVersions: Readonly<AngularVersion[]>,
-}>
+    readonly angularVersions: Readonly<AngularVersion[]>;
+}>;

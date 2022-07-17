@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 
 /**
  * TODO: UPDATE THIS BEFORE RELEASE
- * 
+ *
  * A subset of LoadChildrenCallback that only includes Module-related types.
  *
  * This avoids types involving Routes that are introduced in Angular 14

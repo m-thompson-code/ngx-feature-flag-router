@@ -11,10 +11,10 @@ export interface PackageVersion {
  * Possible major versions of npm package for supported Angular versions
  */
 export enum PackageMajorVersion {
-    nine =  9,
-    ten =  10,
-    eleven =  11,
-    twelve =  12,
+    nine = 9,
+    ten = 10,
+    eleven = 11,
+    twelve = 12,
     thirteen = 13,
-    source =  14,
+    source = 14,
 }
