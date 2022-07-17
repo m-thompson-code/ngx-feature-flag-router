@@ -81,4 +81,8 @@ const writeShieldJson = (): void => {
     });
 }
 
-writeShieldJson();
+try {
+    writeShieldJson();
+} catch(error) {
+    process.exit(1);
+}

@@ -12,14 +12,80 @@
                 "tsConfig": "apps/schematics/tsconfig.app.json"
             },
             "configurations": {
-                "production": {
+                "9": {
                     "optimization": true,
-                    "extractLicenses": true,
+                    "extractLicenses": false,
                     "inspect": false,
                     "fileReplacements": [
                         {
                             "replace": "apps/schematics/src/environments/environment.ts",
-                            "with": "apps/schematics/src/environments/environment.prod.ts"
+                            "with": "libs/legacy-utilities/src/environments/environment.9.ts"
+                        }
+                    ]
+                },
+                "10": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.10.ts"
+                        }
+                    ]
+                },
+                "11": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.11.ts"
+                        }
+                    ]
+                },
+                "12": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.12.ts"
+                        }
+                    ]
+                },
+                "13": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.13.ts"
+                        }
+                    ]
+                },
+                "all": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
+                        }
+                    ]
+                },
+                "source": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/schematics/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
                         }
                     ]
                 }

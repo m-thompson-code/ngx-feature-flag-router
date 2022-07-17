@@ -6,11 +6,11 @@ import { environment } from './environments/environment';
  * Skips any angular version that has already been published
  */
 const main = async () => {
-    // Get all existing published versions
-    const existingVersions = await getExistingLegacyLibPackageVersions();
+    try {
+        // Get all existing published versions
+        const existingVersions = await getExistingLegacyLibPackageVersions();
 
-    for (const angularVersion of environment.angularVersions) {
-        try {
+        for (const angularVersion of environment.angularVersions) {
             const legacyLibPackageJson = getLegacyPackageJson(angularVersion);
             const currentVersion = legacyLibPackageJson.version;
 
@@ -22,9 +22,9 @@ const main = async () => {
 
             // If it doesn't exist, publish it
             await publishLegacyLib(angularVersion);
-        } catch(error) {
-            process.exit(1);
         }
+    } catch(error) {
+        process.exit(1);
     }
 };
 

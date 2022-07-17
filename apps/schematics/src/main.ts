@@ -34,9 +34,13 @@ export const copySchematicsToLibBuilds = () => {
  * Should run after all versions of ngx-feature-flag-router build complete.
  */
 const main = async () => {
-    await buildSchematics();
+    try {
+        await buildSchematics();
 
-    copySchematicsToLibBuilds();
+        copySchematicsToLibBuilds();
+    } catch(error) {
+        process.exit(1);
+    }
 };
 
 main();

@@ -28,7 +28,8 @@
         "serve": {
             "executor": "@nrwl/node:node",
             "options": {
-                "buildTarget": "jest-coverage-shield:build"
+                "buildTarget": "jest-coverage-shield:build",
+                "watch": false
             }
         },
         "lint": {

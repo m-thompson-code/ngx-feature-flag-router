@@ -80,6 +80,13 @@
                 }
             }
         },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "legacy-version-control:build",
+                "watch": false
+            }
+        },
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],

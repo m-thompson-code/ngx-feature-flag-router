@@ -5,12 +5,12 @@ import { ALL_ANGULAR_VERSIONS, writeUpdatedLegacyPackageJson } from 'legacy-util
  * based on root package.json
  */
 export const main = () => {
-    for (const angularVersion of ALL_ANGULAR_VERSIONS) {
-        try {
+    try {
+        for (const angularVersion of ALL_ANGULAR_VERSIONS) {
             writeUpdatedLegacyPackageJson(angularVersion);
-        } catch(error) {
-            process.exit(1);
         }
+    } catch(error) {
+        process.exit(1);
     }
 };
 
