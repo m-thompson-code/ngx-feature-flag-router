@@ -17,7 +17,7 @@ export type PatchedRoute = Omit<Route, 'children'> & {
     featureFlagPath?: never;
     alternativeLoadChildren?: never;
     featureFlag?: never;
-    children?: FeatureFlagRoutes;
+    children?: FeatureFlagPatchedRoutes;
     loadChildren?: LoadChildren;
 };
 
@@ -97,7 +97,15 @@ export interface FeatureFlagRoute extends Route {
  * @see `Route`
  * @see `Routes`
  */
-export type FeatureFlagRoutes = (FeatureFlagRoute | PatchedRoute)[];
+export type FeatureFlagRoutes = (FeatureFlagRoute | Route)[];
+
+/**
+ * Same type as FeatureFlagRoutes, but instead of Route it uses PatchedRoute
+ * to allow for easier type checks
+ *
+ * @see `PatchedRoute``
+ */
+export type FeatureFlagPatchedRoutes = (FeatureFlagRoute | PatchedRoute)[];
 
 /**
  * Service with method `getFeatureRoutes`

@@ -35,7 +35,13 @@ ng add ngx-feature-flag-router
 Update:
 
 ```bash
-ng update ngx-feature-flag-router
+ng update ngx-feature-flag-router #Updates ngx-feature-flag-router to latest version
+```
+
+If you're not using the latest version of Angular, you'll have to specify the major version:
+
+```bash
+ng update ngx-feature-flag-router@10 #Specific to Angular 10
 ```
 
 ## How to Use

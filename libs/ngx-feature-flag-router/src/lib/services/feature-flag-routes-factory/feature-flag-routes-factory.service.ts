@@ -5,8 +5,8 @@ import { catchError, map, mergeMap, shareReplay, take, takeUntil, tap } from 'rx
 import { defaultUrlMatcher, wrapIntoObservable } from '../../angular-utils';
 import {
     FactoryService,
+    FeatureFlagPatchedRoutes,
     FeatureFlagRoute,
-    FeatureFlagRoutes,
     FeatureFlagRoutesService,
     LegacyUrlMatcher,
     LoadChildrenObservableCallback,
@@ -235,7 +235,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
         return this.getRoutesFromFeatureFlagRoutes(featureFlagRoutes.children);
     }
 
-    getRoutesFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagRoutes): ProcessedFeatureFlagRoute[] {
+    getRoutesFromFeatureFlagRoutes(featureFlagRoutes: FeatureFlagPatchedRoutes): ProcessedFeatureFlagRoute[] {
         return flattened(
             featureFlagRoutes.map((featureFlagRoute) => {
                 if (!featureFlagRoute.alternativeLoadChildren) {

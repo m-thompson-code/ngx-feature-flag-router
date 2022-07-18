@@ -107,3 +107,21 @@ export const getLegacyLibPackageJsonPath = (angularVersion: AngularVersion): str
 
     return path.join(getProjectPath(angularVersion), '/projects/ngx-feature-flag-router/package.json');
 };
+
+/**
+ * Path to root README.md
+ */
+export const getProjectReadmePath = (): string => {
+    return 'README.md';
+};
+
+/**
+ * Path to ngx-feature-flag-router lib package.jsonor specific AngularVersion
+ */
+export const getLegacyReadmePath = (angularVersion: AngularVersion): string => {
+    if (angularVersion === AngularVersion.source) {
+        return 'libs/ngx-feature-flag-router/README.md';
+    }
+
+    return path.join(getProjectPath(angularVersion), '/projects/ngx-feature-flag-router/README.md');
+};
