@@ -97,7 +97,13 @@ export interface FeatureFlagRoute extends Route {
  * @see `Route`
  * @see `Routes`
  */
-export type FeatureFlagRoutes = (FeatureFlagRoute | Route)[];
+export type FeatureFlagRoutes = (
+    | FeatureFlagRoute
+    | (Route & {
+          alternativeLoadChildren?: never;
+          featureFlag?: never;
+      })
+)[];
 
 /**
  * Same type as FeatureFlagRoutes, but instead of Route it uses PatchedRoute
