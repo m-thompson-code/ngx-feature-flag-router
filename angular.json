@@ -14,7 +14,7 @@
         "legacy-version-control": "apps/legacy/version-control",
         "ngx-feature-flag-router": "libs/ngx-feature-flag-router",
         "schematics": "apps/schematics",
-        "standalone-components": "apps/standalone-components/standalone-components",
-        "standalone-components-e2e": "apps/standalone-components/standalone-components-e2e"
+        "standalone-components": "apps/standalone-components/angular",
+        "standalone-components-e2e": "apps/standalone-components/e2e"
     }
 }

@@ -1,23 +1,20 @@
 {
     "projectType": "application",
-    "sourceRoot": "apps/standalone-components/standalone-components/src",
+    "sourceRoot": "apps/standalone-components/angular/src",
     "prefix": "standalone-components",
     "targets": {
         "build": {
             "executor": "@angular-devkit/build-angular:browser",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/standalone-components/standalone-components",
-                "index": "apps/standalone-components/standalone-components/src/index.html",
-                "main": "apps/standalone-components/standalone-components/src/main.ts",
-                "polyfills": "apps/standalone-components/standalone-components/src/polyfills.ts",
-                "tsConfig": "apps/standalone-components/standalone-components/tsconfig.app.json",
+                "outputPath": "dist/apps/standalone-components/angular",
+                "index": "apps/standalone-components/angular/src/index.html",
+                "main": "apps/standalone-components/angular/src/main.ts",
+                "polyfills": "apps/standalone-components/angular/src/polyfills.ts",
+                "tsConfig": "apps/standalone-components/angular/tsconfig.app.json",
                 "inlineStyleLanguage": "scss",
-                "assets": [
-                    "apps/standalone-components/standalone-components/src/favicon.ico",
-                    "apps/standalone-components/standalone-components/src/assets"
-                ],
-                "styles": ["apps/standalone-components/standalone-components/src/styles.scss"],
+                "assets": ["apps/standalone-components/angular/src/favicon.ico", "apps/standalone-components/angular/src/assets"],
+                "styles": ["apps/standalone-components/angular/src/styles.scss"],
                 "scripts": []
             },
             "configurations": {
@@ -36,8 +33,8 @@
                     ],
                     "fileReplacements": [
                         {
-                            "replace": "apps/standalone-components/standalone-components/src/environments/environment.ts",
-                            "with": "apps/standalone-components/standalone-components/src/environments/environment.prod.ts"
+                            "replace": "apps/standalone-components/angular/src/environments/environment.ts",
+                            "with": "apps/standalone-components/angular/src/environments/environment.prod.ts"
                         }
                     ],
                     "outputHashing": "all"
@@ -74,17 +71,14 @@
         "lint": {
             "executor": "@nrwl/linter:eslint",
             "options": {
-                "lintFilePatterns": [
-                    "apps/standalone-components/standalone-components/**/*.ts",
-                    "apps/standalone-components/standalone-components/**/*.html"
-                ]
+                "lintFilePatterns": ["apps/standalone-components/angular/**/*.ts", "apps/standalone-components/angular/**/*.html"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/apps/standalone-components/standalone-components"],
+            "outputs": ["coverage/apps/standalone-components/angular"],
             "options": {
-                "jestConfig": "apps/standalone-components/standalone-components/jest.config.ts",
+                "jestConfig": "apps/standalone-components/angular/jest.config.ts",
                 "passWithNoTests": true
             }
         }
