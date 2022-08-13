@@ -208,9 +208,9 @@ in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There shou
 },
 ```
 
-### Update Nx app `publish-legacy`
+### Update Nx app `legacy-publish`
 
-1. Include latest older major version to `apps/publish-legacy/project.json`:
+1. Include latest older major version to `apps/legacy-publish/project.json`:
 
 ```json
  "13": {
@@ -219,16 +219,16 @@ in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There shou
     "inspect": false,
     "fileReplacements": [
         {
-            "replace": "apps/publish-legacy/src/environments/environment.ts",
+            "replace": "apps/legacy-publish/src/environments/environment.ts",
             "with": "libs/legacy-utilities/src/environments/environment.13.ts"
         }
     ]
 },
 ```
 
-### Update Nx app `test-legacy`
+### Update Nx app `legacy-test`
 
-1. Include latest older major version to `apps/test-legacy/project.json`:
+1. Include latest older major version to `apps/legacy-test/project.json`:
 
 ```json
  "13": {
@@ -237,7 +237,7 @@ in `apps/legacy-e2e/cypress.angular-13.json`, replace `12` with `13`. There shou
     "inspect": false,
     "fileReplacements": [
         {
-            "replace": "apps/test-legacy/src/environments/environment.ts",
+            "replace": "apps/legacy-test/src/environments/environment.ts",
             "with": "libs/legacy-utilities/src/environments/environment.13.ts"
         }
     ]

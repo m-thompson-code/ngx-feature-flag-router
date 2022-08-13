@@ -1,5 +1,5 @@
 export default {
-    displayName: 'build-legacy',
+    displayName: 'legacy-publish',
 
     globals: {
         'ts-jest': {
@@ -11,6 +11,6 @@ export default {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/build-legacy',
+    coverageDirectory: '../../coverage/apps/legacy-publish',
     preset: '../../jest.preset.js',
 };

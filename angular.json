@@ -1,18 +1,20 @@
 {
     "version": 2,
     "projects": {
-        "build-legacy": "apps/build-legacy",
         "demo": "apps/demo",
         "demo-e2e": "apps/demo-e2e",
         "demo-storage": "libs/demo-storage",
         "jest-coverage-shield": "apps/jest-coverage-shield",
         "legacy": "apps/legacy",
+        "legacy-build": "apps/legacy-build",
         "legacy-e2e": "apps/legacy-e2e",
+        "legacy-publish": "apps/legacy-publish",
+        "legacy-test": "apps/legacy-test",
         "legacy-utilities": "libs/legacy-utilities",
         "legacy-version-control": "apps/legacy-version-control",
         "ngx-feature-flag-router": "libs/ngx-feature-flag-router",
-        "publish-legacy": "apps/publish-legacy",
         "schematics": "apps/schematics",
-        "test-legacy": "apps/test-legacy"
+        "standalone-components": "apps/standalone-components/standalone-components",
+        "standalone-components-e2e": "apps/standalone-components/standalone-components-e2e"
     }
 }

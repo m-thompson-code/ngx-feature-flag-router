@@ -1,15 +1,15 @@
 {
     "$schema": "../../node_modules/nx/schemas/project-schema.json",
-    "sourceRoot": "apps/publish-legacy/src",
+    "sourceRoot": "apps/legacy-test/src",
     "projectType": "application",
     "targets": {
         "build": {
             "executor": "@nrwl/node:webpack",
             "outputs": ["{options.outputPath}"],
             "options": {
-                "outputPath": "dist/apps/publish-legacy",
-                "main": "apps/publish-legacy/src/main.ts",
-                "tsConfig": "apps/publish-legacy/tsconfig.app.json"
+                "outputPath": "dist/apps/legacy-test",
+                "main": "apps/legacy-test/src/main.ts",
+                "tsConfig": "apps/legacy-test/tsconfig.app.json"
             },
             "configurations": {
                 "9": {
@@ -18,7 +18,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.9.ts"
                         }
                     ]
@@ -29,7 +29,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.10.ts"
                         }
                     ]
@@ -40,7 +40,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.11.ts"
                         }
                     ]
@@ -51,7 +51,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.12.ts"
                         }
                     ]
@@ -62,7 +62,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.13.ts"
                         }
                     ]
@@ -73,7 +73,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.ts"
                         }
                     ]
@@ -84,7 +84,7 @@
                     "inspect": false,
                     "fileReplacements": [
                         {
-                            "replace": "apps/publish-legacy/src/environments/environment.ts",
+                            "replace": "apps/legacy-test/src/environments/environment.ts",
                             "with": "libs/legacy-utilities/src/environments/environment.source.ts"
                         }
                     ]
@@ -94,7 +94,7 @@
         "serve": {
             "executor": "@nrwl/node:node",
             "options": {
-                "buildTarget": "publish-legacy:build",
+                "buildTarget": "legacy-test:build",
                 "watch": false
             }
         },
@@ -102,14 +102,14 @@
             "executor": "@nrwl/linter:eslint",
             "outputs": ["{options.outputFile}"],
             "options": {
-                "lintFilePatterns": ["apps/publish-legacy/**/*.ts"]
+                "lintFilePatterns": ["apps/legacy-test/**/*.ts"]
             }
         },
         "test": {
             "executor": "@nrwl/jest:jest",
-            "outputs": ["coverage/apps/publish-legacy"],
+            "outputs": ["coverage/apps/legacy-test"],
             "options": {
-                "jestConfig": "apps/publish-legacy/jest.config.ts",
+                "jestConfig": "apps/legacy-test/jest.config.ts",
                 "passWithNoTests": true
             }
         }

@@ -1,5 +1,5 @@
 export default {
-    displayName: 'test-legacy',
+    displayName: 'legacy-test',
 
     globals: {
         'ts-jest': {
@@ -11,6 +11,6 @@ export default {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/test-legacy',
+    coverageDirectory: '../../coverage/apps/legacy-test',
     preset: '../../jest.preset.js',
 };

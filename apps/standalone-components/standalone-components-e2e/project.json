@@ -1,0 +1,28 @@
+{
+    "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/standalone-components/standalone-components-e2e/src",
+    "projectType": "application",
+    "targets": {
+        "e2e": {
+            "executor": "@nrwl/cypress:cypress",
+            "options": {
+                "cypressConfig": "apps/standalone-components/standalone-components-e2e/cypress.json",
+                "devServerTarget": "standalone-components:serve:development"
+            },
+            "configurations": {
+                "production": {
+                    "devServerTarget": "standalone-components:serve:production"
+                }
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/standalone-components/standalone-components-e2e/**/*.{js,ts}"]
+            }
+        }
+    },
+    "tags": [],
+    "implicitDependencies": ["standalone-components"]
+}
