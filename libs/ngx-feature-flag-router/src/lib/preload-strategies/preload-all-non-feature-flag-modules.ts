@@ -14,6 +14,7 @@ import { FeatureFlagRoute } from '../models';
  */
 @Injectable()
 export class PreloadAllNonFeatureFlagModules implements PreloadingStrategy {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     preload(route: Partial<FeatureFlagRoute> & Route, fn: () => Observable<any>): Observable<any> {
         // Check if possible FeatureFlagRoute has required properties
         // to involve lazy-loading modules based on FeatureFlag

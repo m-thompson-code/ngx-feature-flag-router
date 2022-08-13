@@ -2,10 +2,10 @@ import { LoadChildrenCallback } from '@angular/router';
 import { Observable } from 'rxjs';
 
 /**
- * TODO: UPDATE THIS BEFORE RELEASE
+ * A subset of LoadChildrenCallbacks that involve Observables.
  *
- * A subset of LoadChildrenCallback that only includes Module-related types.
- *
- * This avoids types involving Routes that are introduced in Angular 14
+ * Ignores return types such as `Routes` for Angular 14 and
+ * `string` for Angular 9
  */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type LoadChildrenObservableCallback = () => Extract<ReturnType<LoadChildrenCallback>, Observable<any>>;

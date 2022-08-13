@@ -4,7 +4,12 @@
     "overrides": [
         {
             "files": ["*.ts"],
-            "extends": ["plugin:@nrwl/nx/angular", "plugin:@angular-eslint/template/process-inline-templates"],
+            "extends": [
+                "plugin:@nrwl/nx/angular",
+                "plugin:@angular-eslint/template/process-inline-templates",
+                "@bitovi/eslint-config/angular",
+                "@bitovi/eslint-config/rules/rxjs"
+            ],
             "rules": {
                 "@angular-eslint/directive-selector": [
                     "error",
@@ -29,6 +34,12 @@
             "files": ["*.html"],
             "extends": ["plugin:@nrwl/nx/angular-template"],
             "rules": {}
+        },
+        {
+            "files": ["*.spec.ts", "*.test.ts"],
+            "rules": {
+                "jest/no-done-callback": "off"
+            }
         }
     ]
 }

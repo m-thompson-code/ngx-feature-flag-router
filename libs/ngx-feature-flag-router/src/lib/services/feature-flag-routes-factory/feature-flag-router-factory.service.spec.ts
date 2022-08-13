@@ -79,7 +79,7 @@ describe('FeatureFlagRoutesFactoryService', () => {
             const result = service.getLoadChildrenObservableCallback(() => new NgModuleFactory());
 
             result().subscribe({
-                error: (error) => {
+                error: (error: unknown) => {
                     expect(error).toStrictEqual(new Error('NgModuleFactory is deprecated and is not supported'));
                     done();
                 },

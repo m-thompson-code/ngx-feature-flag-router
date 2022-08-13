@@ -36,6 +36,12 @@
             "files": ["*.js", "*.jsx"],
             "extends": ["plugin:@nrwl/nx/javascript"],
             "rules": {}
+        },
+        {
+            "files": ["*.spec.ts", "*.test.ts"],
+            "rules": {
+                "jest/no-done-callback": "off"
+            }
         }
     ]
 }

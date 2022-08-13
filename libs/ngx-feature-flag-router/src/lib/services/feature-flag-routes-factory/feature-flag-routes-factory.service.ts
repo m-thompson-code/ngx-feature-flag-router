@@ -66,6 +66,14 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
             };
         };
 
+        const onCatchError = (error: unknown): ReturnType<LoadChildrenObservableCallback> => {
+            console.error(error);
+            // Update first and second module to both be the same module (the first one)
+            handleError();
+            // Return first Module always on error
+            return module();
+        };
+
         const handleFeatureFlagValue = (featureFlagValue: boolean): void => {
             const expectedFirstModule = featureFlagValue ? alternativeModule : module;
             const expectedSecondModule = featureFlagValue ? module : alternativeModule;
@@ -93,11 +101,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
                     return modules!.first();
                 }),
-                catchError((error) => {
-                    console.error(error);
-                    handleError();
-                    return module();
-                }),
+                catchError(onCatchError),
             );
         };
 
@@ -112,11 +116,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
                     return modules!.second();
                 }),
-                catchError((error) => {
-                    console.error(error);
-                    handleError();
-                    return module();
-                }),
+                catchError(onCatchError),
             );
         };
 
@@ -185,7 +185,7 @@ export class FeatureFlagRoutesFactoryService implements FactoryService, OnDestro
 
                 observedFeatureFlagValue = loadChildFeatureFlagValue;
             }),
-            shareReplay(1),
+            shareReplay({ bufferSize: 0, refCount: false }),
             take(1),
         );
 
