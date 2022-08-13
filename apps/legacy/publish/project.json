@@ -1,0 +1,118 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/legacy/publish/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/node:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/legacy/publish",
+                "main": "apps/legacy/publish/src/main.ts",
+                "tsConfig": "apps/legacy/publish/tsconfig.app.json"
+            },
+            "configurations": {
+                "9": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.9.ts"
+                        }
+                    ]
+                },
+                "10": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.10.ts"
+                        }
+                    ]
+                },
+                "11": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.11.ts"
+                        }
+                    ]
+                },
+                "12": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.12.ts"
+                        }
+                    ]
+                },
+                "13": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.13.ts"
+                        }
+                    ]
+                },
+                "all": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
+                        }
+                    ]
+                },
+                "source": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/publish/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "legacy-publish:build",
+                "watch": false
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/legacy/publish/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/legacy/publish"],
+            "options": {
+                "jestConfig": "apps/legacy/publish/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}

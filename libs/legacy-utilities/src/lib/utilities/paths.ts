@@ -6,10 +6,10 @@ import { AngularVersion } from '../types';
  */
 export const getProjectPath = (angularVersion: AngularVersion): string => {
     if (angularVersion === AngularVersion.source) {
-        return 'apps/legacy';
+        return 'apps/legacy/angular';
     }
 
-    return `apps/legacy/older-angular-versions/angular-${angularVersion}`;
+    return `apps/legacy/angular/older-angular-versions/angular-${angularVersion}`;
 };
 
 /**
@@ -47,10 +47,6 @@ export const getDistSchematicsPath = (angularVersion: AngularVersion): string =>
  * It is also temporary and is rebuilt using the legacy app's __src__ directory
  */
 export const getSrcPath = (angularVersion: AngularVersion): string => {
-    if (angularVersion === AngularVersion.source) {
-        return 'apps/legacy/src';
-    }
-
     return path.join(getProjectPath(angularVersion), 'src');
 };
 
@@ -70,10 +66,6 @@ export const getPermSrcPath = (angularVersion: AngularVersion): string => {
  * Path to src/app of legacy app for specific AngularVersion
  */
 export const getAppPath = (angularVersion: AngularVersion): string => {
-    if (angularVersion === AngularVersion.source) {
-        return 'apps/legacy/src/app';
-    }
-
     return path.join(getSrcPath(angularVersion), 'app');
 };
 

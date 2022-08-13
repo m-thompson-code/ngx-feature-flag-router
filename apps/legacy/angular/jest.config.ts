@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'ngx-feature-flag-router',
+    displayName: 'legacy',
 
     setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
     globals: {
@@ -9,7 +9,7 @@ export default {
             stringifyContentPathRegex: '\\.(html|svg)$',
         },
     },
-    coverageDirectory: '../../coverage/libs/ngx-feature-flag-router',
+    coverageDirectory: '../../../coverage/apps/legacy/angular',
     transform: {
         '^.+\\.(ts|mjs|js|html)$': 'jest-preset-angular',
     },
@@ -19,5 +19,6 @@ export default {
         'jest-preset-angular/build/serializers/ng-snapshot',
         'jest-preset-angular/build/serializers/html-comment',
     ],
-    preset: '../../jest.preset.js',
+    modulePathIgnorePatterns: ['angular-9', 'angular-10', 'angular-11', 'angular-12', 'angular-13'],
+    preset: '../../../jest.preset.js',
 };

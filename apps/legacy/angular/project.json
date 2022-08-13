@@ -1,0 +1,91 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "projectType": "application",
+    "sourceRoot": "apps/legacy/angular/src",
+    "prefix": "legacy",
+    "targets": {
+        "build": {
+            "executor": "@angular-devkit/build-angular:browser",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/legacy/angular",
+                "index": "apps/legacy/angular/src/index.html",
+                "main": "apps/legacy/angular/src/main.ts",
+                "polyfills": "apps/legacy/angular/src/polyfills.ts",
+                "tsConfig": "apps/legacy/angular/tsconfig.app.json",
+                "inlineStyleLanguage": "scss",
+                "assets": ["apps/legacy/angular/src/favicon.ico", "apps/legacy/angular/src/assets"],
+                "styles": ["apps/legacy/angular/src/styles.scss"],
+                "scripts": []
+            },
+            "configurations": {
+                "production": {
+                    "budgets": [
+                        {
+                            "type": "initial",
+                            "maximumWarning": "500kb",
+                            "maximumError": "1mb"
+                        },
+                        {
+                            "type": "anyComponentStyle",
+                            "maximumWarning": "2kb",
+                            "maximumError": "4kb"
+                        }
+                    ],
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/angular/src/environments/environment.ts",
+                            "with": "apps/legacy/angular/src/environments/environment.prod.ts"
+                        }
+                    ],
+                    "outputHashing": "all"
+                },
+                "development": {
+                    "buildOptimizer": false,
+                    "optimization": false,
+                    "vendorChunk": true,
+                    "extractLicenses": false,
+                    "sourceMap": true,
+                    "namedChunks": true
+                }
+            },
+            "defaultConfiguration": "production"
+        },
+        "serve": {
+            "executor": "@angular-devkit/build-angular:dev-server",
+            "configurations": {
+                "production": {
+                    "browserTarget": "legacy:build:production"
+                },
+                "development": {
+                    "browserTarget": "legacy:build:development"
+                }
+            },
+            "defaultConfiguration": "development",
+            "options": {
+                "port": 4200
+            }
+        },
+        "extract-i18n": {
+            "executor": "@angular-devkit/build-angular:extract-i18n",
+            "options": {
+                "browserTarget": "legacy:build"
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "options": {
+                "lintFilePatterns": ["apps/legacy/angular/src/**/*.ts", "apps/legacy/angular/src/**/*.html"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/legacy/angular"],
+            "options": {
+                "jestConfig": "apps/legacy/angular/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": ["legacy"]
+}

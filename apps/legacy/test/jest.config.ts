@@ -1,6 +1,6 @@
 /* eslint-disable */
 export default {
-    displayName: 'legacy-utilities',
+    displayName: 'legacy-test',
 
     globals: {
         'ts-jest': {
@@ -12,6 +12,6 @@ export default {
         '^.+\\.[tj]s$': 'ts-jest',
     },
     moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/libs/legacy-utilities',
-    preset: '../../jest.preset.js',
+    coverageDirectory: '../../../coverage/apps/legacy/test',
+    preset: '../../../jest.preset.js',
 };

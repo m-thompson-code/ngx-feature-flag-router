@@ -1,0 +1,107 @@
+{
+    "$schema": "../../node_modules/nx/schemas/project-schema.json",
+    "sourceRoot": "apps/legacy/build/src",
+    "projectType": "application",
+    "targets": {
+        "build": {
+            "executor": "@nrwl/node:webpack",
+            "outputs": ["{options.outputPath}"],
+            "options": {
+                "outputPath": "dist/apps/legacy/build",
+                "main": "apps/legacy/build/src/main.ts",
+                "tsConfig": "apps/legacy/build/tsconfig.app.json"
+            },
+            "configurations": {
+                "9": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.9.ts"
+                        }
+                    ]
+                },
+                "10": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.10.ts"
+                        }
+                    ]
+                },
+                "11": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.11.ts"
+                        }
+                    ]
+                },
+                "12": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.12.ts"
+                        }
+                    ]
+                },
+                "all": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.ts"
+                        }
+                    ]
+                },
+                "source": {
+                    "optimization": true,
+                    "extractLicenses": false,
+                    "inspect": false,
+                    "fileReplacements": [
+                        {
+                            "replace": "apps/legacy/build/src/environments/environment.ts",
+                            "with": "libs/legacy-utilities/src/environments/environment.source.ts"
+                        }
+                    ]
+                }
+            }
+        },
+        "serve": {
+            "executor": "@nrwl/node:node",
+            "options": {
+                "buildTarget": "legacy-build:build",
+                "watch": false
+            }
+        },
+        "lint": {
+            "executor": "@nrwl/linter:eslint",
+            "outputs": ["{options.outputFile}"],
+            "options": {
+                "lintFilePatterns": ["apps/legacy/build/**/*.ts"]
+            }
+        },
+        "test": {
+            "executor": "@nrwl/jest:jest",
+            "outputs": ["coverage/apps/legacy/build"],
+            "options": {
+                "jestConfig": "apps/legacy/build/jest.config.ts",
+                "passWithNoTests": true
+            }
+        }
+    },
+    "tags": []
+}
