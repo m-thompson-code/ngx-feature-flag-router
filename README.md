@@ -22,7 +22,7 @@ This allows you to use an endpoint to lazy-load modules, easily redirect users t
 | 11              | ✅ Yes                                          |
 | 12              | ✅ Yes                                          |
 | 13              | ✅ Yes                                          |
-| 14              | Mostly. Support for `loadComponent` coming soon |
+| 14              | Mostly. Support for `loadComponent` [coming soon](https://github.com/m-thompson-code/ngx-feature-flag-router/tree/standalone-components) |
 
 ## Installation
 
