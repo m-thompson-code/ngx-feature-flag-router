@@ -29,7 +29,7 @@ This allows you to use an endpoint to lazy-load modules, easily redirect users t
 1. [Installation](#installation)
 2. [How to Use](#how-to-use)
 3. [How to Use Services / API](#how-to-use-services--api)
-4. [Standalone Components (Angular 14+)](#standalone-components-angular-14)
+4. [How to Use Standalone Components (Angular 14+)](#standalone-components-angular-14)
 5. [Contributing](#contributing)
 
 ## Installation
@@ -182,7 +182,7 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
 }
 ```
 
-## Standalone Components (Angular 14+)
+## How to Use Standalone Components (Angular 14+)
 
 ### Route.loadComponent
 
@@ -204,7 +204,7 @@ const routes: FeatureFlagRoutes = [
 ];
 ```
 
-### Using exported Routes instead of Modules that import RouteModule
+### Using Exported Routes Instead of Modules That Import RouteModule
 
 Using routes directly works, but because of how this feature works for Angular, these routes are handled using `RouteModule.forChild` under the hood, and there is no way to use `FeatureFlagRouterModule.forChild` instead.
 
