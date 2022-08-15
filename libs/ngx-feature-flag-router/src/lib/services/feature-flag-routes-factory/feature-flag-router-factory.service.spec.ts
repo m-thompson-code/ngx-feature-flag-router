@@ -1,13 +1,24 @@
-import { Injector, NgModule, NgModuleFactory as DeprecatedNgModuleFactory, NgModuleRef, Type } from '@angular/core';
+import { Component, Injector, NgModule, NgModuleFactory as DeprecatedNgModuleFactory, NgModuleRef, Type } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
 import { UrlSegment, UrlSegmentGroup } from '@angular/router';
 import { BehaviorSubject, combineLatest, of, throwError } from 'rxjs';
-import { FeatureFlagRoutesService, LoadChildrenObservableCallback } from '../../models';
+import { FeatureFlagRoute, FeatureFlagRoutesService, LoadChildrenObservableCallback } from '../../models';
 import { FeatureFlagRoutesFactoryService } from './feature-flag-routes-factory.service';
+import * as angularUtils from '../../angular-utils';
 
 const MOCK_SEGMENT_GROUP = {
     hasChildren: () => false,
 } as UrlSegmentGroup;
+
+@Component({
+    standalone: true,
+})
+class MooComponent {}
+
+@Component({
+    standalone: true,
+})
+class FeatureComponent {}
 
 @NgModule()
 class MooModule {}
@@ -53,6 +64,7 @@ describe('FeatureFlagRoutesFactoryService', () => {
     beforeEach(() => {
         jest.clearAllMocks();
         jest.resetAllMocks();
+        jest.restoreAllMocks();
     });
 
     describe('getLoadChildrenObservableCallback()', () => {
@@ -87,16 +99,17 @@ describe('FeatureFlagRoutesFactoryService', () => {
         });
     });
 
-    describe('getLoadChildrens()', () => {
+    describe('getSyncedFeatureFlagModules()', () => {
         it('should default both loadChildrenCallbacks to first NgModule if they are out of sync of each other', (done) => {
             expect.assertions(3);
 
             const spy = jest.spyOn(console, 'error').mockImplementation(() => {
                 /* mute console */
             });
+
             const mockFeatureFlag$ = new BehaviorSubject<boolean>(false);
 
-            const [firstLoadChildren, secondLoadChildren] = service.getLoadChildrens(
+            const [firstLoadChildren, secondLoadChildren] = service.getSyncedFeatureFlagModules(
                 mockFeatureFlag$,
                 () => of(MooModule),
                 () => of(FeatureModule),
@@ -117,9 +130,13 @@ describe('FeatureFlagRoutesFactoryService', () => {
         it('should fallback to using first NgModule if there is an error emitting feature NgModule', (done) => {
             expect.assertions(1);
 
+            jest.spyOn(console, 'error').mockImplementation(() => {
+                /* mute console */
+            });
+
             const mockFeatureFlag$ = new BehaviorSubject<boolean>(false);
 
-            const [, secondLoadChildren] = service.getLoadChildrens(
+            const [, secondLoadChildren] = service.getSyncedFeatureFlagModules(
                 mockFeatureFlag$,
                 () => of(MooModule),
                 () => throwError(() => new Error('unexpected feature flag error')),
@@ -357,6 +374,86 @@ describe('FeatureFlagRoutesFactoryService', () => {
                 ).toBeNull();
             });
         });
+
+        describe('alternativeLoadComponent', () => {
+            it('should handle separating loadComponents instead of loadChildren', () => {
+                jest.spyOn(angularUtils, 'wrapIntoObservable').mockImplementation((obs: any) => obs as any);
+                const spy = jest.spyOn(service, 'getSyncedFeatureFlagModules');
+
+                // This has to be () => Observable<boolean>
+                // because we are mocking `wrapIntoObservable` to assume its argument is an Observable
+                const featureFlag = () => of(true);
+
+                const mockComponent = of(MooComponent);
+                const mockAlternativeComponent = of(FeatureComponent);
+
+                const mockLoadComponent = () => mockComponent;
+                const mockAlternativeLoadComponent = () => mockAlternativeComponent;
+
+                // The synced mocks should be different references
+                // to make this test more meaningful
+                const mockSyncedLoadComponent = () => of(MooComponent);
+                const mockSyncedAlternativeLoadComponent = () => of(FeatureComponent);
+
+                jest.spyOn(service, 'getSyncedFeatureFlagModules').mockReturnValueOnce([
+                    mockSyncedLoadComponent,
+                    mockSyncedAlternativeLoadComponent,
+                ]);
+
+                const [firstRoute, secondRoute] = service.getRoutesFromFeatureFlagRoute({
+                    path: 'moo/cow',
+                    featureFlag,
+                    loadComponent: mockLoadComponent,
+                    alternativeLoadComponent: mockAlternativeLoadComponent,
+                });
+
+                expect(spy.mock.calls[0][1]()).toBe(mockComponent);
+                expect(spy.mock.calls[0][2]()).toBe(mockAlternativeComponent);
+
+                expect(firstRoute).toStrictEqual({
+                    featureFlagPath: 'moo/cow',
+                    featureFlag,
+                    children: undefined,
+                    matcher: expect.any(Function),
+                    loadComponent: mockSyncedLoadComponent,
+                    alternativeLoadComponent: mockAlternativeLoadComponent,
+                });
+
+                expect(secondRoute).toStrictEqual({
+                    featureFlagPath: 'moo/cow',
+                    featureFlag,
+                    children: undefined,
+                    matcher: expect.any(Function),
+                    loadComponent: mockSyncedAlternativeLoadComponent,
+                    alternativeLoadComponent: mockAlternativeLoadComponent,
+                });
+            });
+        });
+
+        describe('FeatureFlagRoute without alternativeLoadComponent or alternativeLoadChildren', () => {
+            it('should handle separating loadComponents instead of loadChildren', () => {
+                const featureFlag = () => true;
+
+                const mockLoadComponent = () => of(MooComponent);
+
+                const [firstRoute, secondRoute] = service.getRoutesFromFeatureFlagRoute({
+                    path: 'moo/cow',
+                    loadChildren: mockLoadComponent,
+                    featureFlag,
+                } as FeatureFlagRoute);
+
+                const expectedResult = {
+                    featureFlagPath: 'moo/cow',
+                    loadChildren: mockLoadComponent,
+                    featureFlag,
+                    children: undefined,
+                    matcher: expect.any(Function),
+                };
+
+                expect(firstRoute).toStrictEqual(expectedResult);
+                expect(secondRoute).toStrictEqual(expectedResult);
+            });
+        });
     });
 
     describe('getChildrenFromFeatureFlagRoutes()', () => {
@@ -376,7 +473,6 @@ describe('FeatureFlagRoutesFactoryService', () => {
                 }),
             ).toStrictEqual([
                 {
-                    path: undefined,
                     featureFlagPath: 'moo/cow',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),
@@ -385,7 +481,6 @@ describe('FeatureFlagRoutesFactoryService', () => {
                     children: undefined,
                 },
                 {
-                    path: undefined,
                     featureFlagPath: 'moo/cow',
                     loadChildren: expect.any(Function),
                     alternativeLoadChildren: expect.any(Function),

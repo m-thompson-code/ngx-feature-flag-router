@@ -18,7 +18,13 @@ export class PreloadAllNonFeatureFlagModules implements PreloadingStrategy {
     preload(route: Partial<FeatureFlagRoute> & Route, fn: () => Observable<any>): Observable<any> {
         // Check if possible FeatureFlagRoute has required properties
         // to involve lazy-loading modules based on FeatureFlag
-        if (route.alternativeLoadChildren && route.featureFlag) {
+        if (
+            route.featureFlag ||
+            route.alternativeLoadChildren ||
+            // START_A14_CODE
+            route.alternativeLoadComponent
+            // END_A14_CODE
+        ) {
             return of(null);
         }
 

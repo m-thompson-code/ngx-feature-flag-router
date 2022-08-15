@@ -1,6 +1,6 @@
 {
     "name": "ngx-feature-flag-router",
-    "version": "14.0.4",
+    "version": "14.0.5",
     "description": "Extends RouteModule functionality to allow for conditionally lazy-loading child routes based on feature flag. Allows for Services to configure Routes and includes helpers for preload strategy.",
     "license": "MIT",
     "repository": {
@@ -85,6 +85,7 @@
         "@nrwl/nx-cloud": "14.2.0",
         "@nrwl/workspace": "14.4.3",
         "@types/fs-extra": "^9.0.13",
+        "@types/glob": "^7.2.0",
         "@types/jest": "27.4.1",
         "@types/node": "18.0.0",
         "@typescript-eslint/eslint-plugin": "^5.29.0",
@@ -96,6 +97,7 @@
         "eslint-config-prettier": "8.1.0",
         "eslint-plugin-cypress": "^2.10.3",
         "fs-extra": "^10.0.1",
+        "glob": "^8.0.3",
         "husky": "^8.0.1",
         "jest": "27.5.1",
         "jest-preset-angular": "11.1.2",

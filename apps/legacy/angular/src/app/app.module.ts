@@ -14,9 +14,9 @@ const routes: Routes = [
 
 @NgModule({
     declarations: [AppComponent],
-    // Typescript tries to import BrowserModule from older versions of angular due to nested
-    // node_modules, this error can be ignored
     imports: [
+        // Typescript tries to import BrowserModule from older versions of angular due to nested
+        // node_modules, this error can be ignored
         BrowserModule,
         RouterModule.forRoot(routes, {
             preloadingStrategy: PreloadAllNonFeatureFlagModules,

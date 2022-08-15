@@ -15,14 +15,22 @@ This allows you to use an endpoint to lazy-load modules, easily redirect users t
 
 ## Angular Major Version Support
 
-| Angular Version | Support                                         |
-| --------------- | ----------------------------------------------- |
-| 9               | ✅ Yes                                          |
-| 10              | ✅ Yes                                          |
-| 11              | ✅ Yes                                          |
-| 12              | ✅ Yes                                          |
-| 13              | ✅ Yes                                          |
-| 14              | Mostly. Support for `loadComponent` coming soon |
+| Angular Version | Support |
+| --------------- | ------- |
+| 9               | ✅ Yes  |
+| 10              | ✅ Yes  |
+| 11              | ✅ Yes  |
+| 12              | ✅ Yes  |
+| 13              | ✅ Yes  |
+| 14              | ✅ Yes  |
+
+## Table of Contents
+
+1. [Installation](#installation)
+2. [How to Use](#how-to-use)
+3. [How to Use Services / API](#how-to-use-services--api)
+4. [Standalone Components (Angular 14+)](#standalone-components-angular-14)
+5. [Contributing](#contributing)
 
 ## Installation
 
@@ -99,7 +107,8 @@ const routes: FeatureFlagRoutes = [
         path: 'hello-world',
         loadChildren: () => import('./hello-world.module').then((m) => m.HelloWorldModule),
         alternativeLoadChildren: () => import('./feature.module').then((m) => m.FeatureModule),
-        featureFlag: () => showFeature(), // Function that returns boolean
+        // Function that returns boolean
+        featureFlag: () => showFeature(),
     },
 ];
 ```
@@ -148,7 +157,8 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
                 path: 'api-example',
                 loadChildren: () => import('api-feature-flag-off.module').then((m) => m.ApiFeatureFlagOffModule),
                 alternativeLoadChildren: () => import('api-feature-flag-on.module').then((m) => m.ApiFeatureFlagOnModule),
-                featureFlag: () => this.showFeature(), // Function that returns Observable<boolean>
+                // Function that returns Observable<boolean>
+                featureFlag: () => this.showFeature(),
             },
         ];
     }
@@ -170,6 +180,47 @@ export class FeatureFlagService implements FeatureFlagRoutesService {
         );
     }
 }
+```
+
+## Standalone Components (Angular 14+)
+
+### Route.loadComponent
+
+Conditionally loading components works the same was to conditionally loading children:
+
+`loadChildren` -> `loadComponent`
+
+`alternativeLoadChildren` -> `alternativeLoadComponent`
+
+```typescript
+const routes: FeatureFlagRoutes = [
+    {
+        path: 'hello-world',
+        loadComponent: () => import('./hello-world.component').then((m) => m.HelloWorldComponent),
+        alternativeLoadComponent: () => import('./feature.component').then((m) => m.FeatureComponent),
+        // Function that returns boolean
+        featureFlag: () => showFeature(),
+    },
+];
+```
+
+### Using exported Routes instead of Modules that import RouteModule
+
+Using routes directly works, but because of how this feature works for Angular, these routes are handled using `RouteModule.forChild` under the hood, and there is no way to use `FeatureFlagRouterModule.forChild` instead.
+
+Because of this, there's no way to do nested feature flagging once you load a `Routes` directly. That being said, here's an example to conditionally load `Routes` using `loadChildren`:
+
+```typescript
+const routes: FeatureFlagRoutes = [
+    {
+        path: 'hello-world',
+        // assuming you're exporting a routes constants and not using a default exports
+        loadChildren: () => import('./hello-world.routes').then((m) => m.routes),
+        alternativeLoadChildren: () => import('./feature.routes').then((m) => m.routes),
+        // Function that returns boolean
+        featureFlag: () => showFeature(),
+    },
+];
 ```
 
 ## Mono Repo

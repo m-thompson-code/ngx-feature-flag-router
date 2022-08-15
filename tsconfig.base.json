@@ -22,5 +22,5 @@
             "ngx-feature-flag-router": ["libs/ngx-feature-flag-router/src/index.ts"]
         }
     },
-    "exclude": ["node_modules", "tmp", "**/older-angular-versions"]
+    "exclude": ["node_modules", "tmp", "older-angular-versions"]
 }

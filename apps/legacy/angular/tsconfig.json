@@ -27,5 +27,5 @@
         "strictInputAccessModifiers": true,
         "strictTemplates": true
     },
-    "exclude": ["**/older-angular-versions"]
+    "exclude": ["older-angular-versions"]
 }
