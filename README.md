@@ -29,7 +29,7 @@ This allows you to use an endpoint to lazy-load modules, easily redirect users t
 1. [Installation](#installation)
 2. [How to Use](#how-to-use)
 3. [How to Use Services / API](#how-to-use-services--api)
-4. [How to Use Standalone Components (Angular 14+)](#standalone-components-angular-14)
+4. [How to Use Standalone Components (Angular 14+)](#how-to-use-standalone-components-angular-14)
 5. [Contributing](#contributing)
 
 ## Installation
