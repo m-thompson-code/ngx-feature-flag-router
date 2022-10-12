@@ -1,6 +1,8 @@
 <div class="max-large-content-width">
     <h1>Basic Example</h1>
 
+    <ng-template #elseBlock>FALSE</ng-template>
+
     <p [class.hide]="featureFlag === FeatureFlag.ON">
         When you navigate to the Hello World page. Angular will lazy-load
         <code class="inline-highlight language-typescript">HelloWorldModule</code>
